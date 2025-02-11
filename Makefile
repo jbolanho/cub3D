@@ -4,23 +4,32 @@ CC = cc
 
 FLAGS = -Wall -Wextra -Werror
 
-SRC =	./main.c   \
+SRC =	./src/main.c   \
+		./src/validate.c   \
+		./src/algorithm.c  \
+		./src/math.c     \
 
 
 OBJ_DIR = obj
 
-OBJ = $(src:%.c=$(OBJ_DIR)/%.o)
+OBJ = $(SRC:./src/%.c=$(OBJ_DIR)/%.o)
 
-HEADERS =
+LIBFT_PATH = ./libft/
+LIBFT = $(LIBFT_PATH)/libft.a
+
+HEADERS	= -I ./include -I $(LIBFT_PATH)/include
 
 all: $(NAME)
+
+$(LIBFT):
+	@make -C $(LIBFT_PATH)
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(@D)
 	@$(CC) $(FLAGS) -c $< -o $@ -g3 $(HEADERS)
 	
-$(NAME): $(OBJ)
-	@$(CC) -g3 $(OBJ) $(HEADERS) -o $(NAME)
+$(NAME): $(OBJ) $(LIBFT)
+	@$(CC) -g3 $(OBJ) $(HEADERS) $(LIBFT) -o $(NAME)
 	@echo "Compilation complete!"
 
 clean:
@@ -28,6 +37,7 @@ clean:
 
 fclean: clean
 	@rm -rf $(NAME)
+	@make fclean -C $(LIBFT_PATH)
 	@echo "Cleaning completed!"
 
 re: fclean all
