@@ -2,7 +2,7 @@ NAME = cub3D
 
 CC = cc
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g
 
 SRC =	./src/main.c   \
 		./src/validate.c   \
@@ -24,12 +24,12 @@ all: $(NAME)
 $(LIBFT):
 	@make -C $(LIBFT_PATH)
 
-$(OBJ_DIR)/%.o: %.c
+$(OBJ_DIR)/%.o: ./src/%.c
 	@mkdir -p $(@D)
-	@$(CC) $(FLAGS) -c $< -o $@ -g3 $(HEADERS)
+	@$(CC) $(FLAGS) -c $< -o $@ $(HEADERS)
 	
 $(NAME): $(OBJ) $(LIBFT)
-	@$(CC) -g3 $(OBJ) $(HEADERS) $(LIBFT) -o $(NAME)
+	@$(CC) $(OBJ) $(HEADERS) $(LIBFT) -o $(NAME)
 	@echo "Compilation complete!"
 
 clean:
