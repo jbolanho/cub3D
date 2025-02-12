@@ -6,7 +6,7 @@
 /*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 10:13:02 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/02/12 11:33:13 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/02/12 15:47:17 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int argc, char **argv)
 {
-	t_game	cub;
+	t_game	*cub;
 
 	init(&cub);
 	validate(&cub, argv[1]);
