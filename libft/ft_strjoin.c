@@ -3,40 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 11:11:04 by jbolanho          #+#    #+#             */
-/*   Updated: 2024/02/29 17:44:13 by jbolanho         ###   ########.fr       */
+/*   Created: 2023/10/30 16:39:16 by anacaro5          #+#    #+#             */
+/*   Updated: 2024/12/02 13:36:43 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/libft.h"
+#include "libft.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int		i;
-	int		j;
-	int		t;
-	char	*mem;
+	char	*new;
+	size_t	len;
+	size_t	i;
+	size_t	j;
 
-	i = 0;
-	j = 0;
-	t = 0;
-	mem = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (mem == NULL)
+	len = ft_strlen(s1) + ft_strlen(s2);
+	new = (char *)malloc (len + 1 * sizeof(char));
+	if (!new)
 		return (NULL);
-	while (s1[i] != 0)
+	i = 0;
+	while (s1 && s1[i] != '\0')
 	{
-		mem[t] = s1[i];
+		new[i] = s1[i];
 		i++;
-		t++;
 	}
-	while (s2[j] != 0)
+	j = 0;
+	while (s2 && s2 [j] != '\0')
 	{
-		mem[t] = s2[j];
+		new[i] = s2[j];
+		i++;
 		j++;
-		t++;
 	}
-	mem[t] = '\0';
-	return (mem);
+	new[i] = '\0';
+	return (new);
 }

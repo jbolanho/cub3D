@@ -1,65 +1,65 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/10/26 15:54:53 by anacaro5          #+#    #+#              #
+#    Updated: 2024/02/05 14:16:57 by anacaro5         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = libft.a
 
-CC = cc
+#List of source files
+C_FILES = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c \
+ft_isprint.c ft_strlen.c ft_memset.c ft_bzero.c ft_memcpy.c \
+ft_memmove.c ft_strlcpy.c ft_strlcat.c ft_toupper.c ft_tolower.c \
+ft_strchr.c ft_strrchr.c ft_strncmp.c ft_memchr.c ft_memcmp.c \
+ft_strnstr.c ft_atoi.c ft_calloc.c ft_strdup.c ft_substr.c \
+ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c ft_striteri.c \
+ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
+ ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c \
+ft_lstlast_bonus.c ft_lstadd_back_bonus.c ft_lstdelone_bonus.c \
+ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c get_next_line_bonus.c \
+get_next_line_utils.c ft_printf.c printf_utils.c
 
-FLAGS = -Wall -Werror -Wextra
+#Define the directory for *.o files
+OBJS_DIR = Objects
 
-C_SRC = ft_isalpha.c          \
-        ft_isdigit.c          \
-        ft_isalnum.c          \
-        ft_isascii.c          \
-        ft_isprint.c          \
-        ft_strlen.c           \
-        ft_memset.c           \
-        ft_bzero.c            \
-        ft_memcpy.c           \
-        ft_memmove.c          \
-        ft_strlcpy.c          \
-        ft_strlcat.c          \
-        ft_toupper.c          \
-        ft_tolower.c          \
-        ft_strchr.c           \
-        ft_strrchr.c          \
-        ft_strncmp.c          \
-        ft_memchr.c           \
-        ft_memcmp.c           \
-        ft_strnstr.c          \
-        ft_atoi.c             \
-        ft_calloc.c           \
-        ft_strdup.c           \
-        ft_substr.c           \
-        ft_strjoin.c          \
-        ft_strtrim.c          \
-        ft_split.c            \
-		ft_itoa.c             \
-		ft_strmapi.c          \
-		ft_striteri.c         \
-		ft_putchar_fd.c       \
-		ft_putstr_fd.c        \
-		ft_putendl_fd.c       \
-		ft_putnbr_fd.c        \
-        ft_printf.c           \
-        ft_printf_hex_perc.c  \
-        ft_printf_libft.c     \
-        ft_printf_nbrs.c      \
-        ft_printf_ptr.c       \
-        get_next_line_utils.c \
-        get_next_line.c
+#Places each object filen the "Objects" directory while its created
+OBJS_FILES = $(addprefix $(OBJS_DIR)/, $(C_FILES:.c=.o))
 
-OBJ = $(C_SRC:%.c=%.o)
+#Compiler flags
+C_FLAGS = -Wall -Wextra -Werror -g
 
-all: $(NAME)
+#Main target/command
+$(NAME) : all
 
-$(NAME): $(OBJ)
-	ar -rc $(NAME) $(OBJ)
+all: $(OBJS_FILES)
+	@ echo Lib ready!
 
-%.o: %.c
-	$(CC) $(FLAGS) -c $< -o $@
+#Rule to compile and organize
+$(OBJS_DIR)/%.o: %.c | $(OBJS_DIR)
+	@ cc $(C_FLAGS) -c $< -o $@
+	@ ar -rcs $(NAME) $@
+	@ echo $@ added to $(OBJS_DIR)/
 
+#Create the "Objects" directory
+$(OBJS_DIR):
+	@ mkdir -p $(OBJS_DIR)
+
+#Clean target
 clean:
-	rm -f $(OBJ)
+	@ rm -rf $(OBJS_DIR)
+	@ echo Objects Directory removed!
 
+#Full clean target
 fclean: clean
-	rm -f $(NAME)
+	@ rm -f $(NAME)
+	@ echo Lib removed!
 
 re: fclean all
+
+.PHONY: all clean fclean re

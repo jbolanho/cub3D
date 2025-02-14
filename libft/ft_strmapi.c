@@ -3,34 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 11:11:12 by jbolanho          #+#    #+#             */
-/*   Updated: 2024/02/29 17:44:29 by jbolanho         ###   ########.fr       */
+/*   Created: 2023/10/31 18:15:09 by anacaro5          #+#    #+#             */
+/*   Updated: 2023/11/06 18:28:45 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/libft.h"
+#include "libft.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned
-int, char))
+char	*ft_strmapi(char const *s, char (*f) (unsigned int, char))
 {
-	int		i;
-	int		j;
-	char	*mem;
+	size_t			len;
+	char			*result;
+	unsigned int	i;
 
+	if (s == NULL || f == NULL)
+		return (NULL);
+	len = ft_strlen(s);
+	result = (char *)malloc((len + 1) * (sizeof(char)));
+	if (!result)
+		return (NULL);
 	i = 0;
-	j = 0;
-	if (s == NULL)
-		return (NULL);
-	mem = malloc((ft_strlen(s) + 1) * sizeof(char));
-	if (mem == NULL)
-		return (NULL);
-	while (s[j] != '\0' || j <= i)
+	while (s[i] != '\0')
 	{
-		mem[j] = f(j, s[j]);
-		j++;
+		result[i] = f(i, s[i]);
+		i++;
 	}
-	mem[j] = '\0';
-	return (mem);
+	result[i] = '\0';
+	return (result);
 }

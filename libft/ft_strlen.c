@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/17 09:28:14 by jbolanho          #+#    #+#             */
-/*   Updated: 2024/03/19 14:51:49 by jbolanho         ###   ########.fr       */
+/*   Created: 2023/10/17 19:19:23 by anacaro5          #+#    #+#             */
+/*   Updated: 2024/11/01 13:40:09 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/libft.h"
+#include "libft.h"
 
 size_t	ft_strlen(const char *str)
 {
@@ -20,8 +20,6 @@ size_t	ft_strlen(const char *str)
 	if (!str)
 		return (0);
 	while (str[i] != '\0')
-	{
 		i++;
-	}
 	return (i);
 }

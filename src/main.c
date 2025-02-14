@@ -15,10 +15,11 @@
 int	main(int argc, char **argv)
 {
 	t_game	*cub;
-
-	init(&cub);
-	validate(&cub, argv[1]);
-	game(&cub, argv[1]);
-	bye_bye(&cub);
+	
+	cub = NULL;
+	init(cub, argc, argv);
+	//validate(&cub, argv[1]);
+	game(cub);
+	//bye_bye(&cub);
 	return (0);
 }

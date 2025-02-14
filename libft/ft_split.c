@@ -3,77 +3,77 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 11:10:56 by jbolanho          #+#    #+#             */
-/*   Updated: 2024/02/29 17:43:57 by jbolanho         ###   ########.fr       */
+/*   Created: 2023/10/31 19:19:43 by anacaro5          #+#    #+#             */
+/*   Updated: 2023/11/01 18:47:26 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/libft.h"
+#include "libft.h"
 
 static size_t	ft_countstr(char const *s, char c)
 {
-	size_t	countstr;
-	int		i;
+	size_t	i;
+	size_t	count;
 
-	countstr = 0;
+	count = 0;
 	i = 0;
-	while (s[i])
+	while (s[i] != '\0' && s[i] == c)
+		i++;
+	while (s[i] != '\0')
 	{
-		while (s[i] && s[i] == c)
+		count++;
+		while (s[i] != '\0' && s[i] != c)
 			i++;
-		if (s[i])
-			countstr++;
-		while (s[i] && s[i] != c)
+		while (s[i] != '\0' && s[i] == c)
 			i++;
 	}
-	return (countstr);
+	return (count);
 }
 
-static int	ft_createsub(char **dest, const char *s, char c, int start)
+static	size_t	ft_sizestr(char const *s, char c)
 {
-	int		i;
-	int		end;
+	size_t	i;
+	size_t	size;
 
+	size = 0;
 	i = 0;
-	end = 0;
-	while (s[end])
+	while (s[i] != '\0' && s[i] == c)
+		i++;
+	while (s[i] != '\0' && s[i] != c)
 	{
-		if (s[end] == c)
-			start = end + 1;
-		if (s[end] != c && (s[end + 1] == c || s[end + 1] == '\0'))
-		{
-			dest[i] = (char *)malloc(sizeof(char) * (end - start + 2));
-			if (!dest[i])
-			{
-				free(dest[i]);
-				return (0);
-			}
-			ft_strlcpy(dest[i], (s + start), end - start + 2);
-			i++;
-		}
-		end++;
+		size++;
+		i++;
 	}
-	dest[i] = (char *) '\0';
-	return (1);
+	return (size);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**arr;
+	char	**new;
+	size_t	j;
+	size_t	k;
 	size_t	count;
 
 	count = ft_countstr(s, c);
-	if (!s)
+	new = (char **)malloc (sizeof(char *) * (count + 1));
+	if (!new)
 		return (NULL);
-	arr = malloc((count + 1) * sizeof(char *));
-	if (!arr)
-		return (NULL);
-	if (!ft_createsub (arr, s, c, 0))
+	new[count] = NULL;
+	j = 0;
+	while (j < count)
 	{
-		free(arr);
-		return (NULL);
+		new[j] = (char *)malloc (sizeof(char) * (ft_sizestr(s, c) + 1));
+		if (!new[j])
+			return (NULL);
+		while (*s && *s == c)
+			s++;
+		k = 0;
+		while (*s && *s != c)
+			new[j][k++] = *s++;
+		new[j][k] = '\0';
+		j++;
 	}
-	return (arr);
+	return (new);
 }

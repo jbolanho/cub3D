@@ -5,21 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 11:10:52 by jbolanho          #+#    #+#             */
-/*   Updated: 2024/02/29 17:43:54 by jbolanho         ###   ########.fr       */
+/*   Created: 2023/10/20 17:00:48 by anacaro5          #+#    #+#             */
+/*   Updated: 2024/12/19 11:59:19 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/libft.h"
+#include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+int	ft_putstr_fd(char *s, int fd)
 {
-	int		i;
-
-	i = 0;
-	while (s[i] != '\0')
-	{
-		write (fd, &s[i], 1);
-		i++;
-	}
+	if (!s)
+		return (write(fd, "(null)", 6));
+	return (write(fd, s, ft_strlen(s)));
 }
+
+// void	ft_putstr_fd(char *s, int fd)
+// {
+// 	while (*s != '\0')
+// 	{
+// 		write (fd, s, 1);
+// 		s++;
+// 	}
+// }

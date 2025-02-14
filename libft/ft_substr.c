@@ -3,35 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 11:11:19 by jbolanho          #+#    #+#             */
-/*   Updated: 2024/02/29 17:44:47 by jbolanho         ###   ########.fr       */
+/*   Created: 2023/10/30 11:55:32 by anacaro5          #+#    #+#             */
+/*   Updated: 2024/09/03 17:02:18 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/libft.h"
+#include "libft.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char			*mem;
-	unsigned int	i;
+	char	*new;
+	size_t	len_s;
+	size_t	i;
 
-	i = 0;
+	len_s = 0;
 	if (!s)
-		return (0);
-	if (start > ft_strlen(s) || len == 0)
-		return (ft_strdup(""));
-	if (ft_strlen(s + start) < len)
-		len = ft_strlen(s + start);
-	mem = (char *)malloc((len + 1) * sizeof(char));
-	if (mem == NULL)
 		return (NULL);
-	while (s[start + i] != '\0' && i < len)
-	{
-		mem[i] = s[start + i];
-		i++;
-	}
-	mem[i] = '\0';
-	return (mem);
+	while (s[len_s] != '\0')
+		len_s++;
+	if (len_s < start)
+		return (ft_strdup(""));
+	if (len >= len_s)
+		new = (char *)malloc (len_s - start + 1);
+	else
+		new = (char *)malloc (len + 1);
+	if (!new)
+		return (NULL);
+	i = 0;
+	while (len-- > 0 && s[start] != '\0')
+		new[i++] = s[start++];
+	new[i] = '\0';
+	return (new);
 }
