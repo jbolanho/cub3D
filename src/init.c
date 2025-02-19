@@ -17,4 +17,10 @@ void    init(t_game *cub, int argc, char **argv)
     (void)cub;
     (void)argc;
     (void)argv;
+    cub->map.north_path = NULL;
+	cub->map.south_path = NULL;
+	cub->map.east_path = NULL;
+	cub->map.west_path = NULL;
+	cub->map.floor_color = 0;
+	cub->map.ceiling_color = 0;
 }

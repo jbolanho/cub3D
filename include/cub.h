@@ -17,12 +17,13 @@
 # include "../MLX42/include/MLX42/MLX42.h"
 # include "../MLX42/include/MLX42/MLX42_Int.h"
 
+# include <stdio.h>
 // # include 
 
 typedef struct s_map
 {
-	size_t		wid;
-	size_t		hei;
+	int			wid;
+	int			hei;
 	char		*cub_map;
 	char		*north_path;
 	char		*south_path;
@@ -63,7 +64,8 @@ void	game(t_game *cub);
 void	init_game(t_game *cub);
 void	init_images(t_game *cub);
 void	init_window(t_game *cub);
-void	key_press(t_game *cub);
+void	key_press(void *param);
+void	init_background(t_game *cub);
 
 //bye_bye
 

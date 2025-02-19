@@ -14,12 +14,12 @@
 
 int	main(int argc, char **argv)
 {
-	t_game	*cub;
+	t_game	cub;
 	
-	cub = NULL;
-	init(cub, argc, argv);
+	//cub = NULL;
+	init(&cub, argc, argv);
 	//validate(&cub, argv[1]);
-	game(cub);
+	game(&cub);
 	//bye_bye(&cub);
 	return (0);
 }
