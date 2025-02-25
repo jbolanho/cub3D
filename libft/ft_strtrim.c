@@ -3,54 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 11:11:15 by jbolanho          #+#    #+#             */
-/*   Updated: 2024/02/29 17:44:43 by jbolanho         ###   ########.fr       */
+/*   Created: 2023/10/31 14:54:32 by anacaro5          #+#    #+#             */
+/*   Updated: 2023/10/31 14:59:21 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/libft.h"
-
-static int	ft_findset(char c, const char *set)
-{
-	int	i;
-
-	i = 0;
-	while (set[i] != '\0')
-	{
-		if (set[i] == c)
-			return (1);
-		i++;
-	}
-	return (0);
-}
+#include "libft.h"
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	int		i;
-	int		start;
-	int		end;
-	char	*mem;
+	char	*trimmed;
+	size_t	start;
+	size_t	end;
+	size_t	len;
 
-	i = 0;
+	if (s1 == 0 || set == 0)
+		return (NULL);
 	start = 0;
-	end = ft_strlen(s1);
-	if (s1 == NULL || set == NULL)
-		return (NULL);
-	while ((s1[i] != '\0') && ft_findset(s1[start], set))
-			start++;
-	while (end > start && ft_findset(s1[end - 1], set))
-			end--;
-	mem = (char *)malloc((end - start) + 1);
-	if (mem == NULL)
-		return (NULL);
-	while (start < end)
-	{
-		mem[i] = s1[start];
-		i++;
+	while (s1[start] && ft_strchr(set, s1[start]))
 		start++;
-	}
-	mem[i] = '\0';
-	return (mem);
+	end = ft_strlen(s1);
+	while (end > start && ft_strchr(set, s1[end - 1]))
+		end--;
+	len = end - start;
+	trimmed = (char *)malloc(len + 1 * (sizeof(char)));
+	if (!trimmed)
+		return (NULL);
+	ft_memcpy(trimmed, s1 + start, len);
+	trimmed[len] = '\0';
+	return (trimmed);
 }

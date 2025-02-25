@@ -6,21 +6,22 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 10:10:14 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/02/25 14:56:27 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/02/25 15:07:11 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB_H
 # define CUB_H
 
-# include "../libft/include/libft.h"
-# include "../libft/include/get_next_line.h"
-# include "../libft/include/ft_printf.h"
+# include "../libft/libft.h"
+# include "../MLX42/include/MLX42/MLX42.h"
+# include "../MLX42/include/MLX42/MLX42_Int.h"
 # include "../MLX42/include/MLX42/MLX42.h"
 # include "../MLX42/include/MLX42/MLX42_Int.h"
 # include <stdint.h>
 # include <stdio.h>
-// # include 
+
+# include <stdio.h>
 // # include 
 
 typedef struct s_map
@@ -36,19 +37,23 @@ typedef struct s_map
 	uint32_t	ceiling_color;
 
 }		t_map;
+typedef struct s_map
+{
+	int			wid;
+	int			hei;
+	char		*cub_map;
+	char		*north_path;
+	char		*south_path;
+	char		*east_path;
+	char		*west_path;
+	uint32_t	floor_color;
+	uint32_t	ceiling_color;
+	
+}		t_map;
 
 typedef struct s_game
 {
-	mlx_t			*mlx;
-	t_map			map;
-	int				time;
-	size_t			window_wid;
-	size_t			window_hei;
-	mlx_texture_t	*no;
-	mlx_texture_t	*so;
-	mlx_texture_t	*ea;
-	mlx_texture_t	*we;
-	mlx_image_t		*floor_ceiling;
+	
 }		t_game;
 
 //init

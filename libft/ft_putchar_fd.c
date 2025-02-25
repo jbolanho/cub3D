@@ -5,14 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 11:10:38 by jbolanho          #+#    #+#             */
-/*   Updated: 2024/02/29 17:43:43 by jbolanho         ###   ########.fr       */
+/*   Created: 2023/10/20 16:57:38 by anacaro5          #+#    #+#             */
+/*   Updated: 2024/12/19 12:00:04 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/libft.h"
+#include "libft.h"
 
-void	ft_putchar_fd(char c, int fd)
+int	ft_putchar_fd(char c, int fd)
 {
-	write (fd, &c, 1);
+	int	result;
+
+	result = write(fd, &c, 1);
+	return (result);
 }
+
+// void	ft_putchar_fd(char c, int fd)
+// {
+// 	write (fd, &c, 1);
+// }

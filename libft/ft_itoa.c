@@ -3,55 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 11:10:32 by jbolanho          #+#    #+#             */
-/*   Updated: 2024/02/29 17:42:32 by jbolanho         ###   ########.fr       */
+/*   Created: 2023/10/31 15:00:01 by anacaro5          #+#    #+#             */
+/*   Updated: 2023/10/31 18:09:39 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/libft.h"
+#include "libft.h"
 
-static int	ft_sizenb(int n)
+static int	ft_numlen(int n)
 {
-	int		size;
+	int		len;
 
-	size = 0;
+	len = 0;
 	if (n < 0)
-	{
-		size = 1;
-	}
+		len = 1;
 	while (n != 0)
 	{
 		n /= 10;
-		size++;
+		len++;
 	}
-	return (size);
+	return (len);
 }
 
 char	*ft_itoa(int n)
 {
-	long	nb;
-	long	i;
+	int		lenght;
 	char	*str;
+	int		temp;
+	long	num;
 
-	nb = (long)n;
-	if (n < 0)
-		nb *= -1;
-	i = (ft_sizenb(n));
+	num = (long)n;
+	temp = n;
 	if (n == 0)
 		return (ft_strdup("0"));
-	str = (char *)malloc((i + 1) * sizeof(char));
+	lenght = ft_numlen(n);
+	str = (char *)malloc((lenght + 1) * (sizeof(char)));
 	if (!str)
 		return (NULL);
-	str[i] = '\0';
-	while (i > 0)
+	str[lenght] = '\0';
+	if (num < 0)
+		num *= -1;
+	while (lenght > 0)
 	{
-		str[i - 1] = '0' + (nb % 10);
-		nb /= 10;
-		i--;
+		lenght--;
+		str[lenght] = (num % 10) + '0';
+		num /= 10;
 	}
-	if (n < 0)
+	if (temp < 0)
 		str[0] = '-';
 	return (str);
 }

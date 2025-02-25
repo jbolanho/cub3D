@@ -3,20 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anacaro5 <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/16 14:52:02 by jbolanho          #+#    #+#             */
-/*   Updated: 2024/02/29 17:42:15 by jbolanho         ###   ########.fr       */
+/*   Created: 2023/10/17 14:52:06 by anacaro5          #+#    #+#             */
+/*   Updated: 2023/10/17 15:32:03 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/libft.h"
-
-int	ft_isalpha(int x)
+int	ft_isalpha(int c)
 {
-	if ((x >= 65 && x <= 90) || (x >= 97 && x <= 122))
-	{
+	if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122))
 		return (1);
-	}
-	return (0);
+	else
+		return (0);
 }

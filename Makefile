@@ -2,42 +2,50 @@ NAME = cub3D
 
 CC = cc
 
-FLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -g3
+MFLAGS = -ldl -lglfw -pthread -lm
+
 
 SRC =	./src/main.c   \
+		./src/init.c   \
 		./src/validate.c   \
+		./src/game.c    \
 		./src/algorithm.c  \
-		./src/math.c     \
-
+		./src/byebye.c     \
 
 OBJ_DIR = obj
 
 OBJ = $(SRC:./src/%.c=$(OBJ_DIR)/%.o)
 
-LIBFT_PATH = ./libft/
-LIBFT = $(LIBFT_PATH)/libft.a
+LIBFT = ./libft/libft.a
 
-HEADERS	= -I ./include -I $(LIBFT_PATH)/include
+MLX = ./MLX42/build/libmlx42.a -ldl -lglfw -pthread -lm
 
-all: $(NAME)
+HEADERS	= -I ./include -I ./libft/include -I ./MLX42/include
 
-$(LIBFT):
-	@make -C $(LIBFT_PATH)
+all: libmlx $(NAME)
 
 $(OBJ_DIR)/%.o: ./src/%.c
 	@mkdir -p $(@D)
-	@$(CC) $(FLAGS) -c $< -o $@ $(HEADERS)
+	@$(CC) $(CFLAGS) -c $< -o $@ $(HEADERS)
 	
 $(NAME): $(OBJ) $(LIBFT)
-	@$(CC) $(OBJ) $(HEADERS) $(LIBFT) -o $(NAME)
+	@$(CC) $(CFLAGS) $(MFLAGS) $(OBJ) $(HEADERS) $(LIBFT) $(MLX) -o $(NAME)
 	@echo "Compilation complete!"
+
+$(LIBFT):
+	@make -C ./libft/
+
+libmlx:
+	@cmake -S ./MLX42 -B ./MLX42/build
+	@cmake --build ./MLX42/build -j4
 
 clean:
 	@rm -rf $(OBJ_DIR) 
 
 fclean: clean
 	@rm -rf $(NAME)
-	@make fclean -C $(LIBFT_PATH)
+	@make fclean -C ./libft/
 	@echo "Cleaning completed!"
 
 re: fclean all

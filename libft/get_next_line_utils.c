@@ -5,122 +5,110 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 11:32:45 by jbolanho          #+#    #+#             */
-/*   Updated: 2024/02/29 17:44:59 by jbolanho         ###   ########.fr       */
+/*   Created: 2023/11/17 12:29:41 by anacaro5          #+#    #+#             */
+/*   Updated: 2024/09/18 16:11:28 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/get_next_line.h"
+#include "libft.h"
 
-int	ft_strlen_gnl(const char *str)
+void	*ft_calloc(size_t n_elem, size_t size_bytes)
 {
-	int	i;
+	size_t			total_size;
+	void			*memory;
+	size_t			i;
+	unsigned char	*ptr;
 
-	i = 0;
-	while (str[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
-}
-
-char	*ft_strjoin_gnl(char const *s1, char const *s2)
-{
-	int		i;
-	int		j;
-	int		t;
-	char	*mem;
-
-	i = 0;
-	j = 0;
-	t = 0;
-	mem = (char *)malloc(ft_strlen_gnl(s1) + ft_strlen_gnl(s2) + 1);
-	if (!mem)
+	total_size = n_elem * size_bytes;
+	if (n_elem == 0 || size_bytes == 0)
+		return (malloc(0));
+	if (total_size / n_elem != size_bytes)
 		return (NULL);
-	while (s1[i] != 0)
+	memory = malloc(total_size);
+	if (memory == NULL)
+		return (NULL);
+	ptr = (unsigned char *)memory;
+	i = 0;
+	while (i < total_size)
 	{
-		mem[t] = s1[i];
+		ptr[i] = 0;
 		i++;
-		t++;
 	}
-	while (s2[j] != 0)
-	{
-		mem[t] = s2[j];
-		j++;
-		t++;
-	}
-	mem[t] = '\0';
-	return (mem);
+	return (memory);
 }
 
-char	*ft_strchr_gnl(const char *str, int c)
+char	*ft_strchr(const char *str, int chr)
 {
-	int				i;
-	unsigned char	ch;
+	size_t	i;
 
 	i = 0;
-	ch = (unsigned char) c;
+	if (str == NULL)
+		return (NULL);
+	if (chr > 255)
+	{
+		chr = chr % 256;
+	}
 	while (str[i] != '\0')
 	{
-		if (str[i] == ch)
-			return ((char *)&(str[i]));
+		if (str[i] == (unsigned char)chr)
+			return ((char *)&str[i]);
 		i++;
 	}
-	if (ch == '\0' && str[i] == '\0')
-		return ((char *)&(str[i]));
+	if (str[i] == chr)
+		return ((char *)&str[i]);
 	return (NULL);
 }
 
-char	*ft_strdup_gnl(const char *s)
-{
-	int		i;
-	int		j;
-	char	*str;
+// char	*ft_strjoin(char const *s1, char const *s2)
+// {
+// 	char	*new;
+// 	size_t	len;
+// 	size_t	i;
+// 	size_t	j;
 
+// 	len = ft_strlen(s1) + ft_strlen(s2);
+// 	if (len == 0)
+// 		return (NULL);
+// 	new = (char *)malloc (len + 1 * sizeof(char));
+// 	if (!new)
+// 		return (NULL);
+// 	i = 0;
+// 	while (s1 != NULL && s1[i] != '\0')
+// 	{
+// 		new[i] = s1[i];
+// 		i++;
+// 	}
+// 	j = 0;
+// 	while (s2 != NULL && s2 [j] != '\0')
+// 		new[i++] = s2[j++];
+// 	new[i] = '\0';
+// 	return (new);
+// }
+
+size_t	ft_strlcpy(char *dest, const char *src, size_t destsize)
+{
+	size_t	i;
+
+	if (destsize == 0)
+		return (ft_strlen(src));
 	i = 0;
-	j = 0;
-	while (s[i] != '\0')
+	while (i < destsize -1 && src[i] != '\0')
 	{
+		dest[i] = src[i];
 		i++;
 	}
-	str = (char *)malloc((i + 1) * sizeof(char));
-	if (str == NULL)
-	{
-		free(str);
-		return (NULL);
-	}
-	while (j < i)
-	{
-		str[j] = s[j];
-		j++;
-	}
-	str[j] = '\0';
-	return (str);
+	dest[i] = '\0';
+	return (ft_strlen(src));
 }
 
-char	*ft_substr_gnl(char const *s, unsigned int start, size_t len)
+size_t	ft_strlen(const char *str)
 {
-	char			*mem;
-	unsigned int	i;
+	size_t	i;
 
-	i = 0;
-	if (!s)
+	if (str == NULL)
 		return (0);
-	if (start > (unsigned int)ft_strlen_gnl(s) || len == 0)
-		return (ft_strdup_gnl(""));
-	if (ft_strlen_gnl(s + start) < (int)len)
-		len = ft_strlen_gnl(s + start);
-	mem = (char *)malloc((len + 1) * sizeof(char));
-	if (mem == NULL)
-	{
-		free(mem);
-		return (NULL);
-	}
-	while (s[start + i] != '\0' && i < len)
-	{
-		mem[i] = s[start + i];
+	i = 0;
+	while (str[i] != '\0')
 		i++;
-	}
-	mem[i] = '\0';
-	return (mem);
+	return (i);
 }

@@ -3,40 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/18 10:22:28 by jbolanho          #+#    #+#             */
-/*   Updated: 2024/02/29 17:42:48 by jbolanho         ###   ########.fr       */
+/*   Created: 2023/10/27 18:19:19 by anacaro5          #+#    #+#             */
+/*   Updated: 2023/10/27 18:22:03 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/libft.h"
+#include "libft.h"
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	size_t	i;
-	char	*ptrd;
-	char	*ptrs;
+	unsigned char			*d;
+	const unsigned char		*s;
 
-	ptrd = (char *)dest;
-	ptrs = (char *)src;
-	i = 0;
-	if (!dest && !src)
-		return (0);
-	if (ptrs < ptrd)
+	d = (unsigned char *)dest;
+	s = (const unsigned char *)src;
+	if (d == s)
+		return (dest);
+	if (s < d && s + n > d)
 	{
-		while (n > 0 && n--)
+		while (n > 0)
 		{
-			ptrd[n] = ptrs[n];
+			d[n - 1] = s[n -1];
+			n--;
 		}
 	}
 	else
 	{
-		while (i < n)
+		while (n > 0)
 		{
-		ptrd[i] = ptrs[i];
-			i++;
+			*d++ = *s++;
+			n--;
 		}
 	}
-	return (ptrd);
+	return (dest);
 }
