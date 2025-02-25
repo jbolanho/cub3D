@@ -6,20 +6,21 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:10:45 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/02/24 16:53:35 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/02/25 17:55:08 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub.h"
 
-int *open_file(char *argv)
+int open_file(char *argv)
 {
 	int	file_descriptor;
 
 	file_descriptor = open (argv, O_RDONLY);
+	printf("fd: [%d]\n", file_descriptor);
 	if (file_descriptor < 0)
 	{
-		ft_printf("Error: can not open file");
+		ft_printf("Error: can not open file\n");
 		//bye_bye;
 		exit (EXIT_FAILURE);
 	}

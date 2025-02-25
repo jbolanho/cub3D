@@ -6,7 +6,7 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:13:29 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/02/24 16:16:46 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/02/25 17:51:49 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ void	validate(int argc, char **argv, t_game *cub)
 {
 	check_argc(argc);
 	check_dotcub(argv[1]);
-	process_argv1(argv[1], cub->map);
+	process_argv1(argv[1], &cub->map);
 }
 
 void	check_argc(int argc)
 {
 	if (argc < 2)
 	{
-		printf("Error: missing map file");
+		printf("Error: missing map file\n");
 		//bye_bye;
 		exit(EXIT_FAILURE);
 	}
@@ -35,18 +35,19 @@ void	check_argc(int argc)
 	}
 }
 
-void	check_dotcub(char **argv)
+void	check_dotcub(char *argv)
 {
-	const char	*extension = ".cub";
+	const char	*extension = "./maps/.cub";
+	const char	*extension2 = ".cub";
 
-	if (ft_strlen(argv[1]) <= ft_strlen(extension))
+	if (ft_strlen(argv) <= ft_strlen(extension))
 	{
 		ft_printf("Error: invalid map format\n");
 		//bye_bye;
 		exit(EXIT_FAILURE);
 	}
-	if (strcmp(argv[1] + ft_strlen(argv[1])
-			- ft_strlen(extension), extension) != 0)
+	if (strcmp(argv + ft_strlen(argv)
+			- ft_strlen(extension2), extension2) != 0)
 	{
 		ft_printf("Error: file does not end with '.cub'\n");
 		//bye_bye;

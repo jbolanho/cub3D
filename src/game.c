@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:52:56 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/02/13 17:33:05 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/02/25 15:17:15 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ void	key_press(void *param)
 	//	bye_bye(cub, EXIT_SUCCESS);
 	if  (mlx_is_key_down(cub->mlx, MLX_KEY_S))
 	// //|| (mlx_is_key_down(cub->mlx, MLX_KEY_DOWN)
-	 	moon_walk(cub);
+	 	//moon_walk(cub);
 	// if (mlx_is_key_down(cub->mlx, MLX_KEY_W))
 	// //|| (mlx_is_key_down(cub->mlx, MLX_KEY_UP)
 	// 	go_ahead(cub);

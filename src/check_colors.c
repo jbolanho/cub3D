@@ -6,7 +6,7 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:14:52 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/02/24 16:56:47 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/02/25 18:42:56 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	check_colors(t_map *map, char *temp)
 {
 	if (ft_strncmp("F", temp, 1) == 0)
-		copy_rgb(&(map->floor), temp, "F");
+		copy_rgb(&(map->floor_color), temp, "F");
 	else if (ft_strncmp("C", temp, 2) == 0)
-		copy_rgb(&(map->ceiling), temp, "C");
+		copy_rgb(&(map->ceiling_color), temp, "C");
 	else
 	{
 		if (temp[0] != '\n' && temp[0] != '\0')
@@ -29,9 +29,10 @@ void	check_colors(t_map *map, char *temp)
 	}
 }
 
-void	copy_rgb(char **texture, char *temp, char *info)
+void	copy_rgb(uint32_t *color, char *temp, char *info)
 {
-	if (*texture != NULL)
+	(void) info;
+	if (color != NULL)
 	{
 		//bye_bye;
 		ft_printf("Error: invalid header - duplicated info\n");
@@ -42,7 +43,7 @@ void	copy_rgb(char **texture, char *temp, char *info)
 	{
 		while (is_space(*temp))
 			temp++;
-		cut_rgb();
+		cut_rgb(color, temp);
 	}
 	else
 	{
@@ -58,7 +59,7 @@ void	cut_rgb(uint32_t surface, char *temp)
 	int	end;
 	int	i;
 	int comma;
-    char **rgb
+    char **rgb;
 
 	start = 0;
 	while (temp[start] && is_space(temp[start]))

@@ -6,7 +6,7 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 10:13:02 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/02/25 15:08:06 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/02/25 15:14:53 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ int	main(int argc, char **argv)
 {
 	t_game	cub;
 
-	init(&cub);
+	init(&cub, argc, argv);
 	validate(argc, argv, &cub);
-	game(&cub, argv[1]);
+	game(&cub);
 	//bye_bye(&cub);
 	return (0);
 }

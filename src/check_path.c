@@ -6,7 +6,7 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:12:51 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/02/24 16:17:09 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/02/25 18:13:52 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,23 @@
 void check_path(t_map *map, char *temp, char *line_cpy)
 {
 	if (ft_strncmp("NO", temp, 2) == 0)
-		copy_path(&(map->no), temp, "NO", line_cpy);
+		copy_path(&(map->north_path), temp, "NO", line_cpy);
 	else if (ft_strncmp("SO", temp, 2) == 0)
-		copy_path(&(map->so), temp, "SO", line_cpy);
+		copy_path(&(map->south_path), temp, "SO", line_cpy);
 	else if (ft_strncmp("WE", temp, 2) == 0)
-		copy_path(&(map->we), temp, "WE", line_cpy);
+		copy_path(&(map->west_path), temp, "WE", line_cpy);
 	else if (ft_strncmp("EA", temp, 2) == 0)
-		copy_path(&(map->ea), temp, "EA", line_cpy);
+	{
+		copy_path(&(map->east_path), temp, "EA", line_cpy);
+				printf("temp[0]: [%c]\n", temp[0]);
+			printf("North Path: [%s]\n", map->north_path ? map->north_path : "NULL");
+    	printf("South Path: [%s]\n", map->south_path ? map->south_path : "NULL");
+    	printf("West Path: [%s]\n", map->west_path ? map->west_path : "NULL");
+    	printf("East Path: [%s]\n", map->east_path ? map->east_path : "NULL");
+	}
 	else
 	{
-		if (temp[0] != '\n' && temp[0] != '\0')
+		if (temp[0] != '\n' && temp[0] != '\0' && temp[0] != 'F' && temp[0] != 'C' && temp[0] != '1')
 		{
 			free (line_cpy);
 			//bye_bye;
@@ -39,6 +46,7 @@ void check_path(t_map *map, char *temp, char *line_cpy)
 
 void	copy_path(char **texture, char *temp, char *info, char *line_cpy)
 {
+	(void) info;
 	if (*texture != NULL)
 	{
 		free(line_cpy);

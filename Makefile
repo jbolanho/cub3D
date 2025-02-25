@@ -12,6 +12,11 @@ SRC =	./src/main.c   \
 		./src/game.c    \
 		./src/algorithm.c  \
 		./src/byebye.c     \
+		./src/validate_n_process.c   \
+		./src/validate_utils.c   \
+		./src/check_path.c   \
+		#./src/check_colors.c   \
+
 
 OBJ_DIR = obj
 
