@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 10:10:14 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/02/13 16:42:40 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/02/25 17:23:30 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,14 @@
 # include "../libft/libft.h"
 # include "../MLX42/include/MLX42/MLX42.h"
 # include "../MLX42/include/MLX42/MLX42_Int.h"
-
+# include "../MLX42/include/MLX42/MLX42.h"
+# include "../MLX42/include/MLX42/MLX42_Int.h"
+# include <stdint.h>
 # include <stdio.h>
+#include <fcntl.h>
+#include <unistd.h>
 # include <math.h>
+
 // # include 
 
 # define X		0;
@@ -36,9 +41,7 @@ typedef struct s_map
 	char		*west_path;
 	uint32_t	floor_color;
 	uint32_t	ceiling_color;
-	int			p1_x;
-	int			p1_y;
-	
+
 }		t_map;
 
 enum e_side
@@ -89,7 +92,6 @@ typedef struct s_game
 	int				camera_plane_y;
 }		t_game;
 
-
 //init
 void    init(t_game *cub, int argc, char **argv);
 
@@ -105,17 +107,32 @@ void	init_window(t_game *cub);
 void	key_press(void *param);
 void	init_background(t_game *cub);
 
-//algorithm
-void	algorithm(t_game *cub);
-void	init_ray_struct(t_game *cub, int i);
-void	delta_dist(t_game *cub);
-void	calculate_side_distance(t_game *cub);
-void	wall_distance(t_game *cub);
-void	wall_side(t_game *cub, int axis);
 
-//bye_bye
+// check_path
+void    check_path(t_map *map, char *temp, char *line_cpy);
+void	copy_path(char **texture, char *temp, char *info, char *line_cpy);
+void	cut_path(char *temp, char *line_cpy, char **texture);
+void	after_path(char *temp, char *line_cpy);
 
+//check_colors
+void	check_colors(t_map *map, char *temp);
+void	copy_rgb(char **texture, char *temp, char *info);
+void	cut_rgb(uint32_t surface, char *temp);
+void    make_rgb_array(char ***rgb, char *temp);
 
+//validate_n_process
+void	process_argv1(char *argv, t_map *map);
+void	check_header(t_map *map, char *temp, int *fd);
+
+//validate_utils
+int open_file(char *argv);
+int	is_space(char c);
+uint32_t	convert_rgb(int r, int g, int b);
+
+//validate
+void	validate(int argc, char **argv, t_game *cub);
+void	check_argc(int argc);
+void	check_dotcub(char *argv);
 
 
 
