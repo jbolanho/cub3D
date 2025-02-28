@@ -81,7 +81,7 @@ void	init_images(t_game *cub)
 void	init_window(t_game *cub)
 {
 	init_background(cub);
-	//algorithm(cub);
+	algorithm(cub);
 	//bonus_minimap(cub);
 }	
 
@@ -125,9 +125,9 @@ void	key_press(void *param)
 	if (mlx_is_key_down(cub->mlx, MLX_KEY_ESCAPE))
 		printf("aquiii3");
 	//	bye_bye(cub, EXIT_SUCCESS);
-	if  (mlx_is_key_down(cub->mlx, MLX_KEY_S))
+	//if  (mlx_is_key_down(cub->mlx, MLX_KEY_S))
 	// //|| (mlx_is_key_down(cub->mlx, MLX_KEY_DOWN)
-	 	moon_walk(cub);
+	// 	moon_walk(cub);
 	// if (mlx_is_key_down(cub->mlx, MLX_KEY_W))
 	// //|| (mlx_is_key_down(cub->mlx, MLX_KEY_UP)
 	// 	go_ahead(cub);
