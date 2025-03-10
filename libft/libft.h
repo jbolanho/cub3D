@@ -95,7 +95,7 @@ size_t	ft_strlen(const char *str);
 char	*ft_countncut(char *line, char **rest);
 char	*ft_readtxt(int fd, char *line, char *rest);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-char	*ft_strdup(const char *s);
+// char	*ft_strdup(const char *s);
 
 //for ft_printf
 int		ft_put_str(char *str);

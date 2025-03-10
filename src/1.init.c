@@ -1,0 +1,140 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   math.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/11 12:24:55 by jbolanho          #+#    #+#             */
+/*   Updated: 2025/02/11 12:35:26 by jbolanho         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../include/cub.h"
+
+static int get_rgba(int r, int g, int b, int a);
+static void fake_data(t_game *cub);
+
+static int get_rgba(int r, int g, int b, int a)
+{
+	return (r << 24 | g << 16 | b << 8 | a);
+}
+
+static void fake_data(t_game *cub)
+{
+	//cub_map;
+	uint32_t	nb_floor;
+	uint32_t	nb_ceil;
+
+	nb_floor = get_rgba(169, 169, 169, 255);
+	nb_ceil = get_rgba(230, 230, 230, 255);
+	// printf("floor: %u\n", nb_floor);
+	// printf("ceiling: %u\n", nb_ceil);
+	cub->map.north_path = "./texture/door1.png";
+	cub->map.south_path = "./texture/door2.png";
+	cub->map.east_path = "./texture/clock.png";
+	cub->map.west_path = "./texture/wall.png";
+	cub->map.floor_color = nb_floor;
+	cub->map.ceiling_color = nb_ceil;
+	cub->map.p1_x = 1;
+	cub->map.p1_y = 3;
+	cub->map.p1_pov = S;
+	copy_map(cub);	
+	// printf("AQUI  1 \n");
+}
+
+void    init(t_game *cub)
+{
+	fake_data(cub);
+	init_window(cub);
+	init_images(cub);
+	init_background(cub);
+	initial_pov(cub);
+}
+
+void	init_window(t_game *cub)
+{
+	cub->mlx = mlx_init((int32_t)WIDTH, (int32_t)HEIGHT, "Severance", false);
+	if (!cub->mlx)
+	{
+		ft_printf("Error. MLX init error.\n");
+		//bye_bye(cub, 1);
+	}
+}	
+
+void	init_images(t_game *cub)
+{
+	//int	i;
+	// printf("AQUI  3 \n");
+	cub->no = mlx_load_png(cub->map.north_path);
+	cub->so = mlx_load_png(cub->map.south_path);
+	cub->ea = mlx_load_png(cub->map.east_path);
+	cub->we = mlx_load_png(cub->map.west_path);
+
+}
+
+void	init_background(t_game *cub)
+{	
+	uint32_t	x;
+	uint32_t	y;
+
+	x = 0;
+	y = 0;
+	// printf("AQUI  4 \n");
+	cub->floor_ceiling = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
+	if (!cub->floor_ceiling)
+	{
+		ft_printf("Error. Floor Ceiling problem\n");
+		//bye_bye(cub);
+	}
+	while (x < (uint32_t)HEIGHT)
+	{
+		while (y < (uint32_t)WIDTH)
+		{
+			if (x < (uint32_t)(HEIGHT / 2))
+				mlx_put_pixel(cub->floor_ceiling, y, x, cub->map.ceiling_color);
+			else
+				mlx_put_pixel(cub->floor_ceiling, y, x, cub->map.floor_color);
+			y++;
+		}
+		y = 0;
+		x++;
+	}
+	// printf("AQUI  4a \n");
+	mlx_image_to_window(cub->mlx, cub->floor_ceiling, 0, 0);
+}
+
+void	initial_pov(t_game *cub)
+{
+	// printf("AQUI  5 \n");
+	cub->position = create(cub->map.p1_x + 0.5, cub->map.p1_y + 0.5);
+	if (cub->map.p1_pov == N)
+	{
+		cub->direction = create(0, -1);
+		cub->camera_plane = create(0.66, 0);
+	}
+	else if (cub->map.p1_pov == S)
+	{
+		cub->direction = create(0, 1);
+		cub->camera_plane = create(-0.66, 0);
+	}
+	else if (cub->map.p1_pov == W)
+	{
+		cub->direction = create(-1, 0);
+		cub->camera_plane = create(0, -0.66);
+	}
+	else if (cub->map.p1_pov == E)
+	{
+		cub->direction = create(1, 0);
+		cub->camera_plane = create(0, 0.66);
+	}
+}
+
+t_vector create(float x, float y)
+{
+	t_vector	vector;
+
+	vector.x = x;
+	vector.y = y;
+	return(vector);
+}

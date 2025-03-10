@@ -16,9 +16,11 @@ int	main(int argc, char **argv)
 {
 	t_game	cub;
 
-	init(&cub, argc, argv);
-	validate(argc, argv, &cub);
+	// validate(argc, argv, &cub);
+	(void)argc;
+	(void)argv;
+	init(&cub);
 	game(&cub);
 	//bye_bye(&cub);
-	return (0);
+	return (EXIT_SUCCESS);
 }
