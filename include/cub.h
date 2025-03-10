@@ -6,7 +6,7 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 10:10:14 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/02/25 17:23:30 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/03/10 17:25:42 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,9 @@ void	cut_path(char *temp, char *line_cpy, char **texture);
 void	after_path(char *temp, char *line_cpy);
 
 //check_colors
-void	check_colors(t_map *map, char *temp);
-void	copy_rgb(char **texture, char *temp, char *info);
-void	cut_rgb(uint32_t surface, char *temp);
+void	check_colors(t_map *map, char *temp, char *line_cpy);
+void	copy_rgb(uint32_t *color, char *line_cpy);
+void	cut_rgb(uint32_t *surface, char *temp);
 void    make_rgb_array(char ***rgb, char *temp);
 
 //validate_n_process
@@ -97,5 +97,8 @@ void	check_argc(int argc);
 void	check_dotcub(char *argv);
 
 
+void	check_size(t_map *map, char *temp,  char *argv);
+
+void	check_map(t_map *map, char *temp, int *fd);
 
 #endif

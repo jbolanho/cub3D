@@ -6,7 +6,7 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:12:51 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/02/25 18:13:52 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/03/10 13:17:29 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,7 @@ void check_path(t_map *map, char *temp, char *line_cpy)
 	else if (ft_strncmp("WE", temp, 2) == 0)
 		copy_path(&(map->west_path), temp, "WE", line_cpy);
 	else if (ft_strncmp("EA", temp, 2) == 0)
-	{
 		copy_path(&(map->east_path), temp, "EA", line_cpy);
-				printf("temp[0]: [%c]\n", temp[0]);
-			printf("North Path: [%s]\n", map->north_path ? map->north_path : "NULL");
-    	printf("South Path: [%s]\n", map->south_path ? map->south_path : "NULL");
-    	printf("West Path: [%s]\n", map->west_path ? map->west_path : "NULL");
-    	printf("East Path: [%s]\n", map->east_path ? map->east_path : "NULL");
-	}
 	else
 	{
 		if (temp[0] != '\n' && temp[0] != '\0' && temp[0] != 'F' && temp[0] != 'C' && temp[0] != '1')
@@ -99,7 +92,7 @@ void	cut_path(char *temp, char *line_cpy, char **texture)
 
 void	after_path(char *temp, char *line_cpy)
 {
-	char *after;
+	char	*after;
 
 	after = temp;
 	while (*after)

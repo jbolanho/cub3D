@@ -6,7 +6,7 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:52:56 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/02/25 15:17:15 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/03/10 17:01:53 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ static void fake_data(t_game *cub)
 
 	nb_floor = create_color(255, 169, 169, 169);
 	nb_ceil = create_color(255, 250, 235, 215);
-	printf("floor: %u\n", nb_floor);
-	printf("ceiling: %u\n", nb_ceil);
+	//printf("floor: %u\n", nb_floor);
+	//printf("ceiling: %u\n", nb_ceil);
 	cub->map.north_path = "./texture/door1.png";
 	cub->map.south_path = "./texture/door2.png";
 	cub->map.east_path = "./texture/clock.png";

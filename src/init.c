@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   math.c                                             :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 12:24:55 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/02/11 12:35:26 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/03/10 16:16:10 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,5 @@ void    init(t_game *cub, int argc, char **argv)
 	cub->map.west_path = NULL;
 	cub->map.floor_color = 0;
 	cub->map.ceiling_color = 0;
+	cub->map.cub_map = NULL;
 }
