@@ -6,7 +6,7 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 10:10:14 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/03/10 17:25:42 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/03/11 17:45:57 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@
 
 typedef struct s_map
 {
-	int			wid;
-	int			hei;
-	char		*cub_map;
+	//int			wid;
+	//int			hei;
+	char		**cub_map;
 	char		*north_path;
 	char		*south_path;
 	char		*east_path;
@@ -97,8 +97,8 @@ void	check_argc(int argc);
 void	check_dotcub(char *argv);
 
 
-void	check_size(t_map *map, char *temp,  char *argv);
+void	check_size(t_map *map, char *temp, char *argv);
 
-void	check_map(t_map *map, char *temp, int *fd);
+void	check_map(t_map *map, char *argv);
 
 #endif

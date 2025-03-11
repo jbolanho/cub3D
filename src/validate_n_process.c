@@ -6,7 +6,7 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:09:51 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/03/10 17:24:49 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/03/11 17:46:28 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,29 +16,36 @@ void	process_argv1(char *argv, t_map *map)
 {
 	char	*temp;
 	int		fd;
+	//char	**file_matrix;
 
 	temp = NULL;
 	fd = open_file(argv);
 	check_header(map, temp, &fd);
 	printf("temp: %s\n", temp);
 	close(fd);
-	//fd = open_file(argv);
-	check_size(map, temp, argv);
+	check_map(map, argv);
+
 
 
 	free(temp);
 	close(fd);
 }
-// void	check_map(t_map *map, char *temp, int *fd)
-// {
-// 	check_size(map, temp, argv);
-// }
+
+void	check_map(t_map *map, char *argv)
+{
+	char	*temp;
+
+	temp = NULL;
+	check_size(map, temp, argv);
+}
+
+
+
 void	check_header(t_map *map, char *temp, int *fd)
 {
 	char	*line_cpy;
 
 	temp = get_next_line(*fd);
-	//map->hei = 0;
 	while (temp)
 	{
 		line_cpy = temp;
@@ -50,10 +57,15 @@ void	check_header(t_map *map, char *temp, int *fd)
 		//free (line_cpy);
 		if (map->north_path && map->south_path && map->west_path && map->east_path && map->floor_color && map->ceiling_color)
 			break ;
-		//map->hei++;
+		printf("map->north_path: %s\n", map->north_path);
+		printf("map->south_path: %s\n", map->south_path);
+		printf("map->west_path: %s\n", map->west_path);
+		printf("map->east_path: %s\n", map->east_path);
+		printf("map->floor_color: %u\n", map->floor_color);
+		printf("map->ceiling_color: %u\n", map->ceiling_color);
 		temp = get_next_line(*fd);
+		printf("temp2: %s", temp);
 	}
-	//printf("hei: %d\n", map->hei);
 	if (!temp)
 	{
 		//bye_bye
@@ -61,4 +73,6 @@ void	check_header(t_map *map, char *temp, int *fd)
 		exit(EXIT_FAILURE);
 	}
 }
+
+
 
