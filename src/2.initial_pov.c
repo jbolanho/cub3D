@@ -4,7 +4,7 @@
 void	game(t_game *cub)
 {
 	// printf("AQUI  6 \n");
-	
+	mlx_key_hook(cub->mlx, key_data, cub);
 	mlx_loop_hook(cub->mlx, player_pov, cub);
 	mlx_close_hook(cub->mlx, close_cub, cub);
 	mlx_loop(cub->mlx);
@@ -18,8 +18,8 @@ void	player_pov(void *param)
 
 	cub = (t_game *)param;
 	take_input(cub);
+	init_background(cub);
 	frame_speed(cub);
-	// init_background(cub);
 	raycast(cub);
 	// printf("AQUI  10 \n");
 }
@@ -31,30 +31,35 @@ void take_input(t_game *cub)
     float   camera_mov;
     float   move_speed;
 	
-    x = cub->map.p1_x;
-    y = cub->map.p1_y;
+    x = cub->position.x;
+    y = cub->position.y;
     camera_mov = 1;
-    move_speed = cub->frame_time * 4;
+    move_speed = 0.02;
+	// move_speed = cub->frame_time * 4;
 	// printf("AQUI  7 \n");
-    if  (mlx_is_key_down(cub->mlx, MLX_KEY_W))
+    // if  (mlx_is_key_down(cub->mlx, MLX_KEY_W))
+	if (cub->key.w == true)
 	{
 		x += cub->direction.x * move_speed;
 		y += cub->direction.y * move_speed;
 	}
-    if (mlx_is_key_down(cub->mlx, MLX_KEY_S))
+    // if (mlx_is_key_down(cub->mlx, MLX_KEY_S))
+	if (cub->key.s == true)
 	{
 		x -= cub->direction.x * move_speed;
 		y -= cub->direction.y * move_speed;
 	}
-	if (mlx_is_key_down(cub->mlx, MLX_KEY_A))
+	// if (mlx_is_key_down(cub->mlx, MLX_KEY_A))
+	if (cub->key.a == true)
 	{
 		x += cub->camera_plane.x * move_speed;
-		y += cub->camera_plane.x * move_speed;
+		y += cub->camera_plane.y * move_speed;
 	}
-	if (mlx_is_key_down(cub->mlx, MLX_KEY_D))
+	// if (mlx_is_key_down(cub->mlx, MLX_KEY_D))
+	if (cub->key.d == true)
 	{
-		x -= cub->camera_plane.x * move_speed;
-		y -= cub->camera_plane.x * move_speed;
+		x += cub->camera_plane.x * move_speed;
+		y += cub->camera_plane.y * move_speed;
 	}
 	if(can_go(cub, x, y))
 	{
@@ -94,13 +99,14 @@ void    look_movements(t_game *cub)
 
 	// old_dir = cub->direction.x;
 	// old_plane_x = cub->camera_plane.x;
-	if (mlx_is_key_down(cub->mlx, MLX_KEY_RIGHT))
+	// if (mlx_is_key_down(cub->mlx, MLX_KEY_LEFT))
+	if (cub->key.left == true)
 	{
 		cub->direction = rotate_vector(cub->direction, -1.5);
 		cub->camera_plane = rotate_vector(cub->camera_plane, -1.5);
 	}	
 	
-	if (mlx_is_key_down(cub->mlx, MLX_KEY_LEFT))
+	if (cub->key.right == true)
 	{
 		cub->direction = rotate_vector(cub->direction, 1.5);
 		cub->camera_plane =  rotate_vector(cub->camera_plane, 1.5);
@@ -120,58 +126,33 @@ t_vector	rotate_vector(t_vector v, float angle)
 }
 
 
-void	close_cub(void *param)
-{
-	t_game	*cub;
+void	init_background(t_game *cub)
+{	
+	uint32_t	x;
+	uint32_t	y;
 
-	cub = (t_game *)param;
-	free_texture(cub);
-	mlx_close_window(cub->mlx);
-}
-
-void	free_texture(t_game *cub)
-{
-	if (cub->no)
-		mlx_delete_texture(cub->no);
-	if (cub->so)
-		mlx_delete_texture(cub->so);
-	if (cub->we)
-		mlx_delete_texture(cub->we);
-	if (cub->ea)
-		mlx_delete_texture(cub->ea);
-	if(cub)
-		free_map(&cub->map);	
-}
-
-void	free_map(t_map	*map)
-{
-	if(map->north_path)
-		free(map->north_path);
-	if(map->south_path)
-		free(map->south_path);
-	if(map->east_path)
-		free(map->east_path);
-	if(map->west_path)
-		free(map->west_path);
-	if(map->cub_map)
-		free_ptrptr(map->cub_map);
-	if(map)
-		free(map);
-}
-
-void	free_ptrptr(char **cmd)
-{
-	int	i;
-
-	i = 0;
-	if (!cmd)
-		return ;
-	while (cmd[i])
+	x = 0;
+	y = 0;
+	// printf("AQUI  4 \n");
+	// cub->floor_ceiling = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
+	// if (!cub->floor_ceiling)
+	// {
+	// 	ft_printf("Error. Floor Ceiling problem\n");
+	// 	//bye_bye(cub);
+	// }
+	while (x < (uint32_t)HEIGHT)
 	{
-		free(cmd[i]);
-		cmd[i] = NULL;
-		i++;
+		while (y < (uint32_t)WIDTH)
+		{
+			if (x < (uint32_t)(HEIGHT / 2))
+				mlx_put_pixel(cub->image, y, x, cub->map.ceiling_color);
+			else
+				mlx_put_pixel(cub->image, y, x, cub->map.floor_color);
+			y++;
+		}
+		y = 0;
+		x++;
 	}
-	free(cmd);
-	cmd = NULL;
+	// printf("AQUI  4a \n");
+	// mlx_image_to_window(cub->mlx, cub->floor_ceiling, 0, 0);
 }

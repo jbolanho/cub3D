@@ -36,9 +36,9 @@ static void fake_data(t_game *cub)
 	cub->map.west_path = "./texture/wall.png";
 	cub->map.floor_color = nb_floor;
 	cub->map.ceiling_color = nb_ceil;
-	cub->map.p1_x = 1;
-	cub->map.p1_y = 3;
-	cub->map.p1_pov = S;
+	cub->map.p1_x = 9;
+	cub->map.p1_y = 11;
+	cub->map.p1_pov = N;
 	copy_map(cub);	
 	// printf("AQUI  1 \n");
 }
@@ -48,18 +48,32 @@ void    init(t_game *cub)
 	fake_data(cub);
 	init_window(cub);
 	init_images(cub);
-	init_background(cub);
+	// init_background(cub);
 	initial_pov(cub);
 }
 
 void	init_window(t_game *cub)
 {
-	cub->mlx = mlx_init((int32_t)WIDTH, (int32_t)HEIGHT, "Severance", false);
+	mlx_set_setting(MLX_STRETCH_IMAGE, true);
+	// cub->mlx = mlx_init((int32_t)WIDTH, (int32_t)HEIGHT, "Severance", false);
+	cub->mlx = mlx_init((int32_t)WIDTH, (int32_t)HEIGHT, "Severance", true);
 	if (!cub->mlx)
 	{
 		ft_printf("Error. MLX init error.\n");
-		//bye_bye(cub, 1);
+		// bye_bye(cub, 1);
 	}
+	cub->image = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
+	if (!cub->image)
+	{
+		ft_printf("Error. Window problem\n");
+		//bye_bye(cub);
+	}
+	if (mlx_image_to_window(cub->mlx, cub->image, 0, 0) < 0)
+	{
+		ft_printf("Error. Image problem\n");
+		//bye_bye(cub)
+	}
+	
 }	
 
 void	init_images(t_game *cub)
@@ -73,36 +87,7 @@ void	init_images(t_game *cub)
 
 }
 
-void	init_background(t_game *cub)
-{	
-	uint32_t	x;
-	uint32_t	y;
 
-	x = 0;
-	y = 0;
-	// printf("AQUI  4 \n");
-	cub->floor_ceiling = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
-	if (!cub->floor_ceiling)
-	{
-		ft_printf("Error. Floor Ceiling problem\n");
-		//bye_bye(cub);
-	}
-	while (x < (uint32_t)HEIGHT)
-	{
-		while (y < (uint32_t)WIDTH)
-		{
-			if (x < (uint32_t)(HEIGHT / 2))
-				mlx_put_pixel(cub->floor_ceiling, y, x, cub->map.ceiling_color);
-			else
-				mlx_put_pixel(cub->floor_ceiling, y, x, cub->map.floor_color);
-			y++;
-		}
-		y = 0;
-		x++;
-	}
-	// printf("AQUI  4a \n");
-	mlx_image_to_window(cub->mlx, cub->floor_ceiling, 0, 0);
-}
 
 void	initial_pov(t_game *cub)
 {

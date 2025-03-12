@@ -21,10 +21,10 @@ void    raycast(t_game *cub)
     while (pixel < WIDTH)
     {
         cub->ray.plane_multi = 2 * pixel / (float)WIDTH - 1;
-        cub->ray.camera_pixel.x = cub->camera_plane.x *  cub->ray.plane_multi;
-        cub->ray.camera_pixel.y = cub->camera_plane.y *  cub->ray.plane_multi;
-        cub->ray.direction.x = cub->direction.x +  cub->ray.camera_pixel.x;
-        cub->ray.direction.y = cub->direction.y +  cub->ray.camera_pixel.y;
+        cub->ray.camera_pixel.x = cub->camera_plane.x * cub->ray.plane_multi;
+        cub->ray.camera_pixel.y = cub->camera_plane.y * cub->ray.plane_multi;
+        cub->ray.direction.x = cub->direction.x + cub->ray.camera_pixel.x;
+        cub->ray.direction.y = cub->direction.y + cub->ray.camera_pixel.y;
         cub->ray.step.x = minus_or_not(cub->ray.direction.x);
         cub->ray.step.y = minus_or_not(cub->ray.direction.y);
         delta_dist(cub);
@@ -51,16 +51,16 @@ void	delta_dist(t_game *cub)
 
 void    wall_dist(t_game *cub)
 {
-	cub->ray.map.x = cub->map.p1_x;
-	cub->ray.map.y = cub->map.p1_y;
-	if(cub->ray.direction.x < 0)
+	cub->ray.map.x = cub->position.x;
+	cub->ray.map.y = cub->position.y;
+	if (cub->ray.direction.x < 0)
 		cub->ray.side_dist.x = (cub->position.x - cub->ray.map.x) * cub->ray.delta_dist.x;
 	else
-		cub->ray.side_dist.x = (cub->ray.map.x + 1 - cub->position.x) * cub->ray.delta_dist.x;
-	if(cub->ray.direction.y < 0)
+		cub->ray.side_dist.x = (cub->ray.map.x + 1.0 - cub->position.x) * cub->ray.delta_dist.x;
+	if (cub->ray.direction.y < 0)
 		cub->ray.side_dist.y = (cub->position.y - cub->ray.map.y) * cub->ray.delta_dist.y;
 	else
-		cub->ray.side_dist.y = (cub->ray.map.y + 1 - cub->position.y) * cub->ray.delta_dist.y;
+		cub->ray.side_dist.y = (cub->ray.map.y + 1.0 - cub->position.y) * cub->ray.delta_dist.y;
 }   
 
 void	not_collide(t_game *cub)
@@ -96,8 +96,8 @@ void	pixel_wall(t_game *cub, int pixel)
 	cub->tex.end_y = (HEIGHT / 2 + cub->tex.height / 2);
 	if (cub->tex.start_y < 0)
 		cub->tex.start_y = 0;
-	if (cub->tex.end_y > HEIGHT)
-		cub->tex.end_y = HEIGHT;
+	if (cub->tex.end_y >= HEIGHT)
+		cub->tex.end_y = HEIGHT - 1;
 	wall_and_background(cub);
 	find_pixel_wall(cub);
 	cub->tex.texture_pos = (cub->tex.start_y - HEIGHT / 2 + cub->tex.height / 2) * cub->tex.texture_step;
@@ -136,8 +136,8 @@ void	find_pixel_wall(t_game *cub)
 {
 	cub->tex.texture_x = (int)(cub->tex.point_x * cub->walls->width);
 	if((cub->collide == 0 && cub->ray.direction.x < 0) || (cub->collide == 1 && cub->ray.direction.y > 0))
-		cub->tex.texture_x = cub->walls->width - cub->tex. texture_x - 1;
-	cub->tex.texture_step = 1 * cub->walls->height / cub->tex.height;
+		cub->tex.texture_x = cub->walls->width - cub->tex.texture_x - 1;
+	cub->tex.texture_step = 1.0 * cub->walls->height / cub->tex.height;
 }
 
 void	put_pixel(t_game *cub, int pixel)
@@ -156,7 +156,7 @@ void	put_pixel(t_game *cub, int pixel)
 			wall_y = cub->walls->height - 1;
 		cub->tex.texture_pos += cub->tex.texture_step;
 		color = get_color(cub->walls, wall_y, cub->tex.texture_x);
-		mlx_put_pixel(cub->floor_ceiling, pixel, y, color);
+		mlx_put_pixel(cub->image, pixel, y, color);
 		y++;
 	}
 }

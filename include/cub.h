@@ -45,7 +45,6 @@ typedef struct s_map
 	char		*south_path;
 	char		*east_path;
 	char		*west_path;
-	// int			size_texture;
 	uint32_t	floor_color;
 	uint32_t	ceiling_color;
 	int			p1_x;
@@ -123,7 +122,15 @@ typedef struct s_texture
 	// mlx_texture_t	*img;	
 }		t_tex;
 
-
+typedef struct s_key
+{
+	bool	left;
+	bool	right;
+	bool	w;
+	bool	s;
+	bool	a;
+	bool	d;
+}	t_key;
 
 typedef struct s_game
 {
@@ -131,13 +138,14 @@ typedef struct s_game
 	t_map			map;
 	t_ray			ray;
 	t_tex			tex;
+	t_key			key;
 	mlx_texture_t	*no;
 	mlx_texture_t	*so;
 	mlx_texture_t	*ea;
 	mlx_texture_t	*we;
 	mlx_texture_t	*walls;
 	mlx_image_t		*floor_ceiling;
-	mlx_image_t		*image_wall;
+	mlx_image_t		*image;
 	int				*texture[4];
 	t_vector		position;
 	t_vector		direction;
@@ -160,7 +168,7 @@ void	init_window(t_game *cub);
 void	init_background(t_game *cub);
 void	initial_pov(t_game *cub);
 t_vector create(float x, float y);
-// void	key_press(void *param);
+void    key_data(mlx_key_data_t pressed, void *param);
 
 //game
 void		game(t_game *cub);
@@ -171,8 +179,8 @@ void	player_pov(void *param);
 // void	crab_walk(t_game *cub, int key);
 // void	look_right(t_game *cub);
 // void	look_left(t_game *cub);
-void	close_cub(void *param);
-void	free_texture(t_game *cub);
+
+
 // void	take_input(t_game *cub);
 // void	free_texture(t_game *cub);
 // void	update_image(t_game *cub);
@@ -208,6 +216,8 @@ uint32_t	get_color(mlx_texture_t	*walls, int y, int x);
 void	free_map(t_map	*map);
 void	free_ptrptr(char **cmd);
 void	free_texture(t_game *cub);
+void	close_cub(void *param);
+void	bye_bye(t_game *cub);
 
 // check_path
 void    check_path(t_map *map, char *temp, char *line_cpy);
