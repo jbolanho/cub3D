@@ -8,7 +8,7 @@ void	copy_map(t_game *cub)
     char    *file;
     char    buffer[11];
 
-    file = "./maps/fake_map.cub";
+    file = "./maps/fake_map2.cub";
 	fd = open_file(file);
 	temp = ft_strdup("");
 	buff = read(fd, buffer, 10);

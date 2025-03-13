@@ -32,8 +32,7 @@
 # define RIGHT_ROTATE 0.5
 // # define
 // # define
-// cub->move_speed = 0.02;
-// cub->rotation_speed = 0.06;
+
 
 
 typedef struct s_map
@@ -152,8 +151,8 @@ typedef struct s_game
 	t_vector		camera_plane;
 	int				collide;
 	float			frame_time;
-	// double			move_speed;
-	// double			rotation_speed;
+	double			move_speed;
+	double			rotation_speed;
 	// int		frame;
 
 }		t_game;
@@ -174,9 +173,9 @@ void    key_data(mlx_key_data_t pressed, void *param);
 void		game(t_game *cub);
 // int		init_game(t_game *cub);
 void	player_pov(void *param);
-// void	moon_walk(t_game *cub);
-// void	go_ahead(t_game *cub);
-// void	crab_walk(t_game *cub, int key);
+void	moon_walk(t_game *cub);
+void	go_ahead(t_game *cub);
+void	crab_walk(t_game *cub, int key);
 // void	look_right(t_game *cub);
 // void	look_left(t_game *cub);
 

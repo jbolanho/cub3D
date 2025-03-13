@@ -36,9 +36,9 @@ static void fake_data(t_game *cub)
 	cub->map.west_path = "./texture/wall.png";
 	cub->map.floor_color = nb_floor;
 	cub->map.ceiling_color = nb_ceil;
-	cub->map.p1_x = 9;
-	cub->map.p1_y = 11;
-	cub->map.p1_pov = N;
+	cub->map.p1_x = 5;
+	cub->map.p1_y = 4;
+	cub->map.p1_pov = S;
 	copy_map(cub);	
 	// printf("AQUI  1 \n");
 }

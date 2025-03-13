@@ -28,6 +28,7 @@ void    key_data(mlx_key_data_t pressed, void *param)
         return ;
     }
     if (pressed.action == MLX_PRESS || pressed.action == MLX_REPEAT)
+	// if (pressed.action == MLX_PRESS)
     {
         if (pressed.key == MLX_KEY_W)
             cub->key.w = true;

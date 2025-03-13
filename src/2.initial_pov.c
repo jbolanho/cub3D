@@ -24,50 +24,50 @@ void	player_pov(void *param)
 	// printf("AQUI  10 \n");
 }
 
-void take_input(t_game *cub)
-{
-	float   x;
-    float   y;
-    float   camera_mov;
-    float   move_speed;
+// void take_input(t_game *cub)
+// {
+// 	float   x;
+//     float   y;
+//     float   camera_mov;
+//     float   move_speed;
 	
-    x = cub->position.x;
-    y = cub->position.y;
-    camera_mov = 1;
-    move_speed = 0.02;
-	// move_speed = cub->frame_time * 4;
-	// printf("AQUI  7 \n");
-    // if  (mlx_is_key_down(cub->mlx, MLX_KEY_W))
-	if (cub->key.w == true)
-	{
-		x += cub->direction.x * move_speed;
-		y += cub->direction.y * move_speed;
-	}
-    // if (mlx_is_key_down(cub->mlx, MLX_KEY_S))
-	if (cub->key.s == true)
-	{
-		x -= cub->direction.x * move_speed;
-		y -= cub->direction.y * move_speed;
-	}
-	// if (mlx_is_key_down(cub->mlx, MLX_KEY_A))
-	if (cub->key.a == true)
-	{
-		x += cub->camera_plane.x * move_speed;
-		y += cub->camera_plane.y * move_speed;
-	}
-	// if (mlx_is_key_down(cub->mlx, MLX_KEY_D))
-	if (cub->key.d == true)
-	{
-		x += cub->camera_plane.x * move_speed;
-		y += cub->camera_plane.y * move_speed;
-	}
-	if(can_go(cub, x, y))
-	{
-		cub->position.x = cub->position.x + camera_mov * (x - cub->position.x);
-		cub->position.y = cub->position.y + camera_mov * (y - cub->position.y);
-	}
-    look_movements(cub);
-}
+//     x = cub->position.x;
+//     y = cub->position.y;
+//     camera_mov = 1;
+//     move_speed = 0.02;
+// 	// move_speed = cub->frame_time * 4;
+// 	// printf("AQUI  7 \n");
+//     // if  (mlx_is_key_down(cub->mlx, MLX_KEY_W))
+// 	if (cub->key.w == true)
+// 	{
+// 		x += cub->direction.x * move_speed;
+// 		y += cub->direction.y * move_speed;
+// 	}
+//     // if (mlx_is_key_down(cub->mlx, MLX_KEY_S))
+// 	if (cub->key.s == true)
+// 	{
+// 		x -= cub->direction.x * move_speed;
+// 		y -= cub->direction.y * move_speed;
+// 	}
+// 	// if (mlx_is_key_down(cub->mlx, MLX_KEY_A))
+// 	if (cub->key.a == true)
+// 	{
+// 		x += cub->camera_plane.x * move_speed;
+// 		y += cub->camera_plane.y * move_speed;
+// 	}
+// 	// if (mlx_is_key_down(cub->mlx, MLX_KEY_D))
+// 	if (cub->key.d == true)
+// 	{
+// 		x += cub->camera_plane.x * move_speed;
+// 		y += cub->camera_plane.y * move_speed;
+// 	}
+// 	if(can_go(cub, x, y))
+// 	{
+// 		cub->position.x = cub->position.x + camera_mov * (x - cub->position.x);
+// 		cub->position.y = cub->position.y + camera_mov * (y - cub->position.y);
+// 	}
+//     look_movements(cub);
+// }
 
 bool	can_go(t_game *cub, float x, float y)
 {
