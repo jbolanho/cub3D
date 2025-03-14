@@ -6,7 +6,7 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:09:51 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/03/11 17:46:28 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/03/14 18:40:52 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,10 @@ void	process_argv1(char *argv, t_map *map)
 {
 	char	*temp;
 	int		fd;
-	//char	**file_matrix;
 
 	temp = NULL;
 	fd = open_file(argv);
 	check_header(map, temp, &fd);
-	printf("temp: %s\n", temp);
 	close(fd);
 	check_map(map, argv);
 
@@ -36,7 +34,13 @@ void	check_map(t_map *map, char *argv)
 	char	*temp;
 
 	temp = NULL;
-	check_size(map, temp, argv);
+	get_map(map, argv);
+	//9x9???
+	check_chr(map, "012NSEW ");
+	check_player(map);
+	check_walls(map);
+	//check_empty_lines(map);
+	
 }
 
 

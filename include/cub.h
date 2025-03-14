@@ -6,7 +6,7 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 10:10:14 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/03/11 17:45:57 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/03/14 18:34:06 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ typedef struct s_map
 	char		*west_path;
 	uint32_t	floor_color;
 	uint32_t	ceiling_color;
+	int			player_x;
+	int			player_y;
 
 }		t_map;
 
@@ -97,8 +99,24 @@ void	check_argc(int argc);
 void	check_dotcub(char *argv);
 
 
-void	check_size(t_map *map, char *temp, char *argv);
 
 void	check_map(t_map *map, char *argv);
+void	get_map(t_map *map, char *argv);
+int		map_size(int fd);
+void	allocate_matrix(t_map *map, int size);
+void	copy_map(t_map *map, char *argv);
+void	process_map_line(t_map *map, char *temp, int *start);
+
+void	check_chr(t_map *map, const char *str);
+void	check_player(t_map *map);
+int		is_player(char c);
+void	count_player(t_map *map, int line, int col, int *count);
+
+void	check_walls(t_map *map);
+void	exit_wall_error(char *msg);
+void	check_empty_lines(t_map *map);
+
+void	free_matrix(t_map *map);
+
 
 #endif

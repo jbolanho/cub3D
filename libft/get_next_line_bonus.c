@@ -6,31 +6,31 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:05:37 by anacaro5          #+#    #+#             */
-/*   Updated: 2024/09/03 17:13:04 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/03/14 15:28:52 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s)
-{
-	size_t	s_len;
-	char	*result;
-	size_t	i;
+// char	*ft_strdup(const char *s)
+// {
+// 	size_t	s_len;
+// 	char	*result;
+// 	size_t	i;
 
-	s_len = ft_strlen(s);
-	result = (char *)malloc((s_len + 1) * sizeof(char));
-	if (!result)
-		return (NULL);
-	i = 0;
-	while (s[i])
-	{
-		result[i] = s[i];
-		i++;
-	}
-	result[i] = '\0';
-	return (result);
-}
+// 	s_len = ft_strlen(s);
+// 	result = (char *)malloc((s_len + 1) * sizeof(char));
+// 	if (!result)
+// 		return (NULL);
+// 	i = 0;
+// 	while (s[i])
+// 	{
+// 		result[i] = s[i];
+// 		i++;
+// 	}
+// 	result[i] = '\0';
+// 	return (result);
+// }
 
 // char	*ft_substr(char const *s, unsigned int start, size_t len)
 // {
@@ -79,14 +79,13 @@ char	*ft_countncut(char *line, char **rest)
 	free(line);
 	return (first);
 }
-
 char	*ft_readtxt(int fd, char *line, char *rest)
 {
 	char		*temp;
 	ssize_t		rbytes;
 
 	rbytes = 1;
-	while (ft_strchr(rest, '\n') == NULL && rbytes != 0)
+	while ((ft_strchr(rest, '\n') == NULL) && rbytes != 0)
 	{
 		rbytes = read (fd, line, BUFFER_SIZE);
 		if (rbytes < 0)

@@ -16,7 +16,9 @@ SRC =	./src/main.c   \
 		./src/validate_utils.c   \
 		./src/check_path.c   \
 		./src/check_colors.c   \
+		./src/get_map.c   \
 		./src/check_map.c   \
+		./src/check_walls.c   \
 
 
 OBJ_DIR = obj
