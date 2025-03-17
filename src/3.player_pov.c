@@ -1,12 +1,12 @@
 #include "../include/cub.h"
 
-void    frame_speed(t_game *cub)
+void	frame_speed(t_game *cub)
 {
-    static mlx_image_t  *image;
-    char                *fps_text;
+	static mlx_image_t	*image;
+	char				*fps_text;
 	char				*fps_nbr;
 
-    cub->frame_time = 1.0 /cub->mlx->delta_time;
+	cub->frame_time = 1.0 /cub->mlx->delta_time;
 	if (image)
 		mlx_delete_image(cub->mlx, image);
 	fps_nbr = ft_itoa((int)cub->frame_time);
@@ -16,36 +16,34 @@ void    frame_speed(t_game *cub)
 	free(fps_text);
 }
 
-
-void    key_data(mlx_key_data_t pressed, void *param)
+void	key_data(mlx_key_data_t pressed, void *param)
 {
-    t_game  *cub;
+	t_game	*cub;
 
-    cub = (t_game *)param;
-    if (pressed.key == MLX_KEY_ESCAPE && pressed.action == MLX_PRESS)
-    {
-        bye_bye(cub);
+	cub = (t_game *)param;
+	if (pressed.key == MLX_KEY_ESCAPE && pressed.action == MLX_PRESS)
+	{
+		bye_bye(cub);
 		mlx_close_window(cub->mlx);
-        return ;
-    }
-    if (pressed.action == MLX_PRESS || pressed.action == MLX_REPEAT)
-	// if (pressed.action == MLX_PRESS)
-    {
-        if (pressed.key == MLX_KEY_W)
-            cub->key.w = true;
+		return ;
+	}
+	if (pressed.action == MLX_PRESS || pressed.action == MLX_REPEAT)
+	{
+		if (pressed.key == MLX_KEY_W)
+			cub->key.w = true;
 		if (pressed.key == MLX_KEY_S)
-            cub->key.s = true;
+			cub->key.s = true;
 		if (pressed.key == MLX_KEY_A)
-            cub->key.a = true;
+			cub->key.a = true;
 		if (pressed.key == MLX_KEY_D)
-            cub->key.d = true;
+			cub->key.d = true;
 		if (pressed.key == MLX_KEY_LEFT)
-            cub->key.left = true;
+			cub->key.left = true;
 		if (pressed.key == MLX_KEY_RIGHT)
-            cub->key.right = true;
-    }
-    else if (pressed.action == MLX_RELEASE)
-    {
+			cub->key.right = true;
+	}
+	else if (pressed.action == MLX_RELEASE)
+	{
 		if (pressed.key == MLX_KEY_W)
 			cub->key.w = false;
 		if (pressed.key == MLX_KEY_S)

@@ -24,15 +24,10 @@
 # include <unistd.h>
 # include <math.h>
 
-// # include 
-
 # define WIDTH		1000
 # define HEIGHT		800
 # define LEFT_ROTATE -0.5
 # define RIGHT_ROTATE 0.5
-// # define
-// # define
-
 
 
 typedef struct s_map
@@ -59,10 +54,6 @@ enum e_side
 	W
 };
 
-// NO,
-// SO,
-// EA,
-// WE,
 typedef struct s_vector
 {
 	double	x;
@@ -71,22 +62,6 @@ typedef struct s_vector
 
 typedef struct s_ray
 {
-	// bool	collide;
-	// float	side_dist_x;
-	// float	side_dist_y;
-	// float	delta_dist_x;
-	// float	delta_dist_y;
-	// float	dir_x;
-	// float	dir_y;
-	// int		map_x;
-	// int		map_y;
-	// int		step_x;
-	// int		step_y;
-	// enum e_side	side;
-	// int		perp_wall_dist;
-	// int		camera_x;
-	// int		camera_y;
-	// int		line_hei;
 	t_vector	direction;
 	t_vector	camera_pixel;
 	t_vector	delta_dist;
@@ -96,8 +71,6 @@ typedef struct s_ray
 	int			collide;
 	float		perp_dist;
 	float		plane_multi;
-	float		wall_collide;
-
 }		t_ray;
 
 typedef struct s_texture
@@ -110,15 +83,6 @@ typedef struct s_texture
 	float	point_x;
 	float	texture_step;
 	float	texture_pos;
-	
-	// double	position;
-	// double	step;
-	// double	area;
-	// double	x;
-	// double	y;
-	// int		color;
-	// int		buffer[600];
-	// mlx_texture_t	*img;	
 }		t_tex;
 
 typedef struct s_key
@@ -149,12 +113,9 @@ typedef struct s_game
 	t_vector		position;
 	t_vector		direction;
 	t_vector		camera_plane;
-	int				collide;
 	float			frame_time;
 	double			move_speed;
 	double			rotation_speed;
-	// int		frame;
-
 }		t_game;
 
 // apagar
@@ -171,18 +132,10 @@ void    key_data(mlx_key_data_t pressed, void *param);
 
 //game
 void		game(t_game *cub);
-// int		init_game(t_game *cub);
 void	player_pov(void *param);
 void	moon_walk(t_game *cub);
 void	go_ahead(t_game *cub);
 void	crab_walk(t_game *cub, int key);
-// void	look_right(t_game *cub);
-// void	look_left(t_game *cub);
-
-
-// void	take_input(t_game *cub);
-// void	free_texture(t_game *cub);
-// void	update_image(t_game *cub);
 void take_input(t_game *cub);
 bool	can_go(t_game *cub, float x, float y);
 int	minus_or_not(float value);
@@ -192,7 +145,6 @@ void    frame_speed(t_game *cub);
 
 //algorithm
 void	raycast(t_game *cub);
-// void	init_ray_struct(t_game *cub, int i);
 void	delta_dist(t_game *cub);
 void    wall_dist(t_game *cub);
 void	not_collide(t_game *cub);
@@ -202,19 +154,9 @@ void	wall_and_background(t_game *cub);
 void	find_pixel_wall(t_game *cub);
 void	put_pixel(t_game *cub, int pixel);
 uint32_t	get_color(mlx_texture_t	*walls, int y, int x);
-// void	define_initial_pov(t_game *cub);
-// void	wall_distance(t_game *cub);
-// void	wall_side(t_game *cub, int axis);
-// void	draw_line(t_game *cub, int i);
-// void	texture(t_game *cub, t_vector start, t_vector end, int side);
-// void	side_texture(t_game *cub, int side, t_tex *tex);
-// int		pixel_color(t_tex tex);
-// void	put_pixel(t_game *cub, t_vector start, t_vector end, int buffer[600]);
-// mlx_texture_t *get_texture(t_game *cub, const char *side);
 
-void	free_map(t_map	*map);
+//free
 void	free_ptrptr(char **cmd);
-// void	free_texture(t_game *cub);
 void	close_cub(void *param);
 void	bye_bye(t_game *cub);
 
