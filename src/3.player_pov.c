@@ -24,7 +24,8 @@ void    key_data(mlx_key_data_t pressed, void *param)
     cub = (t_game *)param;
     if (pressed.key == MLX_KEY_ESCAPE && pressed.action == MLX_PRESS)
     {
-        close_cub(cub);
+        bye_bye(cub);
+		mlx_close_window(cub->mlx);
         return ;
     }
     if (pressed.action == MLX_PRESS || pressed.action == MLX_REPEAT)

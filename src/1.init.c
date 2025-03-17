@@ -60,20 +60,19 @@ void	init_window(t_game *cub)
 	if (!cub->mlx)
 	{
 		ft_printf("Error. MLX init error.\n");
-		// bye_bye(cub, 1);
+		bye_bye(cub);
 	}
 	cub->image = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
 	if (!cub->image)
 	{
 		ft_printf("Error. Window problem\n");
-		//bye_bye(cub);
+		bye_bye(cub);
 	}
 	if (mlx_image_to_window(cub->mlx, cub->image, 0, 0) < 0)
 	{
 		ft_printf("Error. Image problem\n");
-		//bye_bye(cub)
+		bye_bye(cub);
 	}
-	
 }	
 
 void	init_images(t_game *cub)
@@ -87,35 +86,33 @@ void	init_images(t_game *cub)
 
 }
 
-
-
 void	initial_pov(t_game *cub)
 {
 	// printf("AQUI  5 \n");
-	cub->position = create(cub->map.p1_x + 0.5, cub->map.p1_y + 0.5);
+	cub->position = vector(cub->map.p1_x + 0.5, cub->map.p1_y + 0.5);
 	if (cub->map.p1_pov == N)
 	{
-		cub->direction = create(0, -1);
-		cub->camera_plane = create(0.66, 0);
+		cub->direction = vector(0, -1);
+		cub->camera_plane = vector(0.66, 0);
 	}
 	else if (cub->map.p1_pov == S)
 	{
-		cub->direction = create(0, 1);
-		cub->camera_plane = create(-0.66, 0);
+		cub->direction = vector(0, 1);
+		cub->camera_plane = vector(-0.66, 0);
 	}
 	else if (cub->map.p1_pov == W)
 	{
-		cub->direction = create(-1, 0);
-		cub->camera_plane = create(0, -0.66);
+		cub->direction = vector(-1, 0);
+		cub->camera_plane = vector(0, -0.66);
 	}
 	else if (cub->map.p1_pov == E)
 	{
-		cub->direction = create(1, 0);
-		cub->camera_plane = create(0, 0.66);
+		cub->direction = vector(1, 0);
+		cub->camera_plane = vector(0, 0.66);
 	}
 }
 
-t_vector create(float x, float y)
+t_vector vector(float x, float y)
 {
 	t_vector	vector;
 

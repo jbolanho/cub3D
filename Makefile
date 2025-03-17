@@ -12,8 +12,8 @@ SRC =	./src/main.c   \
 		./src/3.player_pov.c \
 		./src/4.algorithm.c  \
 		./src/5.copymap.c \
-		./src/game.c    \
-		./src/6.byebye.c     \
+		./src/6.game.c    \
+		./src/7.byebye.c     \
 		./src/validate.c   \
 		./src/validate_n_process.c   \
 		./src/validate_utils.c   \

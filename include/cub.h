@@ -166,7 +166,7 @@ void	init_images(t_game *cub);
 void	init_window(t_game *cub);
 void	init_background(t_game *cub);
 void	initial_pov(t_game *cub);
-t_vector create(float x, float y);
+t_vector vector(float x, float y);
 void    key_data(mlx_key_data_t pressed, void *param);
 
 //game
@@ -214,7 +214,7 @@ uint32_t	get_color(mlx_texture_t	*walls, int y, int x);
 
 void	free_map(t_map	*map);
 void	free_ptrptr(char **cmd);
-void	free_texture(t_game *cub);
+// void	free_texture(t_game *cub);
 void	close_cub(void *param);
 void	bye_bye(t_game *cub);
 
