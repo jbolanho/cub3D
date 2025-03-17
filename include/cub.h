@@ -6,7 +6,7 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 10:10:14 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/03/14 18:34:06 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/03/17 11:43:26 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,5 +118,10 @@ void	check_empty_lines(t_map *map);
 
 void	free_matrix(t_map *map);
 
+
+
+int	count_tabs(char *line);
+char	*replace_tabs(char *line, int tab_nbr);
+void	check_tabs(t_map *map);
 
 #endif
