@@ -6,42 +6,42 @@
 /*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 12:24:55 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/03/18 10:50:20 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/03/18 15:11:48 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub.h"
 
-static int	get_rgba(int r, int g, int b, int a);
-static void	fake_data(t_game *cub);
+// static int	get_rgba(int r, int g, int b, int a);
+// static void	fake_data(t_game *cub);
 
-static int	get_rgba(int r, int g, int b, int a)
-{
-	return (r << 24 | g << 16 | b << 8 | a);
-}
+// static int	get_rgba(int r, int g, int b, int a)
+// {
+// 	return (r << 24 | g << 16 | b << 8 | a);
+// }
 
-static void	fake_data(t_game *cub)
-{
-	uint32_t	nb_floor;
-	uint32_t	nb_ceil;
+// static void	fake_data(t_game *cub)
+// {
+// 	uint32_t	nb_floor;
+// 	uint32_t	nb_ceil;
 
-	nb_floor = get_rgba(169, 169, 169, 255);
-	nb_ceil = get_rgba(230, 230, 230, 255);
-	cub->map.north_path = "./texture/door1.png";
-	cub->map.south_path = "./texture/door2.png";
-	cub->map.east_path = "./texture/clock.png";
-	cub->map.west_path = "./texture/wall.png";
-	cub->map.floor_color = nb_floor;
-	cub->map.ceiling_color = nb_ceil;
-	cub->map.p1_x = 5;
-	cub->map.p1_y = 4;
-	cub->map.p1_pov = S;
-	copy_map(cub);
-}
+// 	nb_floor = get_rgba(169, 169, 169, 255);
+// 	nb_ceil = get_rgba(230, 230, 230, 255);
+// 	cub->map.north_path = "./texture/door1.png";
+// 	cub->map.south_path = "./texture/door2.png";
+// 	cub->map.east_path = "./texture/clock.png";
+// 	cub->map.west_path = "./texture/wall.png";
+// 	cub->map.floor_color = nb_floor;
+// 	cub->map.ceiling_color = nb_ceil;
+// 	cub->map.p1_x = 5;
+// 	cub->map.p1_y = 4;
+// 	cub->map.p1_pov = S;
+// 	// copy_map(cub);
+// }
 
 void	init(t_game *cub)
 {
-	fake_data(cub);
+	// fake_data(cub);
 	init_window(cub);
 	init_images(cub);
 	initial_pov(cub);
@@ -79,23 +79,26 @@ void	init_images(t_game *cub)
 
 void	initial_pov(t_game *cub)
 {
-	cub->position = vector(cub->map.p1_x + 0.5, cub->map.p1_y + 0.5);
-	if (cub->map.p1_pov == N)
+	// printf("AQUII px: %d\n", cub->map.player_x);
+	// printf("AQUII py: %d\n", cub->map.player_y);
+	// printf("AQUII pov: %d\n", cub->map.player_pov);
+	cub->position = vector(cub->map.player_x + 0.5, cub->map.player_y + 0.5);
+	if (cub->map.player_pov == N)
 	{
 		cub->direction = vector(0, -1);
 		cub->camera_plane = vector(0.66, 0);
 	}
-	else if (cub->map.p1_pov == S)
+	else if (cub->map.player_pov == S)
 	{
 		cub->direction = vector(0, 1);
 		cub->camera_plane = vector(-0.66, 0);
 	}
-	else if (cub->map.p1_pov == W)
+	else if (cub->map.player_pov == W)
 	{
 		cub->direction = vector(-1, 0);
 		cub->camera_plane = vector(0, -0.66);
 	}
-	else if (cub->map.p1_pov == E)
+	else if (cub->map.player_pov == E)
 	{
 		cub->direction = vector(1, 0);
 		cub->camera_plane = vector(0, 0.66);

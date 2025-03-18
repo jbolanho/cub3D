@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:13:29 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/02/25 17:51:49 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/03/18 14:56:56 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ void	validate(int argc, char **argv, t_game *cub)
 {
 	check_argc(argc);
 	check_dotcub(argv[1]);
+	// printf("AQUIIIII 2");
 	process_argv1(argv[1], &cub->map);
+	// printf("AQUIIIII   3");
 }
 
 void	check_argc(int argc)

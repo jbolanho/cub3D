@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 10:13:02 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/02/25 15:14:53 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/03/18 14:56:43 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@ int	main(int argc, char **argv)
 {
 	t_game	cub;
 
-	// validate(argc, argv, &cub);
-	(void)argc;
-	(void)argv;
+	validate(argc, argv, &cub);
+	// printf("AQUIIIII 1");
 	init(&cub);
 	game(&cub);
 	//bye_bye(&cub);

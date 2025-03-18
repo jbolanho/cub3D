@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_n_process.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:09:51 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/03/17 11:49:32 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/03/18 14:56:48 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,17 @@ void	process_argv1(char *argv, t_map *map)
 	check_header(map, temp, &fd);
 	close(fd);
 	check_map(map, argv);
-
-
-
+	
+	
 	free(temp);
 	close(fd);
+	// printf("AQUIIIII 4\n");
 }
 
 void	check_map(t_map *map, char *argv)
 {
 	char	*temp;
-
+	
 	temp = NULL;
 	get_map(map, argv);
 	//9x9???

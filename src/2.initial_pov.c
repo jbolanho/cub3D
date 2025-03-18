@@ -6,7 +6,7 @@
 /*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:50:08 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/03/18 10:50:11 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/03/18 14:50:54 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ void	init_background(t_game *cub)
 
 	x = 0;
 	y = 0;
+	// printf("color ceil: %d\n", cub->map.ceiling_color);
+	// printf("color floor: %d\n", cub->map.floor_color);
 	while (x < (uint32_t)HEIGHT)
 	{
 		while (y < (uint32_t)WIDTH)

@@ -6,7 +6,7 @@
 /*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 10:10:14 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/03/18 10:59:40 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/03/18 13:12:46 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ typedef struct s_map
 	char		*west_path;
 	uint32_t	floor_color;
 	uint32_t	ceiling_color;
-			int			p1_x;
-			int			p1_y;
-			int			p1_pov;
+			// int			p1_x;
+			// int			p1_y;
+	int			player_pov;
 	int			player_x;
 	int			player_y;
 
@@ -122,7 +122,7 @@ typedef struct s_game
 }		t_game;
 
 // apagar
-void	copy_map(t_game *cub);
+// void	copy_map(t_game *cub);
 
 //init
 void    init(t_game *cub);
@@ -200,7 +200,7 @@ void	process_map_line(t_map *map, char *temp, int *start);
 
 void	check_chr(t_map *map, const char *str);
 void	check_player(t_map *map);
-int		is_player(char c);
+int		is_player(char c, t_map *map);
 void	count_player(t_map *map, int line, int col, int *count);
 
 void	check_walls(t_map *map);
