@@ -6,13 +6,13 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:10:45 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/02/25 17:55:08 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/03/12 14:47:53 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub.h"
 
-int open_file(char *argv)
+int	open_file(char *argv)
 {
 	int	file_descriptor;
 

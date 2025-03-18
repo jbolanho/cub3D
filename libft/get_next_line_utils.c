@@ -6,36 +6,59 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 12:29:41 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/02/25 16:14:42 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/03/14 17:30:25 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t n_elem, size_t size_bytes)
-{
-	size_t			total_size;
-	void			*memory;
-	size_t			i;
-	unsigned char	*ptr;
+// void	*ft_calloc(size_t n_elem, size_t size_bytes)
+// {
+// 	size_t			total_size;
+// 	void			*memory;
+// 	size_t			i;
+// 	unsigned char	*ptr;
 
-	total_size = n_elem * size_bytes;
-	if (n_elem == 0 || size_bytes == 0)
-		return (malloc(0));
-	if (total_size / n_elem != size_bytes)
-		return (NULL);
-	memory = malloc(total_size);
-	if (memory == NULL)
-		return (NULL);
-	ptr = (unsigned char *)memory;
-	i = 0;
-	while (i < total_size)
-	{
-		ptr[i] = 0;
-		i++;
-	}
-	return (memory);
-}
+// 	total_size = n_elem * size_bytes;
+// 	if (n_elem == 0 || size_bytes == 0)
+// 		return (malloc(0));
+// 	if (total_size / n_elem != size_bytes)
+// 		return (NULL);
+// 	memory = malloc(total_size);
+// 	if (memory == NULL)
+// 		return (NULL);
+// 	ptr = (unsigned char *)memory;
+// 	i = 0;
+// 	while (i < total_size)
+// 	{
+// 		ptr[i] = 0;
+// 		i++;
+// 	}
+// 	return (memory);
+// }
+
+// char	*ft_strchr(const char *str, int chr)
+// {
+// 	size_t	i;
+
+// 	i = 0;
+// 	if (str == NULL)
+// 		return (NULL);
+// 	if (chr > 255)
+// 	{
+// 		chr = chr % 256;
+// 	}
+// 	while (str[i] != '\0')
+// 	{
+// 		if (str[i] == (unsigned char)chr)
+// 			return ((char *)&str[i]);
+// 		i++;
+// 	}
+// 	if (str[i] == chr)
+// 		return ((char *)&str[i]);
+// 	return (NULL);
+// }
+
 
 char	*ft_strchr(const char *str, int chr)
 {
@@ -44,20 +67,18 @@ char	*ft_strchr(const char *str, int chr)
 	i = 0;
 	if (str == NULL)
 		return (NULL);
-	if (chr > 255)
-	{
-		chr = chr % 256;
-	}
 	while (str[i] != '\0')
 	{
 		if (str[i] == (unsigned char)chr)
 			return ((char *)&str[i]);
 		i++;
 	}
-	if (str[i] == chr)
+	if (chr == '\0')
 		return ((char *)&str[i]);
 	return (NULL);
 }
+
+
 
 // char	*ft_strjoin(char const *s1, char const *s2)
 // {

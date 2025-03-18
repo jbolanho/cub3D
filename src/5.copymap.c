@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/18 10:50:42 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/03/18 10:50:44 by jbolanho         ###   ########.fr       */
+/*   Created: 2025/02/11 12:24:55 by jbolanho          #+#    #+#             */
+/*   Updated: 2025/03/18 11:22:14 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,19 @@ void	copy_map(t_game *cub)
 	cub->map.cub_map = ft_split(temp, '\n');
 	close(fd);
 	free(temp);
+}
+
+
+void    init(t_game *cub, int argc, char **argv)
+{
+    (void)cub;
+    (void)argc;
+    (void)argv;
+    cub->map.north_path = NULL;
+	cub->map.south_path = NULL;
+	cub->map.east_path = NULL;
+	cub->map.west_path = NULL;
+	cub->map.floor_color = 0;
+	cub->map.ceiling_color = 0;
+	cub->map.cub_map = NULL;
 }

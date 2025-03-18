@@ -6,7 +6,7 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:05:37 by anacaro5          #+#    #+#             */
-/*   Updated: 2024/09/03 17:13:04 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/03/14 15:28:52 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,14 +79,13 @@ char	*ft_countncut(char *line, char **rest)
 	free(line);
 	return (first);
 }
-
 char	*ft_readtxt(int fd, char *line, char *rest)
 {
 	char		*temp;
 	ssize_t		rbytes;
 
 	rbytes = 1;
-	while (ft_strchr(rest, '\n') == NULL && rbytes != 0)
+	while ((ft_strchr(rest, '\n') == NULL) && rbytes != 0)
 	{
 		rbytes = read (fd, line, BUFFER_SIZE);
 		if (rbytes < 0)
