@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 10:10:14 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/03/18 13:12:46 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/03/19 15:12:45 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ typedef struct s_game
 
 // apagar
 // void	copy_map(t_game *cub);
+void	print_map(t_map *map);
 
 //init
 void    init(t_game *cub);
@@ -196,8 +197,9 @@ void	get_map(t_map *map, char *argv);
 int		map_size(int fd);
 void	allocate_matrix(t_map *map, int size);
 void	copy_map(t_map *map, char *argv);
-void	process_map_line(t_map *map, char *temp, int *start);
-
+void	process_map_line(t_map *map, char *temp,
+ 			int *start, int *map_state);
+//void	process_map_line(t_map *map, char *temp, int *start);
 void	check_chr(t_map *map, const char *str);
 void	check_player(t_map *map);
 int		is_player(char c, t_map *map);
@@ -214,5 +216,10 @@ void	free_matrix(t_map *map);
 int	count_tabs(char *line);
 char	*replace_tabs(char *line, int tab_nbr);
 void	check_tabs(t_map *map);
+
+
+void initialize_map(t_map *map);
+
+void	check_after_header(char *temp);
 
 #endif
