@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   2.initial_pov.c                                    :+:      :+:    :+:   */
+/*   2.game.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:50:08 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/03/18 14:50:54 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/03/19 14:55:08 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,4 +107,20 @@ void	init_background(t_game *cub)
 		y = 0;
 		x++;
 	}
+}
+
+void	frame_speed(t_game *cub)
+{
+	static mlx_image_t	*image;
+	char				*fps_text;
+	char				*fps_nbr;
+
+	cub->frame_time = 1.0 /cub->mlx->delta_time;
+	if (image)
+		mlx_delete_image(cub->mlx, image);
+	fps_nbr = ft_itoa((int)cub->frame_time);
+	fps_text = ft_strjoin("FPS:", fps_nbr);
+	free(fps_nbr);
+	image = mlx_put_string(cub->mlx, fps_text, WIDTH - 80, HEIGHT - 790);
+	free(fps_text);
 }

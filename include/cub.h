@@ -6,7 +6,7 @@
 /*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 10:10:14 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/03/18 13:12:46 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/03/19 11:55:09 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ typedef struct s_game
 	t_vector		camera_plane;
 	float			frame_time;
 	double			move_speed;
-	double			rotation_speed;
+	// double			rotation_speed;
 }		t_game;
 
 // apagar

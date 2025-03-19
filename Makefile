@@ -8,8 +8,8 @@ MFLAGS = -ldl -lglfw -pthread -lm
 
 SRC =	./src/main.c   \
 		./src/1.init.c   \
-		./src/2.initial_pov.c \
-		./src/3.player_pov.c \
+		./src/2.game.c   \
+		./src/3.key_data.c \
 		./src/4.algorithm.c  \
 		./src/5.copymap.c \
 		./src/6.game.c    \

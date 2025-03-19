@@ -6,7 +6,7 @@
 /*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:52:56 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/03/18 10:50:49 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/03/19 14:39:08 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	take_input(t_game *cub)
 {
+	// cub->move_speed = cub->mlx->delta_time * 6;
+	cub->move_speed = 0.06;
 	if (cub->key.w == true)
 		go_ahead(cub);
 	if (cub->key.s == true)
@@ -32,8 +34,6 @@ void	moon_walk(t_game *cub)
 	int	x2;
 	int	y2;
 
-	cub->move_speed = 0.02;
-	cub->rotation_speed = 0.06;
 	x1 = (int)(cub->position.x - cub->direction.x * cub->move_speed);
 	y1 = (int)cub->position.y;
 	x2 = (int)cub->position.x;
