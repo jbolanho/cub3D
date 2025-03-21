@@ -6,7 +6,7 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 10:10:14 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/03/21 18:37:35 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/03/21 19:58:21 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,5 +223,14 @@ void initialize_map(t_map *map);
 void	check_after_header(char *temp);
 
 void	check_space(t_map *map, const char *str);
+
+
+
+
+void	print_wall_error(int line, int column);
+int		is_player_or_space(char c);
+void	check_wall_edges(t_map *map, int line, int column);
+void	check_wall_surroundings(t_map *map, int line, int column);
+void	check_all_walls(t_map *map, int line, int column);
 
 #endif
