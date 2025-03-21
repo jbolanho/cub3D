@@ -6,7 +6,7 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:09:51 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/03/19 15:21:16 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/03/21 18:44:33 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@ void	check_map(t_map *map, char *argv)
 
 	temp = NULL;
 	get_map(map, argv);
-	check_tabs(map);
-	check_chr(map, "012NSEW ");
+	//check_tabs(map);
+	check_chr(map, "\t01NSEW ");
+	check_space(map, "01NSEW");
 	check_player(map);
 	check_walls(map);
 	//check_empty_lines(map);
@@ -108,7 +109,7 @@ void	check_after_header(char *temp)
 	i = 0;
 	while (temp[i])
 	{
-		if (temp[0] != '\n' && temp[0] != '\0' && temp[0] != '1' && temp[0] != '0' && temp[0] != '\t')
+		if (temp[0] != '\n' && temp[0] != '\0' && temp[0] != '1' && temp[0] != '0' && temp[0] != '\t' && temp[0] != ' ')
 		{
 			//bye_bye;
 			ft_printf("Error: wrong char [%c] found\n", temp[i]);

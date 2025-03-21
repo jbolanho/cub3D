@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 15:19:33 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/03/18 15:10:08 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/03/21 18:55:45 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,38 @@ void	check_chr(t_map *map, const char *str)
 				//bye_bye;
 				ft_printf("Error: wrong char [%c]\n"
 					"found on line: %d, columnn: %d\n",
+					(map->cub_map[line])[column], line, column);
+				exit(EXIT_FAILURE);
+			}
+			column++;
+		}
+		line++;
+	}
+}
+
+void	check_space(t_map *map, const char *str)
+{
+	int			line;
+	int			column;
+
+	line = 0;
+	while (map->cub_map[line] != NULL)
+	{
+		column = 0;
+		while (map->cub_map[line][column] != '\0')
+		{
+			if (column == 0)
+				column++;
+			// if (is_space(map->cub_map[line][column]) == 1)
+			// {
+			// 	printf("aquiii\n");
+			// 	column++;
+			// }
+			if (ft_strchr(str, (map->cub_map[line])[column]) == NULL)
+			{
+				//bye_bye;
+				ft_printf("Error: found space or tab [%c]\n"
+					"on line: %d, columnn: %d\n",
 					(map->cub_map[line])[column], line, column);
 				exit(EXIT_FAILURE);
 			}

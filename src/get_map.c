@@ -6,7 +6,7 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 16:25:39 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/03/19 14:56:32 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/03/21 18:19:45 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	process_map_line(t_map *map, char *temp,
 	char	*newline;
 
 	newline = ft_strchr(temp, '\n');
-	while (is_space(*temp))
-		temp++;
+	// while (is_space(*temp))
+	// 	temp++;
 	if (ft_strncmp(temp, "NO ", 3) == 0 || ft_strncmp(temp, "SO ", 3) == 0 ||
         ft_strncmp(temp, "EA ", 3) == 0 || ft_strncmp(temp, "WE ", 3) == 0 ||
         ft_strncmp(temp, "F ", 2) == 0 || ft_strncmp(temp, "C ", 2) == 0)
@@ -36,7 +36,7 @@ void	process_map_line(t_map *map, char *temp,
 		//bye_bye;
 		exit(EXIT_FAILURE);
 	}
-	if (*temp == '1' || *temp == '0')
+	if (*temp == '1' || *temp == '0' || *temp == ' ' || *temp == '\t' || *temp == 'N' || *temp == 'S' || *temp == 'E' || *temp == 'W')
 	{
 		*map_state = 1;
 		if (newline)
@@ -44,14 +44,15 @@ void	process_map_line(t_map *map, char *temp,
 		map->cub_map[(*start)++] = ft_strdup(temp);
 	}
 	char *ptr = temp;
-    while (*ptr)
-    {
-        if (!ft_strchr(" 01NSEW", *ptr) && *map_state == 1) // Allows spaces, '0', '1', and directions
-        {
-            ft_printf("Error: Invalid character '%c' in map.\n", *ptr);
-            exit(EXIT_FAILURE);
-        }
-        ptr++;
+	//print_map(map);
+	while (*ptr)
+	{
+		if (!ft_strchr(" \t01NSEW", *ptr) && *map_state == 1 && *ptr != 't')
+		{
+			ft_printf("Error: Invalid character '%c' in map.\n", *ptr);
+			exit(EXIT_FAILURE);
+		}
+		ptr++;
 	}
 }
 
@@ -121,8 +122,10 @@ int	map_size(int fd)
 		i = 0;
 		if (is_space(temp[i]))
 			i++;
+		printf("temp[%d]: %c\n", i, temp[i]);
 		if (temp[i] == '1' || temp[i] == '0')
 			break ;
+		// if (temp[i] ==)
 		free(temp);
 		temp = get_next_line(fd);
 	}

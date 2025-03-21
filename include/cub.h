@@ -6,7 +6,7 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 10:10:14 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/03/19 15:12:45 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/03/21 18:37:35 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,5 +221,7 @@ void	check_tabs(t_map *map);
 void initialize_map(t_map *map);
 
 void	check_after_header(char *temp);
+
+void	check_space(t_map *map, const char *str);
 
 #endif

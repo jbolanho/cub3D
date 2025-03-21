@@ -6,7 +6,7 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 17:57:19 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/03/14 18:40:37 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/03/21 17:29:46 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,22 @@ void	check_walls(t_map *map)
 	colum = 0;
 	while (map->cub_map[line] != NULL)
 		line++;
+	// while (map->cub_map[line] [colum] != '\0')
+	// {
+	// 	if (map->cub_map[line][colum] != '1' )
+
+		
+	// 		exit_wall_error("upper wall is open");
+
+	// 	colum++;
+		
+
+
+
+
+	
+	
+		
 	while (map->cub_map[0][colum] != '\0')
 	{
 		if (map->cub_map[0][colum] != '1')
