@@ -39,11 +39,11 @@ void	delta_dist(t_game *cub)
 	if (cub->ray.direction.x == 0)
 		cub->ray.delta_dist.x = 1e30;
 	else
-		cub->ray.delta_dist.x = fabs(1 / cub->ray.direction.x);
+		cub->ray.delta_dist.x = fabsf(1 / cub->ray.direction.x);
 	if (cub->ray.direction.y == 0)
 		cub->ray.delta_dist.y = 1e30;
 	else
-		cub->ray.delta_dist.y = fabs(1 / cub->ray.direction.y);
+		cub->ray.delta_dist.y = fabsf(1 / cub->ray.direction.y);
 }
 
 void	wall_dist(t_game *cub)
@@ -51,17 +51,13 @@ void	wall_dist(t_game *cub)
 	cub->ray.map.x = cub->position.x;
 	cub->ray.map.y = cub->position.y;
 	if (cub->ray.direction.x < 0)
-		cub->ray.side_dist.x = (cub->position.x - cub->ray.map.x)
-			* cub->ray.delta_dist.x;
+		cub->ray.side_dist.x = (cub->position.x - cub->ray.map.x) * cub->ray.delta_dist.x;
 	else
-		cub->ray.side_dist.x = (cub->ray.map.x + 1.0 - cub->position.x)
-			* cub->ray.delta_dist.x;
+		cub->ray.side_dist.x = (cub->ray.map.x + 1.0 - cub->position.x)	* cub->ray.delta_dist.x;
 	if (cub->ray.direction.y < 0)
-		cub->ray.side_dist.y = (cub->position.y - cub->ray.map.y)
-			* cub->ray.delta_dist.y;
+		cub->ray.side_dist.y = (cub->position.y - cub->ray.map.y) * cub->ray.delta_dist.y;
 	else
-		cub->ray.side_dist.y = (cub->ray.map.y + 1.0 - cub->position.y)
-			* cub->ray.delta_dist.y;
+		cub->ray.side_dist.y = (cub->ray.map.y + 1.0 - cub->position.y)	* cub->ray.delta_dist.y;
 }
 
 void	not_collide(t_game *cub)
@@ -99,8 +95,7 @@ void	pixel_wall(t_game *cub, int pixel)
 		cub->tex.end_y = HEIGHT - 1;
 	wall_and_background(cub);
 	find_pixel_wall(cub);
-	cub->tex.texture_pos = (cub->tex.start_y - HEIGHT / 2 + cub->tex.height / 2)
-		* cub->tex.texture_step;
+	cub->tex.texture_pos = (cub->tex.start_y - HEIGHT / 2 + cub->tex.height / 2) * cub->tex.texture_step;
 	put_pixel(cub, pixel);
 }
 
@@ -126,19 +121,16 @@ mlx_texture_t	*get_wall(t_game *cub)
 void	wall_and_background(t_game *cub)
 {
 	if (cub->ray.collide == 0)
-		cub->tex.point_x = cub->position.y + cub->ray.perp_dist
-			* cub->ray.direction.y;
+		cub->tex.point_x = cub->ray.map.y + cub->ray.perp_dist * cub->ray.direction.y;
 	else
-		cub->tex.point_x = cub->position.x + cub->ray.perp_dist
-			* cub->ray.direction.x;
+		cub->tex.point_x = cub->ray.map.x + cub->ray.perp_dist * cub->ray.direction.x;
 	cub->tex.point_x -= floor(cub->tex.point_x);
 }
 
 void	find_pixel_wall(t_game *cub)
 {
 	cub->tex.texture_x = (int)(cub->tex.point_x * cub->walls->width);
-	if ((cub->ray.collide == 0 && cub->ray.direction.x < 0)
-		|| (cub->ray.collide == 1 && cub->ray.direction.y > 0))
+	if ((cub->ray.collide == 0 && cub->ray.direction.x < 0)	|| (cub->ray.collide == 1 && cub->ray.direction.y > 0))
 		cub->tex.texture_x = cub->walls->width - cub->tex.texture_x - 1;
 	cub->tex.texture_step = 1.0 * cub->walls->height / cub->tex.height;
 }

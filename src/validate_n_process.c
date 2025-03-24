@@ -31,9 +31,9 @@ void	process_argv1(char *argv, t_map *map)
 
 void	check_map(t_map *map, char *argv)
 {
-	char	*temp;
+	// char	*temp;
 	
-	temp = NULL;
+	// temp = NULL;
 	get_map(map, argv);
 	//9x9???
 	check_tabs(map);

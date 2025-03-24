@@ -49,7 +49,7 @@ void	init(t_game *cub)
 
 void	init_window(t_game *cub)
 {
-	// mlx_set_setting(MLX_STRETCH_IMAGE, true);
+	mlx_set_setting(MLX_STRETCH_IMAGE, true);
 	cub->mlx = mlx_init((int32_t)WIDTH, (int32_t)HEIGHT, "Severance", true);
 	if (!cub->mlx)
 	{
@@ -105,9 +105,40 @@ void	initial_pov(t_game *cub)
 	}
 }
 
-t_vector	vector(float x, float y)
+
+// void	initial_pov(t_game *cub)
+// {
+// 	float	camera_scale = 0.66; // Ajuste conforme necessário
+	
+// 	cub->position = vector(cub->map.player_x + 0.5, cub->map.player_y + 0.5);
+// 	if (cub->map.player_pov == N)
+// 	{
+// 		cub->direction = vector(0, -1);
+// 		cub->camera_plane = vector(camera_scale, 0);
+// 	}
+// 	else if (cub->map.player_pov == S)
+// 	{
+// 		cub->direction = vector(0, 1);
+// 		cub->camera_plane = vector(-camera_scale, 0);
+// 	}
+// 	else if (cub->map.player_pov == W)
+// 	{
+// 		cub->direction = vector(-1, 0);
+// 		cub->camera_plane = vector(0, -camera_scale);
+// 	}
+// 	else if (cub->map.player_pov == E)
+// 	{
+// 		cub->direction = vector(1, 0);
+// 		cub->camera_plane = vector(0, camera_scale);
+// 	}
+// }
+
+
+
+
+t_coord	vector(float x, float y)
 {
-	t_vector	vector;
+	t_coord	vector;
 
 	vector.x = x;
 	vector.y = y;

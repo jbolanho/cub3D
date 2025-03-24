@@ -63,12 +63,19 @@ typedef struct s_vector
 	double	y;
 }	t_vector;
 
+
+typedef struct s_coord
+{
+	float	x;
+	float	y;
+}	t_coord;
+
 typedef struct s_ray
 {
-	t_vector	direction;
-	t_vector	camera_pixel;
-	t_vector	delta_dist;
-	t_vector	side_dist;
+	t_coord	direction;
+	t_coord	camera_pixel;
+	t_coord		delta_dist;
+	t_coord	side_dist;
 	t_vector	map;
 	t_vector	step;
 	int			collide;
@@ -113,9 +120,9 @@ typedef struct s_game
 	mlx_image_t		*floor_ceiling;
 	mlx_image_t		*image;
 	int				*texture[4];
-	t_vector		position;
-	t_vector		direction;
-	t_vector		camera_plane;
+	t_coord		position;
+	t_coord		direction;
+	t_coord		camera_plane;
 	float			frame_time;
 	double			move_speed;
 	// double			rotation_speed;
@@ -130,20 +137,23 @@ void	init_images(t_game *cub);
 void	init_window(t_game *cub);
 void	init_background(t_game *cub);
 void	initial_pov(t_game *cub);
-t_vector vector(float x, float y);
+t_coord vector(float x, float y);
 void    key_data(mlx_key_data_t pressed, void *param);
 
+void	new_position(t_game *cub, float *x, float *y);
+bool	can_go(t_game *cub, float x, float y);
+
 //game
-void		game(t_game *cub);
+int		game(t_game *cub);
 void	player_pov(void *param);
 void	moon_walk(t_game *cub);
 void	go_ahead(t_game *cub);
 void	crab_walk(t_game *cub, int key);
 void take_input(t_game *cub);
-bool	can_go(t_game *cub, float x, float y);
+// bool	can_go(t_game *cub, float x, float y);
 int	minus_or_not(float value);
 void    look_movements(t_game *cub);
-t_vector	rotate_vector(t_vector v, float angle);
+t_coord	rotate_vector(t_coord v, float angle);
 void    frame_speed(t_game *cub);
 
 //algorithm
