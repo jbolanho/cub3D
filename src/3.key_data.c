@@ -62,7 +62,7 @@ void	take_input(t_game *cub)
 
 	x = 0;
 	y = 0;
-	lerp = 1;
+	lerp = 1.0;
 	new_position(cub, &x, &y);
 	if (can_go(cub, x, y))
 	{
@@ -91,6 +91,8 @@ t_coord	rotate_vector(t_coord v, float angle)
 	vector.y = v.x * sin(radians) + v.y * cos(radians);
 	return (vector);
 }
+
+
 void	new_position(t_game *cub, float *x, float *y)
 {
 	float	speed;
@@ -110,8 +112,8 @@ void	new_position(t_game *cub, float *x, float *y)
 	}
 	if (cub->key.a == true)
 	{
-		*x += cub->camera_plane.x * speed;
-		*y += cub->camera_plane.y * speed;
+		*x -= cub->camera_plane.x * speed;
+		*y -= cub->camera_plane.y * speed;
 	}
 	if (cub->key.d == true)
 	{
@@ -125,18 +127,14 @@ bool	can_go(t_game *cub, float x, float y)
 {
 	float	border;
 
-	border = 0.1;
-	if (cub->map.cub_map[(int)(y + border
-			* minus_or_not(y - cub->position.y))][(int)x] == '1')
+	border = 0.6;
+	if (cub->map.cub_map[(int)(y + border * minus_or_not(y - cub->position.y))][(int)x] == '1')
 		return (false);
-	if (cub->map.cub_map[(int)y][(int)(x + border
-		* minus_or_not(x - cub->position.x))] == '1')
+	if (cub->map.cub_map[(int)y][(int)(x + border * minus_or_not(x - cub->position.x))] == '1')
 		return (false);
-	if (cub->map.cub_map[(int)(y + border
-			* minus_or_not(cub->camera_plane.y))][(int)x] == '1')
+	if (cub->map.cub_map[(int)(y + border * minus_or_not(cub->camera_plane.y))][(int)x] == '1')
 		return (false);
-	if (cub->map.cub_map[(int)y][(int)(x + border
-		* minus_or_not(cub->camera_plane.x))] == '1')
+	if (cub->map.cub_map[(int)y][(int)(x + border * minus_or_not(cub->camera_plane.x))] == '1')
 		return (false);
 	return (true);
 }

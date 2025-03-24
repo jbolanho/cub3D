@@ -62,7 +62,7 @@ void	wall_dist(t_game *cub)
 
 void	not_collide(t_game *cub)
 {
-	while (cub->map.cub_map[(int)cub->ray.map.y][(int)cub->ray.map.x] != '1')
+	while (cub->ray.map.x >= 0 && cub->ray.map.y >= 0 && cub->ray.map.x < WIDTH && cub->ray.map.y < HEIGHT && cub->map.cub_map[(int)cub->ray.map.y][(int)cub->ray.map.x] != '1')
 	{
 		if (cub->ray.side_dist.x < cub->ray.side_dist.y)
 		{
@@ -78,9 +78,11 @@ void	not_collide(t_game *cub)
 		}
 	}
 	if (cub->ray.collide == 0)
-		cub->ray.perp_dist = cub->ray.side_dist.x - cub->ray.delta_dist.x;
+	cub->ray.perp_dist = cub->ray.side_dist.x - cub->ray.delta_dist.x;
 	else
-		cub->ray.perp_dist = cub->ray.side_dist.y - cub->ray.delta_dist.y;
+	cub->ray.perp_dist = cub->ray.side_dist.y - cub->ray.delta_dist.y;
+	if (cub->ray.perp_dist < 0.01f)
+    	cub->ray.perp_dist = 0.01f;
 }
 
 void	pixel_wall(t_game *cub, int pixel)
@@ -96,6 +98,8 @@ void	pixel_wall(t_game *cub, int pixel)
 	wall_and_background(cub);
 	find_pixel_wall(cub);
 	cub->tex.texture_pos = (cub->tex.start_y - HEIGHT / 2 + cub->tex.height / 2) * cub->tex.texture_step;
+	if (cub->tex.texture_pos < 0)
+    cub->tex.texture_pos = 0;
 	put_pixel(cub, pixel);
 }
 
@@ -130,8 +134,8 @@ void	wall_and_background(t_game *cub)
 void	find_pixel_wall(t_game *cub)
 {
 	cub->tex.texture_x = (int)(cub->tex.point_x * cub->walls->width);
-	if ((cub->ray.collide == 0 && cub->ray.direction.x < 0)	|| (cub->ray.collide == 1 && cub->ray.direction.y > 0))
-		cub->tex.texture_x = cub->walls->width - cub->tex.texture_x - 1;
+	// if ((cub->ray.collide == 0 && cub->ray.direction.x < 0)	|| (cub->ray.collide == 1 && cub->ray.direction.y > 0))
+	// 	cub->tex.texture_x = cub->walls->width - cub->tex.texture_x - 1;
 	cub->tex.texture_step = 1.0 * cub->walls->height / cub->tex.height;
 }
 
