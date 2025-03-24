@@ -6,7 +6,7 @@
 /*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 10:10:14 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/03/19 11:55:09 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/03/24 15:08:15 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,15 +72,15 @@ typedef struct s_coord
 
 typedef struct s_ray
 {
-	t_coord	direction;
-	t_coord	camera_pixel;
-	t_coord		delta_dist;
-	t_coord	side_dist;
+	t_vector	dir;
+	// t_coord	camera_pixel;
+	t_vector	delta_dist;
+	t_vector	side_dist;
 	t_vector	map;
 	t_vector	step;
-	int			collide;
+	int			hit_wall;
+	int			side;
 	float		perp_dist;
-	float		plane_multi;
 }		t_ray;
 
 typedef struct s_texture
@@ -120,10 +120,12 @@ typedef struct s_game
 	mlx_image_t		*floor_ceiling;
 	mlx_image_t		*image;
 	int				*texture[4];
-	t_coord		position;
-	t_coord		direction;
-	t_coord		camera_plane;
-	float			frame_time;
+	t_vector		position;
+	t_vector		direction;
+	t_vector		camera_plane;
+	double			frame_time;
+	double			time;
+	double			oldtime;
 	double			move_speed;
 	// double			rotation_speed;
 }		t_game;
@@ -137,7 +139,7 @@ void	init_images(t_game *cub);
 void	init_window(t_game *cub);
 void	init_background(t_game *cub);
 void	initial_pov(t_game *cub);
-t_coord vector(float x, float y);
+t_vector vector(float x, float y);
 void    key_data(mlx_key_data_t pressed, void *param);
 
 void	new_position(t_game *cub, float *x, float *y);
@@ -153,11 +155,11 @@ void take_input(t_game *cub);
 // bool	can_go(t_game *cub, float x, float y);
 int	minus_or_not(float value);
 void    look_movements(t_game *cub);
-t_coord	rotate_vector(t_coord v, float angle);
+t_vector	rotate_vector(t_vector v, float angle);
 void    frame_speed(t_game *cub);
 
 //algorithm
-void	raycast(t_game *cub);
+void	dda(t_game *cub);
 void	delta_dist(t_game *cub);
 void    wall_dist(t_game *cub);
 void	not_collide(t_game *cub);

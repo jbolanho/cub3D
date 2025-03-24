@@ -6,7 +6,7 @@
 /*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:50:29 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/03/19 15:00:01 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/03/24 14:28:51 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	take_input(t_game *cub)
 
 	x = 0;
 	y = 0;
-	lerp = 1.0;
+	lerp = 1;
 	new_position(cub, &x, &y);
 	if (can_go(cub, x, y))
 	{
@@ -81,9 +81,9 @@ void	take_input(t_game *cub)
 	}
 }
 
-t_coord	rotate_vector(t_coord v, float angle)
+t_vector	rotate_vector(t_vector v, float angle)
 {
-	t_coord	vector;
+	t_vector	vector;
 	float		radians;
 
 	radians = angle * 3.14159265 / 180.0;

@@ -6,7 +6,7 @@
 /*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 12:24:55 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/03/19 14:12:59 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/03/24 15:17:44 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	init(t_game *cub)
 	init_window(cub);
 	init_images(cub);
 	initial_pov(cub);
+	init_time(cub);
 }
 
 void	init_window(t_game *cub)
@@ -105,42 +106,18 @@ void	initial_pov(t_game *cub)
 	}
 }
 
-
-// void	initial_pov(t_game *cub)
-// {
-// 	float	camera_scale = 0.66; // Ajuste conforme necessário
-	
-// 	cub->position = vector(cub->map.player_x + 0.5, cub->map.player_y + 0.5);
-// 	if (cub->map.player_pov == N)
-// 	{
-// 		cub->direction = vector(0, -1);
-// 		cub->camera_plane = vector(camera_scale, 0);
-// 	}
-// 	else if (cub->map.player_pov == S)
-// 	{
-// 		cub->direction = vector(0, 1);
-// 		cub->camera_plane = vector(-camera_scale, 0);
-// 	}
-// 	else if (cub->map.player_pov == W)
-// 	{
-// 		cub->direction = vector(-1, 0);
-// 		cub->camera_plane = vector(0, -camera_scale);
-// 	}
-// 	else if (cub->map.player_pov == E)
-// 	{
-// 		cub->direction = vector(1, 0);
-// 		cub->camera_plane = vector(0, camera_scale);
-// 	}
-// }
-
-
-
-
-t_coord	vector(float x, float y)
+t_vector	vector(float x, float y)
 {
-	t_coord	vector;
+	t_vector	vector;
 
 	vector.x = x;
 	vector.y = y;
 	return (vector);
+}
+
+void	init_time(t_game *cub)
+{
+	cub->time = 0;
+	cub->oldtime = 0;
+	// cub->move_speed = ;       AQUIII
 }

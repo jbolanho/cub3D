@@ -6,7 +6,7 @@
 /*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:50:08 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/03/19 14:55:08 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/03/24 14:40:45 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	game(t_game *cub)
 {
-	mlx_key_hook(cub->mlx, key_data, cub);
+	// mlx_key_hook(cub->mlx, key_data, cub);
 	mlx_loop_hook(cub->mlx, player_pov, cub);
 	mlx_close_hook(cub->mlx, close_cub, cub);
 	mlx_loop(cub->mlx);
@@ -33,7 +33,7 @@ void	player_pov(void *param)
 	take_input(cub);
 	init_background(cub);
 	frame_speed(cub);
-	raycast(cub);
+	dda(cub);
 }
 
 // bool	can_go(t_game *cub, float x, float y)
@@ -95,8 +95,6 @@ void	init_background(t_game *cub)
 
 	x = 0;
 	y = 0;
-	// printf("color ceil: %d\n", cub->map.ceiling_color);
-	// printf("color floor: %d\n", cub->map.floor_color);
 	while (x < (uint32_t)HEIGHT)
 	{
 		while (y < (uint32_t)WIDTH)

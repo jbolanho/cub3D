@@ -6,61 +6,93 @@
 /*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 12:24:48 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/03/19 11:50:17 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/03/24 15:20:14 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub.h"
 
-void	raycast(t_game *cub)
-{
-	int	pixel;
+// void	dda(t_game *cub)
+// {
+// 	int	pixel_x;
 
-	pixel = 0;
-	while (pixel < WIDTH)
+// 	pixel_x = 0;
+// 	while (pixel_x < WIDTH)
+// 	{
+// 		cub->ray.plane_multi = 2 * pixel_x / (float)WIDTH - 1;
+// 		cub->ray.camera_pixel.x = cub->camera_plane.x * cub->ray.plane_multi;
+// 		cub->ray.camera_pixel.y = cub->camera_plane.y * cub->ray.plane_multi;
+// 		cub->ray.direction.x = cub->direction.x + cub->ray.camera_pixel.x;
+// 		cub->ray.direction.y = cub->direction.y + cub->ray.camera_pixel.y;
+// 		cub->ray.step.x = minus_or_not(cub->ray.direction.x);
+// 		cub->ray.step.y = minus_or_not(cub->ray.direction.y);
+// 		delta_dist(cub);
+// 		wall_dist(cub);
+// 		not_collide(cub);
+// 		pixel_wall(cub, pixel_x);
+// 		pixel_x++;
+// 	}
+// }
+void	dda(t_game *cub)
+{
+	int		pixel_x;
+	double	camera_x;
+
+	pixel_x = 0;
+	while (pixel_x < WIDTH)
 	{
-		cub->ray.plane_multi = 2 * pixel / (float)WIDTH - 1;
-		cub->ray.camera_pixel.x = cub->camera_plane.x * cub->ray.plane_multi;
-		cub->ray.camera_pixel.y = cub->camera_plane.y * cub->ray.plane_multi;
-		cub->ray.direction.x = cub->direction.x + cub->ray.camera_pixel.x;
-		cub->ray.direction.y = cub->direction.y + cub->ray.camera_pixel.y;
-		cub->ray.step.x = minus_or_not(cub->ray.direction.x);
-		cub->ray.step.y = minus_or_not(cub->ray.direction.y);
+		camera_x = 2 * pixel_x / (float)WIDTH - 1;
+		cub->ray.dir.x = cub->direction.x + cub->camera_plane.x * camera_x;
+		cub->ray.dir.y = cub->direction.y + cub->camera_plane.y * camera_x;
+		cub->ray.map.x = cub->position.x;
+		cub->ray.map.y = cub->position.y;
 		delta_dist(cub);
-		wall_dist(cub);
-		not_collide(cub);
-		pixel_wall(cub, pixel);
-		pixel++;
+		cub->ray.hit_wall = 0;
+		cub->ray.side = -1;
+		step_and_side_distance(cub);
+		perform_dda(cub);
+		pixel_wall(cub, pixel_x);
+		pixel_x++;
 	}
 }
 
 void	delta_dist(t_game *cub)
 {
-	if (cub->ray.direction.x == 0)
+	if (cub->ray.dir.x == 0)
 		cub->ray.delta_dist.x = 1e30;
 	else
-		cub->ray.delta_dist.x = fabsf(1 / cub->ray.direction.x);
-	if (cub->ray.direction.y == 0)
+		cub->ray.delta_dist.x = fabs(1 / cub->ray.dir.x);
+	if (cub->ray.dir.y == 0)
 		cub->ray.delta_dist.y = 1e30;
 	else
-		cub->ray.delta_dist.y = fabsf(1 / cub->ray.direction.y);
+		cub->ray.delta_dist.y = fabs(1 / cub->ray.dir.y);
 }
 
-void	wall_dist(t_game *cub)
+void	step_and_side_distance(t_game *cub)
 {
-	cub->ray.map.x = cub->position.x;
-	cub->ray.map.y = cub->position.y;
-	if (cub->ray.direction.x < 0)
+	if (cub->ray.dir.x < 0)
+	{
+		cub->ray.step.x = -1;
 		cub->ray.side_dist.x = (cub->position.x - cub->ray.map.x) * cub->ray.delta_dist.x;
+	}
 	else
+	{
+		cub->ray.step.x = 1;
 		cub->ray.side_dist.x = (cub->ray.map.x + 1.0 - cub->position.x)	* cub->ray.delta_dist.x;
-	if (cub->ray.direction.y < 0)
+	}
+	if (cub->ray.dir.y < 0)
+	{
+		cub->ray.step.y = -1;
 		cub->ray.side_dist.y = (cub->position.y - cub->ray.map.y) * cub->ray.delta_dist.y;
+	}
 	else
+	{
+		cub->ray.step.y = 1;
 		cub->ray.side_dist.y = (cub->ray.map.y + 1.0 - cub->position.y)	* cub->ray.delta_dist.y;
+	}
 }
 
-void	not_collide(t_game *cub)
+void	perform_dda(t_game *cub)
 {
 	while (cub->ray.map.x >= 0 && cub->ray.map.y >= 0 && cub->ray.map.x < WIDTH && cub->ray.map.y < HEIGHT && cub->map.cub_map[(int)cub->ray.map.y][(int)cub->ray.map.x] != '1')
 	{
@@ -68,16 +100,16 @@ void	not_collide(t_game *cub)
 		{
 			cub->ray.side_dist.x += cub->ray.delta_dist.x;
 			cub->ray.map.x += cub->ray.step.x;
-			cub->ray.collide = 0;
+			cub->ray.hit_wall = 0;
 		}
 		else
 		{
 			cub->ray.side_dist.y += cub->ray.delta_dist.y;
 			cub->ray.map.y += cub->ray.step.y;
-			cub->ray.collide = 1;
+			cub->ray.hit_wall = 1;
 		}
 	}
-	if (cub->ray.collide == 0)
+	if (cub->ray.hit_wall == 0)
 	cub->ray.perp_dist = cub->ray.side_dist.x - cub->ray.delta_dist.x;
 	else
 	cub->ray.perp_dist = cub->ray.side_dist.y - cub->ray.delta_dist.y;
@@ -125,9 +157,9 @@ mlx_texture_t	*get_wall(t_game *cub)
 void	wall_and_background(t_game *cub)
 {
 	if (cub->ray.collide == 0)
-		cub->tex.point_x = cub->ray.map.y + cub->ray.perp_dist * cub->ray.direction.y;
+		cub->tex.point_x = cub->ray.map.y + cub->ray.perp_dist * cub->ray.dir.y;
 	else
-		cub->tex.point_x = cub->ray.map.x + cub->ray.perp_dist * cub->ray.direction.x;
+		cub->tex.point_x = cub->ray.map.x + cub->ray.perp_dist * cub->ray.dir.x;
 	cub->tex.point_x -= floor(cub->tex.point_x);
 }
 
@@ -172,3 +204,32 @@ uint32_t	get_color(mlx_texture_t	*walls, int y, int x)
 	pixel = &walls->pixels[pos];
 	return (pixel[0] << 24 | pixel[1] << 16 | pixel[2] << 8 | pixel[3]);
 }
+
+
+
+
+
+// void	perform_dda(t_game *cub)
+// {
+// 	while (cub->ray.map.x >= 0 && cub->ray.map.y >= 0 && cub->ray.map.x < WIDTH && cub->ray.map.y < HEIGHT && cub->map.cub_map[(int)cub->ray.map.y][(int)cub->ray.map.x] != '1')
+// 	{
+// 		if (cub->ray.side_dist.x < cub->ray.side_dist.y)
+// 		{
+// 			cub->ray.side_dist.x += cub->ray.delta_dist.x;
+// 			cub->ray.map.x += cub->ray.step.x;
+// 			cub->ray.hit_wall = 0;
+// 		}
+// 		else
+// 		{
+// 			cub->ray.side_dist.y += cub->ray.delta_dist.y;
+// 			cub->ray.map.y += cub->ray.step.y;
+// 			cub->ray.hit_wall = 1;
+// 		}
+// 	}
+// 	if (cub->ray.hit_wall == 0)
+// 	cub->ray.perp_dist = cub->ray.side_dist.x - cub->ray.delta_dist.x;
+// 	else
+// 	cub->ray.perp_dist = cub->ray.side_dist.y - cub->ray.delta_dist.y;
+// 	if (cub->ray.perp_dist < 0.01f)
+//     	cub->ray.perp_dist = 0.01f;
+// }
