@@ -90,7 +90,9 @@ typedef struct s_texture
 	int		end_y;
 	int		texture_x;
 	int		texture_y;
-	float	point_x;
+	// double	wall_x;
+	double 	point_x;
+	// int		tex_x;
 	float	texture_step;
 	float	texture_pos;
 }		t_tex;
@@ -127,7 +129,7 @@ typedef struct s_game
 	double			time;
 	double			oldtime;
 	double			move_speed;
-	// double			rotation_speed;
+	double			rotation_speed;
 }		t_game;
 
 // apagar
@@ -144,6 +146,7 @@ void    key_data(mlx_key_data_t pressed, void *param);
 
 void	new_position(t_game *cub, float *x, float *y);
 bool	can_go(t_game *cub, float x, float y);
+void	init_time(t_game *cub);
 
 //game
 int		game(t_game *cub);
@@ -161,6 +164,8 @@ void    frame_speed(t_game *cub);
 //algorithm
 void	dda(t_game *cub);
 void	delta_dist(t_game *cub);
+void	step_and_side_distance(t_game *cub);
+void	perform_dda(t_game *cub);
 void    wall_dist(t_game *cub);
 void	not_collide(t_game *cub);
 void	pixel_wall(t_game *cub, int pixel);
@@ -169,6 +174,8 @@ void	wall_and_background(t_game *cub);
 void	find_pixel_wall(t_game *cub);
 void	put_pixel(t_game *cub, int pixel);
 uint32_t	get_color(mlx_texture_t	*walls, int y, int x);
+void	wall_x_value(t_game *cub);
+
 
 //free
 void	free_ptrptr(char **cmd);
