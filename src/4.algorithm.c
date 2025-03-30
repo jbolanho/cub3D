@@ -231,9 +231,9 @@ void	perform_dda(t_game *cub)
 		}
 	}
 	if (cub->ray.hit_wall == 0)
-	cub->ray.perp_dist = cub->ray.side_dist.x - cub->ray.delta_dist.x;
+		cub->ray.perp_dist = cub->ray.side_dist.x - cub->ray.delta_dist.x;
 	else
-	cub->ray.perp_dist = cub->ray.side_dist.y - cub->ray.delta_dist.y;
+		cub->ray.perp_dist = cub->ray.side_dist.y - cub->ray.delta_dist.y;
 	if (cub->ray.perp_dist < 0.01f)
     	cub->ray.perp_dist = 0.01f;
 }
@@ -251,9 +251,9 @@ void	pixel_wall(t_game *cub, int pixel)
 		cub->tex.end_y = HEIGHT - 1;
 	wall_and_background(cub);
 	find_pixel_wall(cub);
-	cub->tex.texture_pos = (cub->tex.start_y - HEIGHT / 2 + cub->tex.height / 2) * cub->tex.texture_step;
+	// cub->tex.texture_pos = (cub->tex.start_y - HEIGHT / 2 + cub->tex.height / 2) * cub->tex.texture_step;
 	if (cub->tex.texture_pos < 0)
-    cub->tex.texture_pos = 0;
+    	cub->tex.texture_pos = 0;
 	put_pixel(cub, pixel);
 }
 
@@ -288,9 +288,10 @@ void	wall_and_background(t_game *cub)
 void	find_pixel_wall(t_game *cub)
 {
 	cub->tex.texture_x = (int)(cub->tex.point_x * cub->walls->width);
-	// if ((cub->ray.collide == 0 && cub->ray.direction.x < 0)	|| (cub->ray.collide == 1 && cub->ray.direction.y > 0))
-	// 	cub->tex.texture_x = cub->walls->width - cub->tex.texture_x - 1;
+	if ((cub->ray.hit_wall == 0 && cub->ray.dir.x < 0)	|| (cub->ray.hit_wall == 1 && cub->ray.dir.y > 0))
+		cub->tex.texture_x = cub->walls->width - cub->tex.texture_x - 1;
 	cub->tex.texture_step = 1.0 * cub->walls->height / cub->tex.height;
+	cub->tex.texture_pos = (cub->tex.start_y - HEIGHT / 2 + cub->tex.height / 2) * cub->tex.texture_step;
 }
 
 void	put_pixel(t_game *cub, int pixel)
@@ -302,12 +303,13 @@ void	put_pixel(t_game *cub, int pixel)
 	y = cub->tex.start_y;
 	while (y < cub->tex.end_y)
 	{
+		cub->tex.texture_pos += cub->tex.texture_step;
 		wall_y = (int)cub->tex.texture_pos;
+		// wall_y = (int)cub->tex.texture_pos;
 		if (wall_y < 0)
 			wall_y = 0;
 		if (wall_y >= (int)cub->walls->height)
 			wall_y = cub->walls->height - 1;
-		cub->tex.texture_pos += cub->tex.texture_step;
 		color = get_color(cub->walls, wall_y, cub->tex.texture_x);
 		mlx_put_pixel(cub->image, pixel, y, color);
 		y++;

@@ -7,13 +7,7 @@ MFLAGS = -ldl -lglfw -pthread -lm
 
 
 SRC =	./src/main.c   \
-		./src/1.init.c   \
-		./src/2.game.c   \
-		./src/3.key_data.c \
-		./src/4.algorithm.c  \
-		./src/5.copymap.c \
-		./src/6.game.c    \
-		./src/7.byebye.c     \
+		./src/8.new.c \
 		./src/validate.c   \
 		./src/validate_n_process.c   \
 		./src/validate_utils.c   \

@@ -45,7 +45,7 @@ void	init(t_game *cub)
 	init_window(cub);
 	init_images(cub);
 	initial_pov(cub);
-	init_time(cub);
+	// init_time(cub);
 }
 
 void	init_window(t_game *cub)
@@ -115,9 +115,9 @@ t_vector	vector(float x, float y)
 	return (vector);
 }
 
-void	init_time(t_game *cub)
-{
-	cub->time = 0;
-	cub->oldtime = 0;
-	// cub->move_speed = ;       AQUIII
-}
+// void	init_time(t_game *cub)
+// {
+// 	cub->time = 0;
+// 	cub->oldtime = 0;
+// 	// cub->move_speed = ;       AQUIII
+// }

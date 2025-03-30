@@ -172,36 +172,36 @@ void	moon_walk(t_game *cub)
 		cub->position.y -= cub->direction.y * cub->move_speed;
 }
 
-// void	go_ahead(t_game *cub)
-// {
-// 	int	x1;
-// 	int	y1;
-// 	int	x2;
-// 	int	y2;
-
-// 	x1 = (int)(cub->position.x + cub->direction.x * cub->move_speed);
-// 	y1 = (int)cub->position.y;
-// 	x2 = (int)cub->position.x;
-// 	y2 = (int)(cub->position.y + cub->direction.y * cub->move_speed);
-// 	if (cub->map.cub_map[y1][x1] != '1')
-// 		cub->position.x += cub->direction.x * cub->move_speed;
-// 	if (cub->map.cub_map[y2][x2] != '1')
-// 		cub->position.y += cub->direction.y * cub->move_speed;
-// }
-
 void	go_ahead(t_game *cub)
 {
-	float	move_x;
-	float	move_y;
+	int	x1;
+	int	y1;
+	int	x2;
+	int	y2;
 
-	move_x = cub->direction.x * cub->move_speed;
-	move_y = cub->direction.y * cub->move_speed;
-
-	if (cub->map.cub_map[(int)(cub->position.y)][(int)(cub->position.x + move_x)] != '1')
-		cub->position.x += move_x;
-	if (cub->map.cub_map[(int)(cub->position.y + move_y)][(int)(cub->position.x)] != '1')
-		cub->position.y += move_y;
+	x1 = (int)(cub->position.x + cub->direction.x * cub->move_speed);
+	y1 = (int)cub->position.y;
+	x2 = (int)cub->position.x;
+	y2 = (int)(cub->position.y + cub->direction.y * cub->move_speed);
+	if (cub->map.cub_map[y1][x1] != '1')
+		cub->position.x += cub->direction.x * cub->move_speed;
+	if (cub->map.cub_map[y2][x2] != '1')
+		cub->position.y += cub->direction.y * cub->move_speed;
 }
+
+// void	go_ahead(t_game *cub)
+// {
+// 	float	move_x;
+// 	float	move_y;
+
+// 	move_x = cub->direction.x * cub->move_speed;
+// 	move_y = cub->direction.y * cub->move_speed;
+
+// 	if (cub->map.cub_map[(int)(cub->position.y)][(int)(cub->position.x + move_x)] != '1')
+// 		cub->position.x += move_x;
+// 	if (cub->map.cub_map[(int)(cub->position.y + move_y)][(int)(cub->position.x)] != '1')
+// 		cub->position.y += move_y;
+// }
 
 
 void	crab_walk(t_game *cub, int key)
