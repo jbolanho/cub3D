@@ -4,8 +4,6 @@
 # include "../libft/libft.h"
 # include "../MLX42/include/MLX42/MLX42.h"
 # include "../MLX42/include/MLX42/MLX42_Int.h"
-// # include "../MLX42/include/MLX42/MLX42.h"
-// # include "../MLX42/include/MLX42/MLX42_Int.h"
 # include <stdint.h>
 # include <stdio.h>
 # include <fcntl.h>
@@ -14,35 +12,25 @@
 
 # define WIDTH		1000
 # define HEIGHT		800
-# define LEFT_ROTATE -0.5
-# define RIGHT_ROTATE 0.5
+// # define LEFT_ROTATE -0.5
+// # define RIGHT_ROTATE 0.5
 
 
-typedef struct s_map
-{
-	//int			wid;
-	//int			hei;
-	char		**cub_map;
-	char		*north_path;
-	char		*south_path;
-	char		*east_path;
-	char		*west_path;
-	uint32_t	floor_color;
-	uint32_t	ceiling_color;
-			// int			p1_x;
-			// int			p1_y;
-	int			player_pov;
-	int			player_x;
-	int			player_y;
-
-}		t_map;
 
 enum e_side
+{
+	NO,
+	SO,
+	EA,
+	WE,
+};
+
+enum e_map
 {
 	N,
 	S,
 	E,
-	W
+	W,
 };
 
 typedef struct s_vector
@@ -52,45 +40,51 @@ typedef struct s_vector
 }	t_vector;
 
 
-typedef struct s_coord
+// typedef struct s_coord
+// {
+// 	float	x;
+// 	float	y;
+// }	t_coord;
+
+typedef struct s_map
 {
-	float	x;
-	float	y;
-}	t_coord;
+	char		**cub_map;
+	char		*north_path;
+	char		*south_path;
+	char		*east_path;
+	char		*west_path;
+	uint32_t	floor_color;
+	uint32_t	ceiling_color;
+	int			player_pov;
+	int			player_x;
+	int			player_y;
+
+}		t_map;
 
 typedef struct s_ray
 {
 	t_vector	dir;
-	// t_coord	camera_pixel;
 	t_vector	delta_dist;
 	t_vector	side_dist;
 	t_vector	map;
 	t_vector	step;
 	bool		hit_wall;
-	// int			hit_wall;
 	int			side;
-	double		perp_dist;
 	int			line_hight;
+	double		camera_x;
+	double		perp_dist;
 }		t_ray;
 
 typedef struct s_texture
 {
-	// int		height;
-	// int		start_y;
-	// int		end_y;
-	// int		texture_x;
-	// int		texture_y;
-	double	wall_x;
-	double	tex_y;
-	double		tex_x;
-	int	color;
-	// double 	point_x;
-	double		step;
-	double		position;
-	// float	texture_step;
-	// float	texture_pos;
+	double			wall_x;
+	double			tex_y;
+	double			tex_x;
+	double			step;
+	double			position;
 	mlx_texture_t	*image;
-	int		buffer[HEIGHT];
+	int				color;
+	int				buffer[HEIGHT];
 }		t_texture;
 
 // typedef struct s_texture
@@ -119,31 +113,25 @@ typedef struct s_draw
 	int	error;
 }	t_draw;
 
-typedef struct s_key
-{
-	bool	left;
-	bool	right;
-	bool	w;
-	bool	s;
-	bool	a;
-	bool	d;
-}	t_key;
+// typedef struct s_key
+// {
+// 	bool	left;
+// 	bool	right;
+// 	bool	w;
+// 	bool	s;
+// 	bool	a;
+// 	bool	d;
+// }	t_key;
 
 typedef struct s_game
 {
 	mlx_t			*mlx;
 	t_map			map;
 	t_ray			ray;
-	// t_tex			tex;
-	t_key			key;
-	mlx_texture_t	*no;
-	mlx_texture_t	*so;
-	mlx_texture_t	*ea;
-	mlx_texture_t	*we;
 	mlx_texture_t	*walls;
 	mlx_image_t		*floor_ceiling;
 	mlx_image_t		*image;
-	int				*texture[4];
+	mlx_texture_t	*texture[4];
 	t_vector		position;
 	t_vector		direction;
 	t_vector		camera_plane;

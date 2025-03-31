@@ -22,10 +22,10 @@ void	init_window(t_game *cub)
 
 void	init_images(t_game *cub)
 {
-	cub->no = mlx_load_png(cub->map.north_path);
-	cub->so = mlx_load_png(cub->map.south_path);
-	cub->ea = mlx_load_png(cub->map.east_path);
-	cub->we = mlx_load_png(cub->map.west_path);
+	cub->texture[NO] = mlx_load_png(cub->map.north_path);
+	cub->texture[SO] = mlx_load_png(cub->map.south_path);
+	cub->texture[EA] = mlx_load_png(cub->map.east_path);
+	cub->texture[WE] = mlx_load_png(cub->map.west_path);
 }
 
 void	initial_pov(t_game *cub)
@@ -91,19 +91,18 @@ void	init_background(t_game *cub)
 		y = 0;
 		x++;
 	}
-	if (mlx_image_to_window(cub->mlx, cub->floor_ceiling, 0, 0) < 0)
-	{
-		ft_printf("Error. Image problem\n");
-		bye_bye(cub, EXIT_SUCCESS);
-	}
-
+	// if (mlx_image_to_window(cub->mlx, cub->floor_ceiling, 0, 0) < 0)
+	// {
+	// 	ft_printf("Error. Image problem\n");
+	// 	bye_bye(cub, EXIT_SUCCESS);
+	// }
+	mlx_image_to_window(cub->mlx, cub->floor_ceiling, 0, 0);
 }
 
 void	dda(t_game *cub)
 {
 	int		i;
-	double	camera_x;
-
+	
 	i = 0;
 	if (cub->image)
 		mlx_delete_image(cub->mlx, cub->image);
@@ -116,11 +115,10 @@ void	dda(t_game *cub)
 	while (i < WIDTH)
 	{
 		cub->ray.hit_wall = false;
-		camera_x = 2 * i / (double)WIDTH - 1;
-		cub->ray.map.x = cub->position.x;
-		cub->ray.map.y = cub->position.y;
-		cub->ray.dir.x = cub->direction.x + cub->camera_plane.x * camera_x;
-		cub->ray.dir.y = cub->direction.y + cub->camera_plane.y * camera_x;
+		cub->ray.camera_x = 2 * i / (double)WIDTH - 1;
+		cub->ray.map = vector(cub->position.x, cub->position.y);
+		cub->ray.dir.x = cub->direction.x + cub->camera_plane.x * cub->ray.camera_x;
+		cub->ray.dir.y = cub->direction.y + cub->camera_plane.y * cub->ray.camera_x;
 		delta_dist(cub);
 		step_and_side_distance(cub);
 		perform_dda(cub);
@@ -185,7 +183,7 @@ void	perform_dda(t_game *cub)
 		if (cub->map.cub_map[(int)cub->ray.map.y][(int)cub->ray.map.x] == '1')
 			cub->ray.hit_wall = true;
 	}
-	if (cub->ray.side == E || cub->ray.side == W)
+	if (cub->ray.side == EA || cub->ray.side == WE)
 		cub->ray.perp_dist = cub->ray.side_dist.x - cub->ray.delta_dist.x;
 	else
 		cub->ray.perp_dist = cub->ray.side_dist.y - cub->ray.delta_dist.y;
@@ -194,13 +192,13 @@ void	perform_dda(t_game *cub)
 void	get_wall(t_game *cub, int x)
 {
 	if (x == 0 && cub->ray.dir.x > 0)
-		cub->ray.side = E;
+		cub->ray.side = EA;
 	if (x == 0 && cub->ray.dir.x <= 0)
-		cub->ray.side = W;
+		cub->ray.side = WE;
 	if (x == 1 && cub->ray.dir.y > 0)
-		cub->ray.side = S;
+		cub->ray.side = SO;
 	if (x == 1 && cub->ray.dir.y <= 0)
-		cub->ray.side = N;
+		cub->ray.side = NO;
 }
 
 void	pixel_wall(t_game *cub, int i)
@@ -230,7 +228,9 @@ void	put_pixel(t_game *cub, t_vector start, t_vector end, int side)
 	i = start.x;
 	while (i <= end.x)
 	{
-		tex.tex_y = (int)tex.position & (tex.image->height - 1);
+		tex.tex_y = (int)tex.position;
+		if (tex.tex_y >= tex.image->height)
+			tex.tex_y = tex.image->height - 1;
 		tex.position += tex.step;
 		tex.color = get_color(tex);
 		tex.buffer[i] = tex.color;
@@ -243,40 +243,25 @@ void	put_pixel(t_game *cub, t_vector start, t_vector end, int side)
 
 void	find_wall(t_game *cub, int side, t_texture *tex)
 {
-	if (side == N)
-	{
+	if (side == NO || side == SO)
 		tex->wall_x = cub->position.x + cub->ray.perp_dist * cub->ray.dir.x;
-		tex->image = cub->no;
-	}	
-	if (side == S)
-	{
-		tex->wall_x = cub->position.x + cub->ray.perp_dist * cub->ray.dir.x;
-		tex->image = cub->so;
-	}	
-	if (side == E)
-	{
+	else
 		tex->wall_x = cub->position.y + cub->ray.perp_dist * cub->ray.dir.y;
-		tex->image = cub->ea;
-	}
-	if (side == W)
-	{
-		tex->wall_x = cub->position.y + cub->ray.perp_dist * cub->ray.dir.y;
-		tex->image = cub->we;
-	}
+	tex->image = cub->texture[side];
 	tex->wall_x -= floor(tex->wall_x);
 	tex->tex_x = (int)tex->wall_x * (double)tex->image->width;
 	tex->step = (double)tex->image->height / cub->ray.line_hight;
 	ft_bzero(tex->buffer, HEIGHT);
 }
-// int	get_color(t_texture tex)
-// {
-	// 	uint32_t	pixel;
+int	get_color(t_texture tex)
+{
+	int32_t	pixel;
 	
-// 	pixel = *((uint32_t *)tex.image->pixels) + (size_t)(tex.tex_y * tex.image->width + tex.tex_x);
-// 	pixel = ((pixel & 0xFF) << 24) | ((pixel & 0xFF00) << 8) | ((pixel & 0xFF0000) >> 8) | ((pixel & 0xFF000000) >> 24);
-// 	// printf("AQUIII %d\n", pixel);
-// 	return (pixel);
-// }
+	pixel = *((int32_t *)tex.image->pixels) + (size_t)(tex.tex_y * tex.image->width + tex.tex_x);
+	pixel = ((pixel & 0xFF) << 24) | ((pixel & 0xFF00) << 8) | ((pixel & 0xFF0000) >> 8) | ((pixel & 0xFF000000) >> 24);
+	// printf("AQUIII %d\n", pixel);
+	return (pixel);
+}
 
 // void	put_pixel(t_game *cub, int pixel)
 // {
@@ -300,20 +285,20 @@ void	find_wall(t_game *cub, int side, t_texture *tex)
 // 	}
 // }
 
-int	get_color(t_texture tex)
-{
-	int		pos;
-	uint8_t	*pixel;
-	uint32_t color;
+// int	get_color(t_texture tex)
+// {
+// 	int		pos;
+// 	uint8_t	*pixel;
+// 	uint32_t color;
 
-	// if (x < 0 || x >= (int)walls->width || y < 0 || y >= (int)walls->height)
-	// 	return (0);
-	pos = tex.tex_y * tex.image->width + tex.tex_x;
-	pos *= tex.image->bytes_per_pixel;
-	pixel = &tex.image->pixels[pos];
-	color = pixel[0] << 24 | pixel[1] << 16 | pixel[2] << 8 | pixel[3];
-	return (color);
-}
+// 	// if (x < 0 || x >= (int)walls->width || y < 0 || y >= (int)walls->height)
+// 	// 	return (0);
+// 	pos = tex.tex_y * tex.image->width + tex.tex_x;
+// 	pos *= tex.image->bytes_per_pixel;
+// 	pixel = &tex.image->pixels[pos];
+// 	color = pixel[0] << 24 | pixel[1] << 16 | pixel[2] << 8 | pixel[3];
+// 	return (color);
+// }
 
 void	line(t_game *cub, t_vector start, t_vector end, int buffer[HEIGHT])
 {
@@ -379,17 +364,17 @@ void	player_pov(void *param)
 		// mlx_close_window(cub->mlx);
 	}
 	if (mlx_is_key_down(cub->mlx, MLX_KEY_W))
-	go_ahead(cub);
+		go_ahead(cub);
 	if (mlx_is_key_down(cub->mlx, MLX_KEY_S))
-	moon_walk(cub);
+		moon_walk(cub);
 	if (mlx_is_key_down(cub->mlx, MLX_KEY_A))
-	crab_walk(cub, MLX_KEY_A);
+		crab_walk(cub, MLX_KEY_A);
 	if (mlx_is_key_down(cub->mlx, MLX_KEY_D))
-	crab_walk(cub, MLX_KEY_D);	
+		crab_walk(cub, MLX_KEY_D);	
 	if (mlx_is_key_down(cub->mlx, MLX_KEY_LEFT))
-	look_movements(cub, MLX_KEY_LEFT)	;
+		look_movements(cub, MLX_KEY_LEFT)	;
 	if (mlx_is_key_down(cub->mlx, MLX_KEY_RIGHT))
-	look_movements(cub, MLX_KEY_RIGHT);
+		look_movements(cub, MLX_KEY_RIGHT);
 	frame_speed(cub);
 	dda(cub);
 	// draw_minimap(cub);
@@ -525,14 +510,14 @@ void	bye_bye(t_game *cub, int code)
 
 void	free_images(t_game *cub)
 {
-	if (cub->no)
-		mlx_delete_texture(cub->no);
-	if (cub->so)
-		mlx_delete_texture(cub->so);
-	if (cub->we)
-		mlx_delete_texture(cub->we);
-	if (cub->ea)
-		mlx_delete_texture(cub->ea);
+	if (cub->texture[NO])
+		mlx_delete_texture(cub->texture[NO]);
+	if (cub->texture[SO])
+		mlx_delete_texture(cub->texture[SO]);
+	if (cub->texture[WE])
+		mlx_delete_texture(cub->texture[WE]);
+	if (cub->texture[EA])
+		mlx_delete_texture(cub->texture[EA]);
 	if (cub->image)
 		mlx_delete_image(cub->mlx, cub->image);
 	if (cub->floor_ceiling)
