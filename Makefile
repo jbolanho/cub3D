@@ -7,7 +7,7 @@ MFLAGS = -ldl -lglfw -pthread -lm
 
 
 SRC =	./src/main.c   \
-		./src/8.new.c \
+		./src/9.old.c \
 		./src/validate.c   \
 		./src/validate_n_process.c   \
 		./src/validate_utils.c   \

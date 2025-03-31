@@ -24,11 +24,13 @@ void	init_window(t_game *cub)
 		ft_printf("Error. Window problem\n");
 		bye_bye(cub);
 	}
+	clear_img(cub);
+	/*
 	if (mlx_image_to_window(cub->mlx, cub->image, 0, 0) < 0)
 	{
 		ft_printf("Error. Image problem\n");
 		bye_bye(cub);
-	}
+	}*/
 }
 
 void	init_images(t_game *cub)
@@ -100,6 +102,7 @@ void	player_pov(void *param)
 	take_input(cub);
 	init_background(cub);
 	dda(cub);
+	mlx_image_to_window(cub->mlx, cub->image, 0, 0);
 }
 
 
@@ -109,6 +112,25 @@ int	minus_or_not(float value)
 		return (-1);
 	return (1);
 }
+void	clear_img(t_game *cub)
+{
+	uint32_t	x;
+	uint32_t	y;
+
+	x = 0;
+	y = 0;
+	while (x < (uint32_t)HEIGHT)
+	{
+		while (y < (uint32_t)WIDTH)
+		{
+				mlx_put_pixel(cub->image, y, x, 0x00000000);
+			y++;
+		}
+		y = 0;
+		x++;
+	}
+}
+
 
 void	init_background(t_game *cub)
 {
@@ -144,8 +166,8 @@ void	frame_speed(t_game *cub)
 		fps = 1.0 / cub->frame_time;
 	else 
 		fps = 0;
-	if (image)
-		mlx_delete_image(cub->mlx, image);
+	//if (image)
+	//	mlx_delete_image(cub->mlx, image);
 	fps_nbr = ft_itoa((int)fps);
 	fps_text = ft_strjoin("FPS:", fps_nbr);
 	free(fps_nbr);
@@ -291,6 +313,7 @@ void	find_pixel_wall(t_game *cub)
 {
 	cub->tex.texture_x = (int)(cub->tex.point_x * cub->walls->width);
 	if ((cub->ray.hit_wall == 0 && cub->ray.dir.x < 0)	|| (cub->ray.hit_wall == 1 && cub->ray.dir.y > 0))
+		// cub->tex.texture_x = cub->walls->width - cub->tex.texture_x - 1;
 		cub->tex.texture_x = cub->walls->width - cub->tex.texture_x - 1;
 	cub->tex.texture_step = 1.0 * cub->walls->height / cub->tex.height;
 	cub->tex.texture_pos = (cub->tex.start_y - HEIGHT / 2 + cub->tex.height / 2) * cub->tex.texture_step;
