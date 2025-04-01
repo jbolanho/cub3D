@@ -24,7 +24,7 @@ void	init_window(t_game *cub)
 		ft_printf("Error. Window problem\n");
 		bye_bye(cub);
 	}
-	clear_img(cub);
+	// clear_img(cub);
 	/*
 	if (mlx_image_to_window(cub->mlx, cub->image, 0, 0) < 0)
 	{
@@ -112,24 +112,24 @@ int	minus_or_not(float value)
 		return (-1);
 	return (1);
 }
-void	clear_img(t_game *cub)
-{
-	uint32_t	x;
-	uint32_t	y;
+// void	clear_img(t_game *cub)
+// {
+// 	uint32_t	x;
+// 	uint32_t	y;
 
-	x = 0;
-	y = 0;
-	while (x < (uint32_t)HEIGHT)
-	{
-		while (y < (uint32_t)WIDTH)
-		{
-				mlx_put_pixel(cub->image, y, x, 0x00000000);
-			y++;
-		}
-		y = 0;
-		x++;
-	}
-}
+// 	x = 0;
+// 	y = 0;
+// 	while (x < (uint32_t)HEIGHT)
+// 	{
+// 		while (y < (uint32_t)WIDTH)
+// 		{
+// 				mlx_put_pixel(cub->image, y, x, 0x00000000);
+// 			y++;
+// 		}
+// 		y = 0;
+// 		x++;
+// 	}
+// }
 
 
 void	init_background(t_game *cub)
@@ -166,8 +166,8 @@ void	frame_speed(t_game *cub)
 		fps = 1.0 / cub->frame_time;
 	else 
 		fps = 0;
-	//if (image)
-	//	mlx_delete_image(cub->mlx, image);
+	if (image)
+		mlx_delete_image(cub->mlx, image);
 	fps_nbr = ft_itoa((int)fps);
 	fps_text = ft_strjoin("FPS:", fps_nbr);
 	free(fps_nbr);
@@ -188,8 +188,8 @@ void	dda(t_game *cub)
 		camera_x = 2 * pixel_x / (float)WIDTH - 1;
 		cub->ray.dir.x = cub->direction.x + cub->camera_plane.x * camera_x;
 		cub->ray.dir.y = cub->direction.y + cub->camera_plane.y * camera_x;
-		cub->ray.map.x = cub->position.x;
-		cub->ray.map.y = cub->position.y;
+		cub->ray.map.x = (int)cub->position.x;
+		cub->ray.map.y = (int)cub->position.y;
 		delta_dist(cub);
 		cub->ray.hit_wall = 0;
 		cub->ray.side = -1;

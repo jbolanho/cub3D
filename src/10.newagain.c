@@ -8,9 +8,9 @@ void	init(t_game *cub)
 	init_window(cub);
 	init_images(cub);
 	// init_time(cub);
-	init_background(cub);
-	dda(cub);
-	mlx_image_to_window(cub->mlx, cub->image, 0, 0);
+	// init_background(cub);
+	// dda(cub);
+	// mlx_image_to_window(cub->mlx, cub->image, 0, 0);
 }
 
 void	init_window(t_game *cub)
@@ -28,11 +28,11 @@ void	init_window(t_game *cub)
 		ft_printf("Error. Window problem\n");
 		bye_bye(cub);
 	}
-	// if (mlx_image_to_window(cub->mlx, cub->image, 0, 0) < 0)
-	// {
-	// 	ft_printf("Error. Image problem\n");
-	// 	bye_bye(cub);
-	// }
+	if (mlx_image_to_window(cub->mlx, cub->image, 0, 0) < 0)
+	{
+		ft_printf("Error. Image problem\n");
+		bye_bye(cub);
+	}
 }
 
 void	init_images(t_game *cub)
@@ -100,8 +100,9 @@ void	player_pov(void *param)
 	// cub->image = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
 	frame_speed(cub);
 	take_input(cub);
+	init_background(cub);
 	dda(cub);
-	mlx_image_to_window(cub->mlx, cub->image, 0, 0);
+	// mlx_image_to_window(cub->mlx, cub->image, 0, 0);
 }
 
 int	minus_or_not(float value)
