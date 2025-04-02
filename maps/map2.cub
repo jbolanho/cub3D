@@ -1,14 +1,14 @@
-NO ./texture/door1_n.png
+NO ./texture/w1.png
 
-SO ./texture/door2.png
+SO ./texture/w2.png
 
-EA ./texture/green.png
+EA ./texture/w3.png
 
-WE ./texture/red.png
+WE ./texture/w4.png
 
-F 169,169,169
+F 189,163,117
 
-C 250,235,215
+C 116,170,198
 
 11111111111111111111
 10000000000000000001

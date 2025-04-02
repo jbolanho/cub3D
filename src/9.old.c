@@ -16,13 +16,13 @@ void	init_window(t_game *cub)
 	if (!cub->mlx)
 	{
 		ft_printf("Error. MLX init error.\n");
-		bye_bye(cub);
+		bye_bye(cub, EXIT_SUCCESS);
 	}
 	cub->image = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
 	if (!cub->image)
 	{
 		ft_printf("Error. Window problem\n");
-		bye_bye(cub);
+		bye_bye(cub, EXIT_SUCCESS);
 	}
 	// clear_img(cub);
 	/*
@@ -173,8 +173,10 @@ void	frame_speed(t_game *cub)
 	free(fps_nbr);
 	image = mlx_put_string(cub->mlx, fps_text, WIDTH - 80, HEIGHT - 790);
 	free(fps_text);
-	cub->move_speed = cub->frame_time * 5.0;
-	cub->rotation_speed = cub->frame_time * 3.0;
+	// cub->move_speed = cub->frame_time * 5.0;
+	// cub->rotation_speed = cub->frame_time * 3.0;
+	cub->rotation_speed = 0.02;
+	cub->move_speed = 0.06;
 }
 
 void	dda(t_game *cub)
@@ -361,11 +363,7 @@ void	key_data(mlx_key_data_t pressed, void *param)
 
 	cub = (t_game *)param;
 	if (pressed.key == MLX_KEY_ESCAPE && pressed.action == MLX_PRESS)
-	{
-		bye_bye(cub);
-		mlx_close_window(cub->mlx);
-		return ;
-	}
+		bye_bye(cub, EXIT_SUCCESS);
 	if (pressed.action == MLX_PRESS || pressed.action == MLX_REPEAT)
 	{
 		if (pressed.key == MLX_KEY_W)
@@ -520,11 +518,10 @@ void	close_cub(void *param)
 	t_game	*cub;
 
 	cub = (t_game *)param;
-	bye_bye(cub);
-	mlx_close_window(cub->mlx);
+	bye_bye(cub, EXIT_SUCCESS);
 }
 
-void	bye_bye(t_game *cub)
+void	bye_bye(t_game *cub, int code)
 {
 	if (cub->no)
 		mlx_delete_texture(cub->no);
@@ -544,4 +541,12 @@ void	bye_bye(t_game *cub)
 		free(cub->map.west_path);
 	if (cub->map.cub_map)
 		free_ptrptr(cub->map.cub_map);
+	if (cub->mlx)
+	{
+		if (cub->image)
+			mlx_delete_image(cub->mlx, cub->image);
+		mlx_close_window(cub->mlx);
+		mlx_terminate(cub->mlx);
+	}
+	exit(code);
 }

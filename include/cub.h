@@ -220,8 +220,8 @@ void	line(t_game *cub, t_vector start, t_vector end, int buffer[HEIGHT]);
 //free
 void	free_ptrptr(char **cmd);
 void	close_cub(void *param);
-void	bye_bye(t_game *cub);
-// void	bye_bye(t_game *cub, int code);
+// void	bye_bye(t_game *cub);
+void	bye_bye(t_game *cub, int code);
 void	free_images(t_game *cub);
 
 // check_path
