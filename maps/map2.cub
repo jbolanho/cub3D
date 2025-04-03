@@ -1,12 +1,12 @@
-NO ./texture/w1.png
+NO ./texture/1.png
 
-SO ./texture/w2.png
+SO ./texture/2.png
 
-EA ./texture/w3.png
+EA ./texture/3.png
 
-WE ./texture/w4.png
+WE ./texture/4.png
 
-F 189,163,117
+F 169,169,169
 
 C 116,170,198
 

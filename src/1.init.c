@@ -6,7 +6,7 @@
 /*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 12:24:55 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/03/24 15:17:44 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/04/03 11:38:12 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	init(t_game *cub)
 void	init_window(t_game *cub)
 {
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
-	cub->mlx = mlx_init((int32_t)WIDTH, (int32_t)HEIGHT, "Severance", true);
+	cub->mlx = mlx_init((int32_t)WIDTH, (int32_t)HEIGHT, "AnaJulia", true);
 	if (!cub->mlx)
 	{
 		ft_printf("Error. MLX init error.\n");
