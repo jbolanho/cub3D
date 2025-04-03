@@ -6,7 +6,7 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 16:25:39 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/03/21 18:19:45 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/04/03 18:04:19 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,27 @@ void	process_map_line(t_map *map, char *temp,
 		int *start, int *map_state)
 {
 	char	*newline;
+	int		count;
 
 	newline = ft_strchr(temp, '\n');
-	// while (is_space(*temp))
-	// 	temp++;
+	count = 0;
+	while (is_space(*temp))
+	{
+		count += 1;
+	 	temp++;
+	}
 	if (ft_strncmp(temp, "NO ", 3) == 0 || ft_strncmp(temp, "SO ", 3) == 0 ||
         ft_strncmp(temp, "EA ", 3) == 0 || ft_strncmp(temp, "WE ", 3) == 0 ||
         ft_strncmp(temp, "F ", 2) == 0 || ft_strncmp(temp, "C ", 2) == 0)
         return;
+	else
+	{
+		while (count > 0)
+		{
+			temp--;
+			count--;
+		}
+	}
 	if (*temp == '\0')
 	{
 		if (*map_state == 1)
@@ -47,9 +60,10 @@ void	process_map_line(t_map *map, char *temp,
 	//print_map(map);
 	while (*ptr)
 	{
-		if (!ft_strchr(" \t01NSEW", *ptr) && *map_state == 1 && *ptr != 't')
+		if (!ft_strchr(" \t01NSEW\n", *ptr) && *map_state == 1)
 		{
-			ft_printf("Error: Invalid character '%c' in map.\n", *ptr);
+			ft_printf("Error: Invalid character '%c' on line [%d] and column [%d].\n", *ptr, *start, (int)(ptr - temp));
+			bye_game(map);
 			exit(EXIT_FAILURE);
 		}
 		ptr++;
@@ -103,13 +117,13 @@ void	get_map(t_map *map, char *argv)
 	int	fd;
 
 	fd = open_file(argv);
-	size = map_size(fd);
+	size = map_size(fd, map);
 	close(fd);
 	allocate_matrix(map, size);
 	copy_map(map, argv);
 }
 
-int	map_size(int fd)
+int	map_size(int fd, t_map *map)
 {
 	int		map_size;
 	char	*temp;
@@ -136,6 +150,7 @@ int	map_size(int fd)
 		temp = get_next_line(fd);
 	}
 	free(temp);
+	map->height = map_size;
 	return (map_size);
 }
 

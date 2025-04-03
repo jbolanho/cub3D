@@ -6,7 +6,7 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 10:10:14 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/03/21 19:58:21 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/04/03 16:21:51 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_map
 	int			player_pov;
 	int			player_x;
 	int			player_y;
+	int			height;
 
 }		t_map;
 
@@ -166,13 +167,13 @@ void	bye_bye(t_game *cub);
 
 // check_path
 void    check_path(t_map *map, char *temp, char *line_cpy);
-void	copy_path(char **texture, char *temp, char *info, char *line_cpy);
+void	copy_path(char **texture, char *temp, t_map *map, char *line_cpy);
 void	cut_path(char *temp, char *line_cpy, char **texture);
 void	after_path(char *temp, char *line_cpy);
 
 //check_colors
 void	check_colors(t_map *map, char *temp, char *line_cpy);
-void	copy_rgb(uint32_t *color, char *line_cpy);
+void	copy_rgb(uint32_t *color, char *line_cpy, t_map *map);
 void	cut_rgb(uint32_t *surface, char *temp);
 void    make_rgb_array(char ***rgb, char *temp);
 
@@ -194,7 +195,7 @@ void	check_dotcub(char *argv);
 
 void	check_map(t_map *map, char *argv);
 void	get_map(t_map *map, char *argv);
-int		map_size(int fd);
+int		map_size(int fd, t_map *map);
 void	allocate_matrix(t_map *map, int size);
 void	copy_map(t_map *map, char *argv);
 void	process_map_line(t_map *map, char *temp,
@@ -220,17 +221,25 @@ void	check_tabs(t_map *map);
 
 void initialize_map(t_map *map);
 
-void	check_after_header(char *temp);
+void	check_after_header(char *temp, t_map *map);
 
 void	check_space(t_map *map, const char *str);
 
 
 
 
-void	print_wall_error(int line, int column);
+void	print_wall_error(int line, int column, t_map *map);
 int		is_player_or_space(char c);
 void	check_wall_edges(t_map *map, int line, int column);
 void	check_wall_surroundings(t_map *map, int line, int column);
 void	check_all_walls(t_map *map, int line, int column);
+
+
+
+void	fake_data(t_game *cub);
+void	bye_game(t_map *map);
+void	clean_gnl(int fd);
+char safe_map_get(t_map *map, int y, int x);
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 15:19:33 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/03/21 18:55:45 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/04/03 15:54:05 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,12 @@ void	check_space(t_map *map, const char *str)
 		{
 			if (column == 0)
 				column++;
-			// if (is_space(map->cub_map[line][column]) == 1)
-			// {
-			// 	printf("aquiii\n");
-			// 	column++;
-			// }
 			if (ft_strchr(str, (map->cub_map[line])[column]) == NULL)
 			{
-				//bye_bye;
 				ft_printf("Error: found space or tab [%c]\n"
 					"on line: %d, columnn: %d\n",
 					(map->cub_map[line])[column], line, column);
+				bye_game(map);
 				exit(EXIT_FAILURE);
 			}
 			column++;

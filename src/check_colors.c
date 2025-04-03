@@ -6,7 +6,7 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:14:52 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/03/11 17:23:55 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/04/03 13:38:26 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	check_colors(t_map *map, char *temp, char *line_cpy)
 {
-	printf("temp: %s\n", temp);
+	printf("temp5555555555: %s\n", temp);
 	if (ft_strncmp("F", temp, 1) == 0)
 	{
 		printf("temp dentro do if: %s\n", temp);
 		printf("line_cpy dentro do if: %s\n", line_cpy);
 		printf("floor1: %d\n", map->floor_color);
-		copy_rgb(&(map->floor_color), line_cpy);
+		copy_rgb(&(map->floor_color), temp, map);
 		printf("floor2: %d\n", map->floor_color);
 	}
 	if (ft_strncmp("C", temp, 1) == 0)
@@ -28,7 +28,7 @@ void	check_colors(t_map *map, char *temp, char *line_cpy)
 		printf("temp dentro do if: %s\n", temp);
 		printf("line_cpy dentro do if: %s\n", line_cpy);
 		printf("ceiling: %d\n", map->ceiling_color);
-		copy_rgb(&(map->ceiling_color), line_cpy);
+		copy_rgb(&(map->ceiling_color), temp, map);
 	}
 	// printf("floor: %d\n", map->floor_color);
 	// printf("ceiling: %d\n", map->ceiling_color);
@@ -37,13 +37,14 @@ void	check_colors(t_map *map, char *temp, char *line_cpy)
 
 }
 
-void	copy_rgb(uint32_t *color, char *line_cpy)
+void	copy_rgb(uint32_t *color, char *line_cpy, t_map *map)
 {
 	printf("color: %d\n", *color);
+	
 	if (*color != 0)
 	{
-		//bye_bye;
 		ft_printf("Error: invalid header - duplicated info\n");
+		bye_game(map);
 		exit(EXIT_FAILURE);
 	}
 	line_cpy += 1;
@@ -56,8 +57,8 @@ void	copy_rgb(uint32_t *color, char *line_cpy)
 	}
 	else
 	{
-		//bye_bye;
  		ft_printf("Error: invalid color format\n");
+		bye_game(map);
 		exit(EXIT_FAILURE);
 	}	
 }
@@ -82,7 +83,8 @@ void	cut_rgb(uint32_t *surface, char *temp)
 			comma++;
 		end++;
 	}
-	if (comma != 2)
+	printf("virgulaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa: %d", comma);
+	if (comma != 2 && comma != 0)
 	{
 		//bye_bye;
 		ft_printf("Error: wrong RGB format\n");

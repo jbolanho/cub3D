@@ -6,7 +6,7 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:12:51 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/03/11 15:06:25 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/03/31 17:17:09 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 
 void check_path(t_map *map, char *temp, char *line_cpy)
 {
+	//ose(*fd);
+	//clean_gnl(*fd);
 	if (ft_strncmp("NO", temp, 2) == 0)
-		copy_path(&(map->north_path), temp, "NO", line_cpy);
+		copy_path(&(map->north_path), temp, map, line_cpy);
 	else if (ft_strncmp("SO", temp, 2) == 0)
-		copy_path(&(map->south_path), temp, "SO", line_cpy);
+		copy_path(&(map->south_path), temp, map, line_cpy);
 	else if (ft_strncmp("WE", temp, 2) == 0)
-		copy_path(&(map->west_path), temp, "WE", line_cpy);
+		copy_path(&(map->west_path), temp, map, line_cpy);
 	else if (ft_strncmp("EA", temp, 2) == 0)
-		copy_path(&(map->east_path), temp, "EA", line_cpy);
+		copy_path(&(map->east_path), temp, map, line_cpy);
 	else
 	{
 		if (temp[0] != '\n' && temp[0] != '\0' && temp[0] != 'F' && temp[0] != 'C' && temp[0] != '1')
@@ -37,17 +39,16 @@ void check_path(t_map *map, char *temp, char *line_cpy)
 	//qt de texturas?
 }
 
-void	copy_path(char **texture, char *temp, char *info, char *line_cpy)
+void	copy_path(char **texture, char *temp, t_map *map, char *line_cpy)
 {
-	(void) info;
-	if (*texture != NULL)
+	if (*texture && texture)
 	{
-		free(line_cpy);
-		//bye_bye;
+		free (line_cpy);
 		ft_printf("Error: invalid header - duplicated info\n");
+		bye_game(map);
 		exit(EXIT_FAILURE);
 	}
-	temp +=2;
+	temp += 2;
 	if (is_space(*temp))
 	{
 		while (is_space(*temp))
@@ -57,8 +58,8 @@ void	copy_path(char **texture, char *temp, char *info, char *line_cpy)
 	else
 	{
 		free(line_cpy);
-		//bye_bye;
  		ft_printf("Error: invalid texture path\n");
+		bye_game(map);
 		exit(EXIT_FAILURE);
 	}	
 }
