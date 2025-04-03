@@ -6,67 +6,33 @@
 /*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 12:24:55 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/04/03 11:38:12 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/04/03 14:39:22 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub.h"
 
-// static int	get_rgba(int r, int g, int b, int a);
-// static void	fake_data(t_game *cub);
-
-// static int	get_rgba(int r, int g, int b, int a)
-// {
-// 	return (r << 24 | g << 16 | b << 8 | a);
-// }
-
-// static void	fake_data(t_game *cub)
-// {
-// 	uint32_t	nb_floor;
-// 	uint32_t	nb_ceil;
-
-// 	nb_floor = get_rgba(169, 169, 169, 255);
-// 	nb_ceil = get_rgba(230, 230, 230, 255);
-// 	cub->map.north_path = "./texture/door1.png";
-// 	cub->map.south_path = "./texture/door2.png";
-// 	cub->map.east_path = "./texture/clock.png";
-// 	cub->map.west_path = "./texture/wall.png";
-// 	cub->map.floor_color = nb_floor;
-// 	cub->map.ceiling_color = nb_ceil;
-// 	cub->map.p1_x = 5;
-// 	cub->map.p1_y = 4;
-// 	cub->map.p1_pov = S;
-// 	// copy_map(cub);
-// }
-
 void	init(t_game *cub)
 {
-	// fake_data(cub);
 	init_window(cub);
 	init_images(cub);
 	initial_pov(cub);
-	// init_time(cub);
 }
 
 void	init_window(t_game *cub)
 {
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
-	cub->mlx = mlx_init((int32_t)WIDTH, (int32_t)HEIGHT, "AnaJulia", true);
+	cub->mlx = mlx_init((int32_t)WIDTH, (int32_t)HEIGHT, "Cub3D", true);
 	if (!cub->mlx)
 	{
 		ft_printf("Error. MLX init error.\n");
-		bye_bye(cub);
+		bye_bye(cub, EXIT_SUCCESS);
 	}
 	cub->image = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
 	if (!cub->image)
 	{
 		ft_printf("Error. Window problem\n");
-		bye_bye(cub);
-	}
-	if (mlx_image_to_window(cub->mlx, cub->image, 0, 0) < 0)
-	{
-		ft_printf("Error. Image problem\n");
-		bye_bye(cub);
+		bye_bye(cub, EXIT_SUCCESS);
 	}
 }
 
@@ -80,9 +46,6 @@ void	init_images(t_game *cub)
 
 void	initial_pov(t_game *cub)
 {
-	// printf("AQUII px: %d\n", cub->map.player_x);
-	// printf("AQUII py: %d\n", cub->map.player_y);
-	// printf("AQUII pov: %d\n", cub->map.player_pov);
 	cub->position = vector(cub->map.player_x + 0.5, cub->map.player_y + 0.5);
 	if (cub->map.player_pov == N)
 	{
@@ -114,10 +77,3 @@ t_vector	vector(float x, float y)
 	vector.y = y;
 	return (vector);
 }
-
-// void	init_time(t_game *cub)
-// {
-// 	cub->time = 0;
-// 	cub->oldtime = 0;
-// 	// cub->move_speed = ;       AQUIII
-// }

@@ -6,7 +6,7 @@
 /*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:50:08 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/03/24 14:40:45 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/04/03 14:49:23 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	game(t_game *cub)
 	mlx_close_hook(cub->mlx, close_cub, cub);
 	mlx_loop(cub->mlx);
 	mlx_terminate(cub->mlx);
-    return(EXIT_SUCCESS);
+	return (EXIT_SUCCESS);
 }
 
 void	player_pov(void *param)
@@ -27,34 +27,12 @@ void	player_pov(void *param)
 	t_game	*cub;
 
 	cub = (t_game *)param;
-	// mlx_delete_image(cub->mlx, cub->image);
-	// cub->image = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
-	// mlx_image_to_window(cub->mlx, cub->image, 0, 0);
 	frame_speed(cub);
 	take_input(cub);
 	init_background(cub);
 	dda(cub);
+	mlx_image_to_window(cub->mlx, cub->image, 0, 0);
 }
-
-// bool	can_go(t_game *cub, float x, float y)
-// {
-// 	float	border;
-
-// 	border = 0.1;
-// 	if (cub->map.cub_map[(int)(y + border
-// 			* minus_or_not(y - cub->position.y))][(int)x] == '1')
-// 		return (false);
-// 	if (cub->map.cub_map[(int)y][(int)(x + border
-// 		* minus_or_not(x - cub->position.x))] == '1')
-// 		return (false);
-// 	if (cub->map.cub_map[(int)(y + border
-// 			* minus_or_not(cub->camera_plane.y))][(int)x] == '1')
-// 		return (false);
-// 	if (cub->map.cub_map[(int)y][(int)(x + border
-// 		* minus_or_not(cub->camera_plane.x))] == '1')
-// 		return (false);
-// 	return (true);
-// }
 
 int	minus_or_not(float value)
 {
@@ -95,7 +73,7 @@ void	frame_speed(t_game *cub)
 	cub->frame_time = cub->mlx->delta_time;
 	if (cub->frame_time > 0)
 		fps = 1.0 / cub->frame_time;
-	else 
+	else
 		fps = 0;
 	if (image)
 		mlx_delete_image(cub->mlx, image);
@@ -106,5 +84,6 @@ void	frame_speed(t_game *cub)
 	free(fps_text);
 	cub->move_speed = cub->frame_time * 5.0;
 	cub->rotation_speed = cub->frame_time * 3.0;
+	// cub->rotation_speed = 0.02;
+	// cub->move_speed = 0.06;
 }
-

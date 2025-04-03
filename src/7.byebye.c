@@ -6,7 +6,7 @@
 /*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:50:55 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/03/24 13:46:04 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/04/03 15:04:26 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,10 @@ void	close_cub(void *param)
 	t_game	*cub;
 
 	cub = (t_game *)param;
-	bye_bye(cub);
-	mlx_close_window(cub->mlx);
+	bye_bye(cub, EXIT_SUCCESS);
 }
 
-void	bye_bye(t_game *cub)
+void	bye_bye(t_game *cub, int code)
 {
 	if (cub->no)
 		mlx_delete_texture(cub->no);
@@ -58,4 +57,15 @@ void	bye_bye(t_game *cub)
 		free(cub->map.west_path);
 	if (cub->map.cub_map)
 		free_ptrptr(cub->map.cub_map);
+	if (cub->mlx)
+		bye_mlx(cub);
+	exit(code);
+}
+
+void	bye_mlx(t_game *cub)
+{
+	if (cub->image)
+		mlx_delete_image(cub->mlx, cub->image);
+	mlx_close_window(cub->mlx);
+	mlx_terminate(cub->mlx);
 }

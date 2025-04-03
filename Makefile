@@ -7,7 +7,13 @@ MFLAGS = -ldl -lglfw -pthread -lm
 
 
 SRC =	./src/main.c   \
-		./src/9.old.c \
+		./src/1.init.c \
+		./src/2.game.c  \
+		./src/3.key_data.c  \
+		./src/4.key_data_utils.c  \
+		./src/5.algorithm.c  \
+		./src/6.algorithm_utils.c  \
+		./src/7.byebye.c  \
 		./src/validate.c   \
 		./src/validate_n_process.c   \
 		./src/validate_utils.c   \
@@ -17,7 +23,6 @@ SRC =	./src/main.c   \
 		./src/check_map.c   \
 		./src/check_walls.c   \
 		./src/check_tabs.c   \
-
 
 OBJ_DIR = obj
 
