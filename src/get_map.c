@@ -6,29 +6,29 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 16:25:39 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/04/03 18:04:19 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/04/08 14:14:35 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub.h"
 
-void	process_map_line(t_map *map, char *temp,
-		int *start, int *map_state)
+void	process_map_line(t_map *map, char *temp, int *start, int *map_state)
 {
 	char	*newline;
 	int		count;
+	char	*ptr;
 
 	newline = ft_strchr(temp, '\n');
 	count = 0;
 	while (is_space(*temp))
 	{
 		count += 1;
-	 	temp++;
+		temp++;
 	}
-	if (ft_strncmp(temp, "NO ", 3) == 0 || ft_strncmp(temp, "SO ", 3) == 0 ||
-        ft_strncmp(temp, "EA ", 3) == 0 || ft_strncmp(temp, "WE ", 3) == 0 ||
-        ft_strncmp(temp, "F ", 2) == 0 || ft_strncmp(temp, "C ", 2) == 0)
-        return;
+	if (ft_strncmp(temp, "NO ", 3) == 0 || ft_strncmp(temp, "SO ", 3) == 0
+		|| ft_strncmp(temp, "EA ", 3) == 0 || ft_strncmp(temp, "WE ", 3) == 0
+		|| ft_strncmp(temp, "F ", 2) == 0 || ft_strncmp(temp, "C ", 2) == 0)
+		return ;
 	else
 	{
 		while (count > 0)
@@ -46,23 +46,25 @@ void	process_map_line(t_map *map, char *temp,
 	if (*map_state == 2)
 	{
 		ft_printf("Error: Invalid map. Extra content found after map.\n");
-		//bye_bye;
+		bye_game(map);
 		exit(EXIT_FAILURE);
 	}
-	if (*temp == '1' || *temp == '0' || *temp == ' ' || *temp == '\t' || *temp == 'N' || *temp == 'S' || *temp == 'E' || *temp == 'W')
+	if (*temp == '1' || *temp == '0' || *temp == ' ' || *temp == '\t'
+		|| *temp == 'N' || *temp == 'S' || *temp == 'E' || *temp == 'W')
 	{
 		*map_state = 1;
 		if (newline)
 			*newline = '\0';
 		map->cub_map[(*start)++] = ft_strdup(temp);
 	}
-	char *ptr = temp;
+	ptr = temp;
 	//print_map(map);
 	while (*ptr)
 	{
 		if (!ft_strchr(" \t01NSEW\n", *ptr) && *map_state == 1)
 		{
-			ft_printf("Error: Invalid character '%c' on line [%d] and column [%d].\n", *ptr, *start, (int)(ptr - temp));
+			ft_printf("Error: Invalid chr'%c' on line [%d] and column [%d].\n",
+				*ptr, *start, (int)(ptr - temp));
 			bye_game(map);
 			exit(EXIT_FAILURE);
 		}
@@ -77,7 +79,7 @@ void	copy_map(t_map *map, char *argv)
 	char	*temp;
 	int		map_state;
 
-	fd = open_file(argv);
+	fd = open_file(argv, map);
 	start = 0;
 	map_state = 0;
 	temp = get_next_line(fd);
@@ -93,14 +95,13 @@ void	copy_map(t_map *map, char *argv)
 
 void	print_map(t_map *map)
 {
-	int i;
+	int	i;
 
 	if (!map || !map->cub_map)
 	{
 		printf("Error: map is NULL\n");
-		return;
+		return ;
 	}
-
 	i = 0;
 	printf("==== Mapa Carregado ====\n");
 	while (map->cub_map[i])
@@ -116,7 +117,7 @@ void	get_map(t_map *map, char *argv)
 	int	size;
 	int	fd;
 
-	fd = open_file(argv);
+	fd = open_file(argv, map);
 	size = map_size(fd, map);
 	close(fd);
 	allocate_matrix(map, size);
@@ -139,7 +140,6 @@ int	map_size(int fd, t_map *map)
 		printf("temp[%d]: %c\n", i, temp[i]);
 		if (temp[i] == '1' || temp[i] == '0')
 			break ;
-		// if (temp[i] ==)
 		free(temp);
 		temp = get_next_line(fd);
 	}
@@ -159,8 +159,8 @@ void	allocate_matrix(t_map *map, int size)
 	map->cub_map = ft_calloc(sizeof (char *), size + 1);
 	if (!map->cub_map)
 	{
-		//bye_bye;
 		ft_printf("Error: memory allocation failed for map\n");
+		bye_game(map);
 		exit(EXIT_FAILURE);
 	}
 }

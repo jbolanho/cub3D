@@ -6,7 +6,7 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 17:57:19 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/04/03 16:36:39 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/04/08 14:07:19 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@
 // 		line--;
 // 	}
 // }
-
 
 // void	check_walls(t_map *map)
 // {
@@ -126,7 +125,6 @@ int	is_player_or_space(char c)
 // 		print_wall_error(line, column, map);
 // }
 
-
 // void	check_wall_surroundings(t_map *map, int line, int column)
 // {
 // 	if (!is_player_or_space(map->cub_map[line][column]))
@@ -154,29 +152,26 @@ int	is_player_or_space(char c)
 // 		print_wall_error(line, column, map);
 // }
 
-
-char safe_map_get(t_map *map, int y, int x)
+char	safe_map_get(t_map *map, int y, int x)
 {
 	if (y < 0 || y >= map->height)
-		return ' ';
+		return (' ');
 	if (x < 0 || x >= (int)ft_strlen(map->cub_map[y]))
-		return ' ';
-	return map->cub_map[y][x];
+		return (' ');
+	return (map->cub_map[y][x]);
 }
-void check_wall_surroundings(t_map *map, int y, int x)
-{
-	char c = safe_map_get(map, y, x);
-	if (!is_player_or_space(c))
-		return;
 
-	if (safe_map_get(map, y - 1, x) == ' ' ||
-		safe_map_get(map, y + 1, x) == ' ' ||
-		safe_map_get(map, y, x - 1) == ' ' ||
-		safe_map_get(map, y, x + 1) == ' ')
-		{
-		printf("NICEEEEEEEEEEEEEEEEEEEE\n");
+void	check_wall_surroundings(t_map *map, int y, int x)
+{
+	char	c;
+
+	c = safe_map_get(map, y, x);
+	if (!is_player_or_space(c))
+		return ;
+	if (safe_map_get(map, y - 1, x) == ' ' || safe_map_get(map, y + 1, x) == ' '
+		|| safe_map_get(map, y, x - 1) == ' '
+		|| safe_map_get(map, y, x + 1) == ' ')
 		print_wall_error(y, x, map);
-		}
 }
 
 void	check_all_walls(t_map *map, int line, int column)

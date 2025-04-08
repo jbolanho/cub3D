@@ -6,7 +6,7 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 10:10:14 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/04/03 16:21:51 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/04/08 14:54:48 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,28 +168,28 @@ void	bye_bye(t_game *cub);
 // check_path
 void    check_path(t_map *map, char *temp, char *line_cpy);
 void	copy_path(char **texture, char *temp, t_map *map, char *line_cpy);
-void	cut_path(char *temp, char *line_cpy, char **texture);
-void	after_path(char *temp, char *line_cpy);
+void	cut_path(char *temp, char *line_cpy, char **texture, t_map *map);
+void	after_path(char *temp, char *line_cpy, t_map *map);
 
 //check_colors
-void	check_colors(t_map *map, char *temp, char *line_cpy);
+void	check_colors(t_map *map, char *temp);
 void	copy_rgb(uint32_t *color, char *line_cpy, t_map *map);
-void	cut_rgb(uint32_t *surface, char *temp);
-void    make_rgb_array(char ***rgb, char *temp);
+void	cut_rgb(uint32_t *surface, char *temp, t_map *map);
+void    make_rgb_array(char ***rgb, char *temp, t_map *map);
 
 //validate_n_process
 void	process_argv1(char *argv, t_map *map);
 void	check_header(t_map *map, char *temp, int *fd);
 
 //validate_utils
-int open_file(char *argv);
+int open_file(char *argv, t_map *map);
 int	is_space(char c);
 uint32_t	convert_rgb(int r, int g, int b);
 
 //validate
 void	validate(int argc, char **argv, t_game *cub);
-void	check_argc(int argc);
-void	check_dotcub(char *argv);
+void	check_argc(int argc, t_map *map);
+void	check_dotcub(char *argv, t_map *map);
 
 
 
