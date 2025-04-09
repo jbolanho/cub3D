@@ -34,12 +34,12 @@ void	player_pov(void *param)
 	mlx_image_to_window(cub->mlx, cub->image, 0, 0);
 }
 
-int	minus_or_not(float value)
-{
-	if (value < 0)
-		return (-1);
-	return (1);
-}
+// int	minus_or_not(float value)
+// {
+// 	if (value < 0)
+// 		return (-1);
+// 	return (1);
+// }
 
 void	init_background(t_game *cub)
 {

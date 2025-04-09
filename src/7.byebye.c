@@ -82,11 +82,9 @@ void	bye_game(t_map *map)
 		free(map->west_path);
 	if (map && map->cub_map)
 		free_ptrptr(map->cub_map);
-	
 }
 
 void	clean_gnl(int fd)
 {
 	get_next_line(-fd);
 }
-

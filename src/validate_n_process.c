@@ -109,7 +109,7 @@ void	check_header(t_map *map, char *temp, int *fd)
 	{
 		line_cpy = temp;
 		while (is_space(*temp))
-		temp++;
+			temp++;
 		check_path(map, temp, line_cpy);
 		check_colors(map, &(temp[0]));
 		free (line_cpy);
