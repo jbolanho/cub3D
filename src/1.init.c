@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   1.init.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 12:24:55 by jbolanho          #+#    #+#             */
 /*   Updated: 2025/04/03 14:39:22 by jbolanho         ###   ########.fr       */

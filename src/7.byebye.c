@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   7.byebye.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:50:55 by jbolanho          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/04/03 15:04:26 by jbolanho         ###   ########.fr       */
+=======
+/*   Updated: 2025/04/03 14:16:46 by anacaro5         ###   ########.fr       */
+>>>>>>> origin/validate_map
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,3 +73,24 @@ void	bye_mlx(t_game *cub)
 	mlx_close_window(cub->mlx);
 	mlx_terminate(cub->mlx);
 }
+
+void	bye_game(t_map *map)
+{
+	if (map->north_path)
+		free(map->north_path);
+	if (map->south_path)
+		free(map->south_path);
+	if (map->east_path)
+		free(map->east_path);
+	if (map->west_path)
+		free(map->west_path);
+	if (map && map->cub_map)
+		free_ptrptr(map->cub_map);
+	
+}
+
+void	clean_gnl(int fd)
+{
+	get_next_line(-fd);
+}
+

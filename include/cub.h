@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 10:10:14 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/04/03 16:50:30 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/04/08 14:54:48 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_map
 	int			player_pov;
 	int			player_x;
 	int			player_y;
+	int			height;
 
 }		t_map;
 
@@ -145,6 +146,9 @@ typedef struct s_game
 	double			rotation_speed;
 }		t_game;
 
+// apagar
+// void	copy_map(t_game *cub);
+void	print_map(t_map *map);
 
 //init
 void			init(t_game *cub);
@@ -189,40 +193,41 @@ void			free_images(t_game *cub);
 void			bye_mlx(t_game *cub);
 
 // check_path
-void	check_path(t_map *map, char *temp, char *line_cpy);
-void	copy_path(char **texture, char *temp, char *info, char *line_cpy);
-void	cut_path(char *temp, char *line_cpy, char **texture);
-void	after_path(char *temp, char *line_cpy);
+void    check_path(t_map *map, char *temp, char *line_cpy);
+void	copy_path(char **texture, char *temp, t_map *map, char *line_cpy);
+void	cut_path(char *temp, char *line_cpy, char **texture, t_map *map);
+void	after_path(char *temp, char *line_cpy, t_map *map);
 
 //check_colors
-void	check_colors(t_map *map, char *temp, char *line_cpy);
-void	copy_rgb(uint32_t *color, char *line_cpy);
-void	cut_rgb(uint32_t *surface, char *temp);
-void    make_rgb_array(char ***rgb, char *temp);
+void	check_colors(t_map *map, char *temp);
+void	copy_rgb(uint32_t *color, char *line_cpy, t_map *map);
+void	cut_rgb(uint32_t *surface, char *temp, t_map *map);
+void    make_rgb_array(char ***rgb, char *temp, t_map *map);
 
 //validate_n_process
 void	process_argv1(char *argv, t_map *map);
 void	check_header(t_map *map, char *temp, int *fd);
 
 //validate_utils
-int open_file(char *argv);
+int open_file(char *argv, t_map *map);
 int	is_space(char c);
 uint32_t	convert_rgb(int r, int g, int b);
 
 //validate
 void	validate(int argc, char **argv, t_game *cub);
-void	check_argc(int argc);
-void	check_dotcub(char *argv);
+void	check_argc(int argc, t_map *map);
+void	check_dotcub(char *argv, t_map *map);
 
 
 
 void	check_map(t_map *map, char *argv);
 void	get_map(t_map *map, char *argv);
-int		map_size(int fd);
+int		map_size(int fd, t_map *map);
 void	allocate_matrix(t_map *map, int size);
 void	copy_map(t_map *map, char *argv);
-void	process_map_line(t_map *map, char *temp, int *start);
-
+void	process_map_line(t_map *map, char *temp,
+ 			int *start, int *map_state);
+//void	process_map_line(t_map *map, char *temp, int *start);
 void	check_chr(t_map *map, const char *str);
 void	check_player(t_map *map);
 int		is_player(char c, t_map *map);
@@ -240,7 +245,28 @@ int	count_tabs(char *line);
 char	*replace_tabs(char *line, int tab_nbr);
 void	check_tabs(t_map *map);
 
-//deletar
-void	clear_img(t_game *cub);
+
+void initialize_map(t_map *map);
+
+void	check_after_header(char *temp, t_map *map);
+
+void	check_space(t_map *map, const char *str);
+
+
+
+
+void	print_wall_error(int line, int column, t_map *map);
+int		is_player_or_space(char c);
+void	check_wall_edges(t_map *map, int line, int column);
+void	check_wall_surroundings(t_map *map, int line, int column);
+void	check_all_walls(t_map *map, int line, int column);
+
+
+
+void	fake_data(t_game *cub);
+void	bye_game(t_map *map);
+void	clean_gnl(int fd);
+char safe_map_get(t_map *map, int y, int x);
+
 
 #endif

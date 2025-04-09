@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_n_process.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:09:51 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/03/18 14:56:48 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/04/08 14:57:16 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,13 @@ void	process_argv1(char *argv, t_map *map)
 	int		fd;
 
 	temp = NULL;
-	fd = open_file(argv);
+	fd = open_file(argv, map);
 	check_header(map, temp, &fd);
 	close(fd);
 	check_map(map, argv);
-	
-	
+	//
 	free(temp);
 	close(fd);
-	// printf("AQUIIIII 4\n");
 }
 
 void	check_map(t_map *map, char *argv)
@@ -35,16 +33,72 @@ void	check_map(t_map *map, char *argv)
 	
 	// temp = NULL;
 	get_map(map, argv);
-	//9x9???
-	check_tabs(map);
-	check_chr(map, "012NSEW ");
-	check_player(map);
+	//check_tabs(map);
+	check_chr(map, "\t01NSEW ");
 	check_walls(map);
-	//check_empty_lines(map);
-	
+	check_space(map, "01NSEW ");
+	check_player(map);
+	//check_empty_lines(map);	
 }
 
-
+// void	check_header(t_map *map, char *temp, int *fd)
+// {
+// 	char	*line_cpy;
+// 	//int 	i;
+// 	temp = get_next_line(*fd);
+// 	while (temp)
+// 	{
+// 		line_cpy = temp;
+// 		while (is_space(*temp))
+// 		temp++;
+// 		check_path(map, temp, line_cpy);
+// 		///////line_cpy = temp;
+// 		check_colors(map, &(temp[0]), line_cpy);
+// 		free (line_cpy);
+// 		if (map->north_path && map->south_path && map->west_path
+		//&& map->east_path && map->floor_color && map->ceiling_color)
+// 		{
+// 			////////free(temp);
+// 			temp = get_next_line(*fd);
+// 			while (temp && temp[0] != '1' && temp[0] != '0')
+// 			{
+// 				check_after_header(temp, map);
+// 				free (temp);
+// 				temp = get_next_line(*fd);
+// 			}
+// 			if (temp)
+// 				free(temp);
+// 			break ;
+// 		}
+// 		//CONTINUAR CHECKANDO
+// 			// printf("map->north_path: %s\n", map->north_path);
+// 		// printf("map->south_path: %s\n", map->south_path);
+// 		// printf("map->west_path: %s\n", map->west_path);
+// 		// printf("map->east_path: %s\n", map->east_path);
+// 		// printf("map->floor_color: %u\n", map->floor_color);
+// 		// printf("map->ceiling_color: %u\n", map->ceiling_color);
+// 		// i = 0;
+// 		// while (temp[i])
+// 		// {
+// 		// 	if (ft_strchr("012NSEW ", temp[i]) == NULL)
+// 		// 	{
+// 		// 		//bye_bye;
+// 		// 		ft_printf("Error: wrong char [%c]\n"
+// 		// 			"found\n", temp[i]);
+// 		// 		exit(EXIT_FAILURE);
+// 		// 	}
+// 		// 	i++;
+// 		// }
+// 		/////////free(temp);
+// 		temp = get_next_line(*fd);
+// 	}
+// 	if (!temp)
+// 	{
+// 		ft_printf("Error: invalid map: missing info\n");
+// 		bye_game(map);
+// 		exit(EXIT_FAILURE);
+// 	}
+// }
 
 void	check_header(t_map *map, char *temp, int *fd)
 {
@@ -55,29 +109,48 @@ void	check_header(t_map *map, char *temp, int *fd)
 	{
 		line_cpy = temp;
 		while (is_space(*temp))
-			temp++;
+		temp++;
 		check_path(map, temp, line_cpy);
-		line_cpy = temp;
-		check_colors(map, &(temp[0]), line_cpy);
-		//free (line_cpy);
-		if (map->north_path && map->south_path && map->west_path && map->east_path && map->floor_color && map->ceiling_color)
+		check_colors(map, &(temp[0]));
+		free (line_cpy);
+		if (map->north_path && map->south_path && map->west_path
+			&& map->east_path && map->floor_color && map->ceiling_color)
+		{
+			temp = get_next_line(*fd);
+			while (temp && temp[0] != '1' && temp[0] != '0')
+			{
+				check_after_header(temp, map);
+				free (temp);
+				temp = get_next_line(*fd);
+			}
+			if (temp)
+				free(temp);
 			break ;
-		printf("map->north_path: %s\n", map->north_path);
-		printf("map->south_path: %s\n", map->south_path);
-		printf("map->west_path: %s\n", map->west_path);
-		printf("map->east_path: %s\n", map->east_path);
-		printf("map->floor_color: %u\n", map->floor_color);
-		printf("map->ceiling_color: %u\n", map->ceiling_color);
+		}
 		temp = get_next_line(*fd);
-		printf("temp2: %s", temp);
 	}
 	if (!temp)
 	{
-		//bye_bye
 		ft_printf("Error: invalid map: missing info\n");
+		bye_game(map);
 		exit(EXIT_FAILURE);
 	}
 }
 
+void	check_after_header(char *temp, t_map *map)
+{
+	int	i;
 
-
+	i = 0;
+	while (temp[i])
+	{
+		if (temp[0] != '\n' && temp[0] != '\0' && temp[0] != '1'
+			&& temp[0] != '0' && temp[0] != ' ')
+		{
+			ft_printf("Error: wrong char [%c] found after header\n", temp[i]);
+			bye_game(map);
+			exit(EXIT_FAILURE);
+		}
+		i++;
+	}
+}

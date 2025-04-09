@@ -6,7 +6,7 @@
 #    By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/26 15:54:53 by anacaro5          #+#    #+#              #
-#    Updated: 2024/02/05 14:16:57 by anacaro5         ###   ########.fr        #
+#    Updated: 2025/04/03 14:11:06 by anacaro5         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
  ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c \
 ft_lstlast_bonus.c ft_lstadd_back_bonus.c ft_lstdelone_bonus.c \
 ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c get_next_line_bonus.c \
-get_next_line_utils.c ft_printf.c printf_utils.c
+get_next_line_utils.c ft_printf.c printf_utils.c 
 
 #Define the directory for *.o files
 OBJS_DIR = Objects

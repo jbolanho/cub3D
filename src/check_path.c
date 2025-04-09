@@ -6,64 +6,63 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:12:51 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/03/11 15:06:25 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/04/08 14:13:29 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub.h"
 
-void check_path(t_map *map, char *temp, char *line_cpy)
+void	check_path(t_map *map, char *temp, char *line_cpy)
 {
+	//ose(*fd);
+	//clean_gnl(*fd);
 	if (ft_strncmp("NO", temp, 2) == 0)
-		copy_path(&(map->north_path), temp, "NO", line_cpy);
+		copy_path(&(map->north_path), temp, map, line_cpy);
 	else if (ft_strncmp("SO", temp, 2) == 0)
-		copy_path(&(map->south_path), temp, "SO", line_cpy);
+		copy_path(&(map->south_path), temp, map, line_cpy);
 	else if (ft_strncmp("WE", temp, 2) == 0)
-		copy_path(&(map->west_path), temp, "WE", line_cpy);
+		copy_path(&(map->west_path), temp, map, line_cpy);
 	else if (ft_strncmp("EA", temp, 2) == 0)
-		copy_path(&(map->east_path), temp, "EA", line_cpy);
+		copy_path(&(map->east_path), temp, map, line_cpy);
 	else
 	{
-		if (temp[0] != '\n' && temp[0] != '\0' && temp[0] != 'F' && temp[0] != 'C' && temp[0] != '1')
+		if (temp[0] != '\n' && temp[0] != '\0' && temp[0] != 'F'
+			&& temp[0] != 'C' && temp[0] != '1')
 		{
 			free (line_cpy);
-			//bye_bye;
 			ft_printf("Error: invalid char on header\n");
+			bye_game(map);
 			exit (EXIT_FAILURE);
 		}
 	}
-	//F e C
-	//colors
-	//qt de texturas?
 }
 
-void	copy_path(char **texture, char *temp, char *info, char *line_cpy)
+void	copy_path(char **texture, char *temp, t_map *map, char *line_cpy)
 {
-	(void) info;
-	if (*texture != NULL)
+	if (*texture && texture)
 	{
-		free(line_cpy);
-		//bye_bye;
+		free (line_cpy);
 		ft_printf("Error: invalid header - duplicated info\n");
+		bye_game(map);
 		exit(EXIT_FAILURE);
 	}
-	temp +=2;
+	temp += 2;
 	if (is_space(*temp))
 	{
 		while (is_space(*temp))
 			temp++;
-		cut_path(temp, line_cpy, texture);
+		cut_path(temp, line_cpy, texture, map);
 	}
 	else
 	{
 		free(line_cpy);
-		//bye_bye;
- 		ft_printf("Error: invalid texture path\n");
+		ft_printf("Error: invalid texture path\n");
+		bye_game(map);
 		exit(EXIT_FAILURE);
 	}	
 }
 
-void	cut_path(char *temp, char *line_cpy, char **texture)
+void	cut_path(char *temp, char *line_cpy, char **texture, t_map *map)
 {
 	int	start;
 	int	end;
@@ -75,14 +74,13 @@ void	cut_path(char *temp, char *line_cpy, char **texture)
 	end = start;
 	while (temp[end] && !is_space(temp[end]) && temp[end] != '\n')
 		end++;
-	after_path(&temp[end], line_cpy);
+	after_path(&temp[end], line_cpy, map);
 	*texture = (char *)malloc((end - start + 1) * sizeof(char));
 	if (!*texture)
 	{
 		free(line_cpy);
-		//bye_bye;
 		ft_printf("Error: memory allocation failed\n");
-		exit(EXIT_FAILURE);
+		bye_game(map);
 	}
 	i = 0;
 	while (start < end)
@@ -90,7 +88,7 @@ void	cut_path(char *temp, char *line_cpy, char **texture)
 	(*texture)[i] = '\0';
 }
 
-void	after_path(char *temp, char *line_cpy)
+void	after_path(char *temp, char *line_cpy, t_map *map)
 {
 	char	*after;
 
@@ -100,8 +98,8 @@ void	after_path(char *temp, char *line_cpy)
 		if (!is_space(*after) && *after != '\n')
 		{
 			free(line_cpy);
-			//bye_bye;
- 			ft_printf("Error: invalid char after path\n");
+			ft_printf("Error: invalid char after path\n");
+			bye_game(map);
 			exit(EXIT_FAILURE);
 		}
 		after += 1;

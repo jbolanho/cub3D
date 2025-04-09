@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:06:32 by anacaro5          #+#    #+#             */
-/*   Updated: 2024/12/19 12:00:31 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/04/03 15:34:36 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,4 +108,15 @@ int		ft_print_pref(unsigned long n);
 int		ft_check_n_print(const char *str, int *idx, va_list ap);
 int		ft_printf(const char *format, ...);
 
+
+int		ft_strlen_gnl(const char *str);
+char	*ft_strjoin_gnl(char const *s1, char const *s2);
+char	*ft_strchr_gnl(const char *str, int c);
+char	*ft_strdup_gnl(const char *s);
+char	*ft_substr_gnl(char const *s, unsigned int start, size_t len);
+
+
+char		*ft_read_file(int fd, char *buff, char *txt);
+char			*ft_line(char *line);
+//char			*get_next_line(int fd);
 #endif
