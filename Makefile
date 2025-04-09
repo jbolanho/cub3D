@@ -41,7 +41,7 @@ $(OBJ_DIR)/%.o: ./src/%.c
 	@$(CC) $(CFLAGS) -c $< -o $@ $(HEADERS)
 	
 $(NAME): $(OBJ) $(LIBFT)
-	@$(CC) $(CFLAGS) $(MFLAGS) $(OBJ) $(HEADERS) $(LIBFT) $(MLX) -o $(NAME)
+	@$(CC) $(CFLAGS) $(MFLAGS) $(OBJ) $(HEADERS) $(LIBFT) $(MLX) -o $(NAME) -g
 	@echo "Compilation complete!"
 
 $(LIBFT):
