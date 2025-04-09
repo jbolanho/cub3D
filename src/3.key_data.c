@@ -88,15 +88,15 @@ void	go_ahead(t_game *cub)
 void	key_release(t_game *cub, mlx_key_data_t pressed)
 {
 	if (pressed.key == MLX_KEY_W)
-	cub->key.w = false;
+		cub->key.w = false;
 	if (pressed.key == MLX_KEY_S)
-	cub->key.s = false;
+		cub->key.s = false;
 	if (pressed.key == MLX_KEY_A)
-	cub->key.a = false;
+		cub->key.a = false;
 	if (pressed.key == MLX_KEY_D)
-	cub->key.d = false;
+		cub->key.d = false;
 	if (pressed.key == MLX_KEY_LEFT)
-	cub->key.left = false;
+		cub->key.left = false;
 	if (pressed.key == MLX_KEY_RIGHT)
-	cub->key.right = false;
+		cub->key.right = false;
 }
