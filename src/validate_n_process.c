@@ -6,7 +6,7 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:09:51 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/04/08 14:57:16 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/04/10 15:47:53 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ void	check_map(t_map *map, char *argv)
 	char	*temp;
 
 	temp = NULL;
+	//check_empty_lines(map);	
 	get_map(map, argv);
 	//check_tabs(map);
 	check_chr(map, "\t01NSEW ");
 	check_walls(map);
 	check_space(map, "01NSEW ");
 	check_player(map);
-	//check_empty_lines(map);	
 }
 
 // void	check_header(t_map *map, char *temp, int *fd)

@@ -6,7 +6,7 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:12:51 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/04/08 14:13:29 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/04/10 14:53:46 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	check_path(t_map *map, char *temp, char *line_cpy)
 {
-	//ose(*fd);
-	//clean_gnl(*fd);
 	if (ft_strncmp("NO", temp, 2) == 0)
 		copy_path(&(map->north_path), temp, map, line_cpy);
 	else if (ft_strncmp("SO", temp, 2) == 0)
@@ -72,6 +70,7 @@ void	cut_path(char *temp, char *line_cpy, char **texture, t_map *map)
 	while (temp[start] && is_space(temp[start]))
 		start++;
 	end = start;
+	printf("start: %c\n", temp[start]);
 	while (temp[end] && !is_space(temp[end]) && temp[end] != '\n')
 		end++;
 	after_path(&temp[end], line_cpy, map);

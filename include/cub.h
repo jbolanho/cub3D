@@ -6,7 +6,7 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 10:10:14 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/04/08 14:54:48 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/04/10 15:53:18 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,7 +208,6 @@ void	count_player(t_map *map, int line, int col, int *count);
 
 void	check_walls(t_map *map);
 void	exit_wall_error(char *msg);
-void	check_empty_lines(t_map *map);
 
 void	free_matrix(t_map *map);
 
@@ -239,7 +238,8 @@ void	check_all_walls(t_map *map, int line, int column);
 void	fake_data(t_game *cub);
 void	bye_game(t_map *map);
 void	clean_gnl(int fd);
-char safe_map_get(t_map *map, int y, int x);
+char	safe_map_get(t_map *map, int y, int x);
 
+void check_empty_lines(char	**temp);
 
 #endif

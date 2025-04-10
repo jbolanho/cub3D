@@ -6,7 +6,7 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 12:24:55 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/03/31 14:25:23 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/04/10 14:49:19 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,16 +72,33 @@ void	init_window(t_game *cub)
 void	init_images(t_game *cub)
 {
 	cub->no = mlx_load_png(cub->map.north_path);
+	// if (!cub->no)
+	// {
+	// 	ft_printf("Error: invalid texture path\n");
+	// 	bye_bye(cub, EXIT_FAILURE);
+	// }
 	cub->so = mlx_load_png(cub->map.south_path);
+	// if (!cub->no)
+	// {
+	// 	ft_printf("Error: invalid texture path\n");
+	// 	bye_bye(cub, EXIT_FAILURE);
+	// }
 	cub->ea = mlx_load_png(cub->map.east_path);
+	// if (!cub->no)
+	// {
+	// 	ft_printf("Error: invalid texture path\n");
+	// 	bye_bye(cub, EXIT_FAILURE);
+	// }
 	cub->we = mlx_load_png(cub->map.west_path);
+	// if (!cub->no)
+	// {
+	// 	ft_printf("Error: invalid texture path\n");
+	// 	bye_bye(cub, EXIT_FAILURE);
+	// }
 }
 
 void	initial_pov(t_game *cub)
 {
-	// printf("AQUII px: %d\n", cub->map.player_x);
-	// printf("AQUII py: %d\n", cub->map.player_y);
-	// printf("AQUII pov: %d\n", cub->map.player_pov);
 	cub->position = vector(cub->map.player_x + 0.5, cub->map.player_y + 0.5);
 	if (cub->map.player_pov == N)
 	{
