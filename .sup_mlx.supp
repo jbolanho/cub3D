@@ -62,3 +62,59 @@
    fun:_dl_init
    ...
 }
+{
+<1new_glfw>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   obj:*/libglapi.so.*
+   ...
+}
+{
+<new_glfw>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   obj:*/libglfw.so.*
+   ...
+}
+{
+<noveau1>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   obj:*/libdrm_nouveau.so.*
+   ...
+}
+{
+<noveau1>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   ...
+   obj:*/libdrm_nouveau.so.*
+   ...
+}
+{
+<noveau2>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   obj:*/nouveau_dri.so
+   ...
+}
+{
+<noveau3>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   obj:*/libGLX_mesa.so.*
+   ...
+}
+{
+   <MLX_CODAM>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   ...
+   fun:_dl_catch_exception
+   ...
+}
