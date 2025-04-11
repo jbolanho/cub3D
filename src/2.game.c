@@ -6,7 +6,7 @@
 /*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:50:08 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/04/03 14:49:23 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/04/11 15:02:36 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,6 @@ void	player_pov(void *param)
 	dda(cub);
 	mlx_image_to_window(cub->mlx, cub->image, 0, 0);
 }
-
-// int	minus_or_not(float value)
-// {
-// 	if (value < 0)
-// 		return (-1);
-// 	return (1);
-// }
 
 void	init_background(t_game *cub)
 {
@@ -84,6 +77,4 @@ void	frame_speed(t_game *cub)
 	free(fps_text);
 	cub->move_speed = cub->frame_time * 5.0;
 	cub->rotation_speed = cub->frame_time * 3.0;
-	// cub->rotation_speed = 0.02;
-	// cub->move_speed = 0.06;
 }

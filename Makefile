@@ -22,7 +22,7 @@ SRC =	./src/main.c   \
 		./src/get_map.c   \
 		./src/check_map.c   \
 		./src/check_walls.c   \
-		./src/check_tabs.c   \
+		./src/map_utils.c \
 
 OBJ_DIR = obj
 

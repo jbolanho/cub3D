@@ -1,6 +1,6 @@
  NO ./texture/door1.png
 
-       SO ./texture/door2.png
+       SO ./texture/door2.png 
 
        EA ./texture/clock.png
 

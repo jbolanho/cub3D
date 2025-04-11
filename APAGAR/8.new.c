@@ -326,7 +326,7 @@ void	line(t_game *cub, t_vector start, t_vector end, int buffer[HEIGHT])
 				break ;
 			line.error += line.delta_x;
 			start.x += line.step_y;
-		}
+		}valgrind ./cub3D ./maps/map1.cub
 		// printf("AQUIII2 %d\n", line.i);
 	}
 }

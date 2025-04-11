@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   1.init.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 12:24:55 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/04/03 14:39:22 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/04/11 15:59:25 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,29 @@ void	init_window(t_game *cub)
 void	init_images(t_game *cub)
 {
 	cub->no = mlx_load_png(cub->map.north_path);
+	// if (!cub->no)
+	// {
+	// 	ft_printf("Error: invalid texture path\n");
+	// 	bye_bye(cub, EXIT_FAILURE);
+	// }
 	cub->so = mlx_load_png(cub->map.south_path);
+	// if (!cub->no)
+	// {
+	// 	ft_printf("Error: invalid texture path\n");
+	// 	bye_bye(cub, EXIT_FAILURE);
+	// }
 	cub->ea = mlx_load_png(cub->map.east_path);
+	// if (!cub->no)
+	// {
+	// 	ft_printf("Error: invalid texture path\n");
+	// 	bye_bye(cub, EXIT_FAILURE);
+	// }
 	cub->we = mlx_load_png(cub->map.west_path);
+	// if (!cub->no)
+	// {
+	// 	ft_printf("Error: invalid texture path\n");
+	// 	bye_bye(cub, EXIT_FAILURE);
+	// }
 }
 
 void	initial_pov(t_game *cub)
