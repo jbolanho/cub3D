@@ -6,7 +6,7 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 15:19:33 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/04/10 15:56:30 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/04/11 15:08:33 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,20 +118,4 @@ void	check_player(t_map *map)
 		bye_game(map);
 		exit(EXIT_FAILURE);
 	}
-}
-void check_empty_lines(char **temp)
-{
-    int line;
-
-    line = 0;
-    while (temp[line] != NULL)
-    {
-        // Verifica se a linha é vazia ou nula
-        if (temp[line] == NULL || ft_strlen(temp[line]) == 0)
-        {
-            ft_printf("Error: empty line found at line: %d\n", line);
-            exit(EXIT_FAILURE);
-        }
-        line++;
-    }
 }

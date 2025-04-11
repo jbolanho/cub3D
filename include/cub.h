@@ -6,7 +6,7 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 10:10:14 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/04/10 15:53:18 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/04/11 15:28:09 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,12 +212,6 @@ void	exit_wall_error(char *msg);
 void	free_matrix(t_map *map);
 
 
-
-int	count_tabs(char *line);
-char	*replace_tabs(char *line, int tab_nbr);
-void	check_tabs(t_map *map);
-
-
 void initialize_map(t_map *map);
 
 void	check_after_header(char *temp, t_map *map);
@@ -231,7 +225,6 @@ void	print_wall_error(int line, int column, t_map *map);
 int		is_player_or_space(char c);
 void	check_wall_edges(t_map *map, int line, int column);
 void	check_wall_surroundings(t_map *map, int line, int column);
-void	check_all_walls(t_map *map, int line, int column);
 
 
 
@@ -240,6 +233,12 @@ void	bye_game(t_map *map);
 void	clean_gnl(int fd);
 char	safe_map_get(t_map *map, int y, int x);
 
-void check_empty_lines(char	**temp);
+void	check_empty_lines(char	**temp);
+
+void	handle_header(int fd, t_map *map);
+void	invalid_char(t_map *map, char *temp, int *start, int *map_state);
+void	check_extra_after_map(t_map *map, char *temp, char *orig, int map_state);
+char	**cut_rgb_tokens(char *temp, t_map *map);
+void	exit_rgb_error(t_map *map, const char *msg);
 
 #endif
