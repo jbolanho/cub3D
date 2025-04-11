@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 10:10:14 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/04/11 15:28:09 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/04/11 18:47:13 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct s_map
 	int			player_pov;
 	int			player_x;
 	int			player_y;
-	int			height;
+	int			height;			
 }		t_map;
 
 enum e_side

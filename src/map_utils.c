@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 15:01:46 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/04/11 15:27:23 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/04/11 17:22:28 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	map_size(int fd, t_map *map)
 		i = 0;
 		if (is_space(temp[i]))
 			i++;
-		printf("temp[%d]: %c\n", i, temp[i]);
 		if (temp[i] == '1' || temp[i] == '0')
 			break ;
 		free(temp);

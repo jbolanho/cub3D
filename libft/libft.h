@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:06:32 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/04/03 15:34:36 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/04/11 19:02:07 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_list
 }	t_list;
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1000
+#  define BUFFER_SIZE 1
 # endif
 
 //Funtions

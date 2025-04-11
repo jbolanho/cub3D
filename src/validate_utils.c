@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:10:45 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/04/11 15:01:15 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/04/11 17:21:43 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	open_file(char *argv, t_map *map)
 	int	file_descriptor;
 
 	file_descriptor = open (argv, O_RDONLY);
-	printf("fd: [%d]\n", file_descriptor);
 	if (file_descriptor < 0)
 	{
 		ft_printf("Error: can not open file\n");

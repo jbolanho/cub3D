@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 10:13:02 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/03/31 16:33:36 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/04/11 16:56:33 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ void	init_struct(t_game *cub)
 	cub->key.d = false;
 	cub->key.left = false;
 	cub->key.right = false;
+	cub->no = NULL;
+	cub->we = NULL;
+	cub->ea = NULL;
+	cub->so = NULL;
 }
 
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_n_process.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:09:51 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/04/11 14:27:38 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/04/11 18:46:41 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	process_argv1(char *argv, t_map *map)
 	temp = NULL;
 	fd = open_file(argv, map);
 	check_header(map, temp, &fd);
-	close(fd);
+	close(fd); 
 	check_map(map, argv);
 	free(temp);
 	close(fd);
@@ -28,13 +28,10 @@ void	process_argv1(char *argv, t_map *map)
 
 void	check_map(t_map *map, char *argv)
 {
-	// char	*temp;
-	
-	// temp = NULL;
 	get_map(map, argv);
 	check_chr(map, "\t01NSEW ");
 	check_walls(map);
-	check_space(map, "01NSEW ");
+	//check_space(map, "01NSEW ");
 	check_player(map);
 }
 

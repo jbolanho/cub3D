@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 16:25:39 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/04/11 15:00:43 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/04/11 17:55:59 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ void	process_map_line(t_map *map, char *temp, int *start, int *map_state)
 	if (newline)
 		*newline = '\0';
 	map->cub_map[(*start)++] = ft_strdup(temp);
-	invalid_char(map, temp, start, map_state);
+	//invalid_char(map, temp, start, map_state);
 }
 
 void	check_extra_after_map(t_map *map, char *temp, char *orig, int map_state)
 {
 	if (map_state == 2)
 	{
-		ft_printf("Error: Extra content after map: \"%s\"\n", temp);
+		ft_printf("Error: Extra content after map:%s\n", temp);
 		free(orig);
 		bye_game(map);
 		exit(EXIT_FAILURE);
@@ -60,9 +60,10 @@ void	invalid_char(t_map *map, char *temp, int *start, int *map_state)
 	{
 		if (!ft_strchr(" \t01NSEW\n", *ptr) && *map_state == 1)
 		{
-			ft_printf("Error: Invalid chr\n'%c' on line [%d] and column [%d].\n",
+			ft_printf("Error: Invalid chr '%c' on line [%d] and column [%d].\n",
 				*ptr, *start, (int)(ptr - temp));
 			free(temp);
+			ptr = NULL;
 			bye_game(map);
 			exit(EXIT_FAILURE);
 		}

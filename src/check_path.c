@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_path.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:12:51 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/04/10 14:53:46 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/04/11 19:12:58 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ void	cut_path(char *temp, char *line_cpy, char **texture, t_map *map)
 	while (temp[start] && is_space(temp[start]))
 		start++;
 	end = start;
-	printf("start: %c\n", temp[start]);
 	while (temp[end] && !is_space(temp[end]) && temp[end] != '\n')
 		end++;
 	after_path(&temp[end], line_cpy, map);
