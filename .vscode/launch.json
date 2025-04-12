@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/cub3D",
-            "args": ["${workspaceFolder}/maps/map_char.cub"],
+            "args": ["${workspaceFolder}/maps/map_wrongtxt.cub"],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],

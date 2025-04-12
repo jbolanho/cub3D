@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 15:01:46 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/04/11 17:22:28 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/04/12 14:57:25 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	map_size(int fd, t_map *map)
 	while (temp)
 	{
 		i = 0;
-		if (is_space(temp[i]))
+		while (is_space(temp[i]))
 			i++;
 		if (temp[i] == '1' || temp[i] == '0')
 			break ;

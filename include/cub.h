@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 10:10:14 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/04/11 18:47:13 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/04/12 16:33:45 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -265,6 +265,8 @@ void	handle_header(int fd, t_map *map);
 void	invalid_char(t_map *map, char *temp, int *start, int *map_state);
 void	check_extra_after_map(t_map *map, char *temp, char *orig, int map_state);
 char	**cut_rgb_tokens(char *temp, t_map *map);
-void	exit_rgb_error(t_map *map, const char *msg);
+void	exit_rgb_error(t_map *map, char *temp, const char *msg);
+
+void	missing_info(t_map *map);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 15:19:33 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/04/11 17:48:13 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/04/12 14:22:38 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ void	check_chr(t_map *map, const char *str)
 		{
 			if (ft_strchr(str, (map->cub_map[line])[column]) == NULL)
 			{
-				ft_printf("Error: wrong char [%c]\n"
-					"found on line: %d, columnn: %d\n",
+				ft_printf("Error: wrong char [%c] on line: %d column: %d\n",
 					(map->cub_map[line])[column], line, column);
 				bye_game(map);
 				exit(EXIT_FAILURE);

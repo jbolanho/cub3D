@@ -6,7 +6,7 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:14:52 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/04/11 15:26:40 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/04/12 16:43:46 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,13 @@ void	check_colors(t_map *map, char *temp)
 
 void	copy_rgb(uint32_t *color, char *line_cpy, t_map *map)
 {
+	char	*orig;
+
+	orig = line_cpy;
 	if (*color != 0)
 	{
 		ft_printf("Error: invalid header - duplicated info\n");
+		free(line_cpy);
 		bye_game(map);
 		exit(EXIT_FAILURE);
 	}
@@ -38,6 +42,7 @@ void	copy_rgb(uint32_t *color, char *line_cpy, t_map *map)
 	else
 	{
 		ft_printf("Error: invalid color format\n");
+		free(orig);
 		bye_game(map);
 		exit(EXIT_FAILURE);
 	}	
@@ -73,10 +78,13 @@ char	**cut_rgb_tokens(char *temp, t_map *map)
 		if (temp[end++] == ',')
 			comma++;
 	if (comma != 2 && comma != 0)
-		exit_rgb_error(map, "Error: wrong RGB format");
+	{
+		//free(temp);
+		exit_rgb_error(map, temp, "Error: wrong RGB format");
+	}
 	make_rgb_array(&rgb, temp, map);
 	if (!rgb)
-		exit_rgb_error(map, "Error: memory allocation failed for RGB array");
+		exit_rgb_error(map, temp, "Error: memory allocation failed for RGB array");
 	return (rgb);
 }
 
@@ -88,14 +96,14 @@ void	make_rgb_array(char ***rgb, char *temp, t_map *map)
 	i = 0;
 	*rgb = ft_split(temp, ',');
 	if (!*rgb)
-		exit_rgb_error(map, "Error: wrong RGB format");
+		exit_rgb_error(map, temp, "Error: wrong RGB format");
 	while ((*rgb)[i])
 	{
 		value = ft_atoi((*rgb)[i]);
 		if (value < 0 || value > 255)
-			exit_rgb_error(map, "Error: not a RGB NUMBER");
+			exit_rgb_error(map, temp, "Error: not a RGB NUMBER");
 		i++;
 	}
 	if (i != 3)
-		exit_rgb_error(map, "Error: bad RGB format");
+		exit_rgb_error(map, temp, "Error: bad RGB format");
 }

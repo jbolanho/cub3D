@@ -118,3 +118,11 @@
    fun:_dl_catch_exception
    ...
 }
+{
+   <MLX_CODAM>
+   Memcheck:Leak
+   match-leak-kinds: definite
+   ...
+   fun:is_dst
+   ...
+}

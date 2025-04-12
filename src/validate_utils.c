@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:10:45 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/04/11 17:21:43 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/04/12 14:53:36 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ uint32_t	convert_rgb(int r, int g, int b)
 
 void	allocate_matrix(t_map *map, int size)
 {
+	printf("Sieze: %d\n", size);
+	printf("map->height: %d\n", map->height);
 	map->cub_map = ft_calloc(sizeof (char *), size + 1);
 	if (!map->cub_map)
 	{

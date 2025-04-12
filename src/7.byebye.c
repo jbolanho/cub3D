@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   7.byebye.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:50:55 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/04/11 16:03:15 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/04/12 16:28:51 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,10 @@ void	bye_game(t_map *map)
 		free_ptrptr(map->cub_map);
 }
 
-void	exit_rgb_error(t_map *map, const char *msg)
+void	exit_rgb_error(t_map *map, char *temp, const char *msg)
 {
 	ft_printf("%s\n", msg);
+	free(temp);
 	bye_game(map);
 	exit(EXIT_FAILURE);
 }
