@@ -6,7 +6,7 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:09:51 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/04/12 18:56:10 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/04/13 14:31:31 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	handle_header(int fd, t_map *map)
 	if (temp)
 		free(temp);
 }
+
 void	check_after_header(char *temp, t_map *map)
 {
 	int	i;
@@ -84,4 +85,3 @@ void	missing_info(t_map *map)
 		exit(EXIT_FAILURE);
 	}
 }
-

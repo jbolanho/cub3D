@@ -6,7 +6,7 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 16:25:39 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/04/12 17:32:40 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/04/13 13:43:08 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	check_map(t_map *map, char *argv)
 {
 	get_map(map, argv);
-	//check_chr(map, "\t01NSEW ");
+	check_chr(map, "\t01NSEW ");
 	check_walls(map);
 	//check_space(map, "01NSEW ");
 	check_player(map);
@@ -60,6 +60,7 @@ int	map_size(int fd, t_map *map)
 	map->height = map_size;
 	return (map_size);
 }
+
 void	copy_map(t_map *map, char *argv)
 {
 	int		fd;

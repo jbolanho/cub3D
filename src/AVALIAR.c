@@ -6,7 +6,7 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 15:19:33 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/04/12 17:33:18 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/04/13 13:30:19 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,29 +51,29 @@
 // }
 
 
-// void	check_chr(t_map *map, const char *str)
-// {
-// 	int			line;
-// 	int			column;
+void	check_chr(t_map *map, const char *str)
+{
+	int			line;
+	int			column;
 
-// 	line = 0;
-// 	while (map->cub_map[line] != NULL)
-// 	{
-// 		column = 0;
-// 		while ((map->cub_map[line])[column] != '\0')
-// 		{
-// 			if (ft_strchr(str, (map->cub_map[line])[column]) == NULL)
-// 			{
-// 				ft_printf("Error: wrong char [%c] on line: %d column: %d\n",
-// 					(map->cub_map[line])[column], line, column);
-// 				bye_game(map);
-// 				exit(EXIT_FAILURE);
-// 			}
-// 			column++;
-// 		}
-// 		line++;
-// 	}
-// }
+	line = 0;
+	while (map->cub_map[line] != NULL)
+	{
+		column = 0;
+		while ((map->cub_map[line])[column] != '\0')
+		{
+			if (ft_strchr(str, (map->cub_map[line])[column]) == NULL)
+			{
+				ft_printf("Error: wrong char [%c] on line: %d column: %d\n",
+					(map->cub_map[line])[column], line, column);
+				bye_game(map);
+				exit(EXIT_FAILURE);
+			}
+			column++;
+		}
+		line++;
+	}
+}
 
 // void	check_space(t_map *map, const char *str)
 // {
