@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   13.algorithm.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 12:24:48 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/04/12 17:33:06 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/04/13 19:44:23 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ void	step_and_side_distance(t_game *cub)
 
 void	perform_dda(t_game *cub)
 {
-	while (cub->ray.map.x >= 0 && cub->ray.map.y >= 0 && cub->ray.map.x < WIDTH
-		&& cub->ray.map.y < HEIGHT
+	while (cub->ray.map.x >= 0 && cub->ray.map.y >= 0 && (int) cub->ray.map.x < WIDTH
+		&& (int) cub->ray.map.y < HEIGHT
 		&& cub->map.cub_map[(int)cub->ray.map.y][(int)cub->ray.map.x] != '1')
 	{
 		if (cub->ray.side_dist.x < cub->ray.side_dist.y)

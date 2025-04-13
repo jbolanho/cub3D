@@ -6,7 +6,7 @@
 /*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:14:52 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/04/13 19:08:16 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/04/13 19:55:06 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,13 @@ void	copy_rgb(uint32_t *color, char *line_cpy, t_map *map)
 		while (is_space(*line_cpy))
 			line_cpy++;
 		line_cpy = ft_strdup(line_cpy);
-		// free(orig);
-		printf("line: %s\n", line_cpy);
-		printf("orig: %s\n", orig);
 		cut_rgb(color, line_cpy, map, orig);
 		free(line_cpy);
 	}
 	else
 	{
 		ft_printf("Error: invalid color format\n");
-		free(orig); ////////*** */
+		free(orig);
 		bye_game(map);
 		exit(EXIT_FAILURE);
 	}	
