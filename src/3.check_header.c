@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   3.check_header.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:09:51 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/04/13 14:31:31 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/04/13 16:03:32 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub.h"
 
-void	check_header(t_map *map, char *temp, int *fd)
+char	*check_header(t_map *map, char *temp, int *fd)
 {
 	char	*line_cpy;
 
@@ -32,13 +32,15 @@ void	check_header(t_map *map, char *temp, int *fd)
 		if (map->north_path && map->south_path && map->west_path
 			&& map->east_path && map->floor_color && map->ceiling_color)
 		{
+			free(temp);
 			handle_header(*fd, map);
-			return ;
+			return (NULL);
 		}
 		free(temp);
 		temp = get_next_line(*fd);
 	}
 	missing_info(map);
+	return (temp);
 }
 
 void	handle_header(int fd, t_map *map)

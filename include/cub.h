@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 10:10:14 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/04/12 16:33:45 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/04/13 15:52:12 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,7 +205,7 @@ void    make_rgb_array(char ***rgb, char *temp, t_map *map);
 
 //validate_n_process
 void	process_argv1(char *argv, t_map *map);
-void	check_header(t_map *map, char *temp, int *fd);
+char	*check_header(t_map *map, char *temp, int *fd);
 
 //validate_utils
 int open_file(char *argv, t_map *map);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   2.validate.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:13:29 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/04/12 17:32:25 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/04/13 16:04:50 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,11 @@ void	process_argv1(char *argv, t_map *map)
 
 	temp = NULL;
 	fd = open_file(argv, map);
-	check_header(map, temp, &fd);
+	temp = check_header(map, temp, &fd);
 	close(fd);
+	if (temp)
+		free(temp);
 	check_map(map, argv);
-	free(temp);
 	close(fd);
 }
 

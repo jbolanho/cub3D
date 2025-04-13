@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   5.h_check_colors.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:14:52 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/04/13 14:40:19 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/04/13 15:20:11 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,9 @@ void	copy_rgb(uint32_t *color, char *line_cpy, t_map *map)
 		while (is_space(*line_cpy))
 			line_cpy++;
 		line_cpy = ft_strdup(line_cpy);
-		free(orig);
+		// free(orig);
 		cut_rgb(color, line_cpy, map);
+		free(line_cpy);
 	}
 	else
 	{
