@@ -6,7 +6,7 @@
 /*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 12:29:41 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/04/03 15:32:26 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/04/12 17:30:07 by anacaro5         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,6 @@ char	*ft_strchr(const char *str, int chr)
 		return ((char *)&str[i]);
 	return (NULL);
 }
-
-
 
 // char	*ft_strjoin(char const *s1, char const *s2)
 // {

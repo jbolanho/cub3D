@@ -1,4 +1,5 @@
-NO ./texture/door1.png
+NO ./texture/door1.
+
 
 SO ./texture/door2.png
 
@@ -6,9 +7,10 @@ EA ./texture/clock.png
 
 WE ./texture/wall.png
 
-F 169,169
+F 169,169,0
 
 C 218,219,212
+
 
 
       111111111111111111111111

@@ -1,0 +1,99 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   9.init.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/11 12:24:55 by jbolanho          #+#    #+#             */
+/*   Updated: 2025/04/12 17:32:52 by anacaro5         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../include/cub.h"
+
+void	init(t_game *cub)
+{
+	init_window(cub);
+	init_images(cub);
+	initial_pov(cub);
+}
+
+void	init_window(t_game *cub)
+{
+	mlx_set_setting(MLX_STRETCH_IMAGE, true);
+	cub->mlx = mlx_init((int32_t)WIDTH, (int32_t)HEIGHT, "Cub3D", true);
+	if (!cub->mlx)
+	{
+		ft_printf("Error. MLX init error.\n");
+		bye_bye(cub, EXIT_SUCCESS);
+	}
+	cub->image = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
+	if (!cub->image)
+	{
+		ft_printf("Error. Window problem\n");
+		bye_bye(cub, EXIT_SUCCESS);
+	}
+}
+
+void	init_images(t_game *cub)
+{
+	cub->no = mlx_load_png(cub->map.north_path);
+	if (!cub->no)
+	{
+		ft_printf("Error: invalid texture path\n");
+		bye_bye(cub, EXIT_FAILURE);
+	}
+	cub->so = mlx_load_png(cub->map.south_path);
+	if (!cub->no)
+	{
+		ft_printf("Error: invalid texture path\n");
+		bye_bye(cub, EXIT_FAILURE);
+	}
+	cub->ea = mlx_load_png(cub->map.east_path);
+	if (!cub->no)
+	{
+		ft_printf("Error: invalid texture path\n");
+		bye_bye(cub, EXIT_FAILURE);
+	}
+	cub->we = mlx_load_png(cub->map.west_path);
+	if (!cub->no)
+	{
+		ft_printf("Error: invalid texture path\n");
+		bye_bye(cub, EXIT_FAILURE);
+	}
+}
+
+void	initial_pov(t_game *cub)
+{
+	cub->position = vector(cub->map.player_x + 0.5, cub->map.player_y + 0.5);
+	if (cub->map.player_pov == N)
+	{
+		cub->direction = vector(0, -1);
+		cub->camera_plane = vector(0.66, 0);
+	}
+	else if (cub->map.player_pov == S)
+	{
+		cub->direction = vector(0, 1);
+		cub->camera_plane = vector(-0.66, 0);
+	}
+	else if (cub->map.player_pov == W)
+	{
+		cub->direction = vector(-1, 0);
+		cub->camera_plane = vector(0, -0.66);
+	}
+	else if (cub->map.player_pov == E)
+	{
+		cub->direction = vector(1, 0);
+		cub->camera_plane = vector(0, 0.66);
+	}
+}
+
+t_vector	vector(float x, float y)
+{
+	t_vector	vector;
+
+	vector.x = x;
+	vector.y = y;
+	return (vector);
+}

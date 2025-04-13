@@ -6,23 +6,24 @@ CFLAGS = -Wall -Wextra -Werror -g3
 MFLAGS = -ldl -lglfw -pthread -lm
 
 
-SRC =	./src/main.c   \
-		./src/1.init.c \
-		./src/2.game.c  \
-		./src/3.key_data.c  \
-		./src/4.key_data_utils.c  \
-		./src/5.algorithm.c  \
-		./src/6.algorithm_utils.c  \
-		./src/7.byebye.c  \
-		./src/validate.c   \
-		./src/validate_n_process.c   \
-		./src/validate_utils.c   \
-		./src/check_path.c   \
-		./src/check_colors.c   \
-		./src/get_map.c   \
-		./src/check_map.c   \
-		./src/check_walls.c   \
-		./src/map_utils.c \
+SRC =	./src/1.main.c   \
+		./src/2.validate.c   \
+		./src/3.check_header.c   \
+		./src/4.h_check_path.c   \
+		./src/5.h_check_colors.c   \
+		./src/6.check_map.c   \
+		./src/7.m_check_walls.c   \
+		./src/8.m_check_player.c \
+		./src/9.init.c \
+		./src/10.game.c  \
+		./src/11.key_data.c  \
+		./src/12.key_data_utils.c  \
+		./src/13.algorithm.c  \
+		./src/14.algorithm_utils.c  \
+		./src/15.byebye.c  \
+		./src/AVALIAR.c   \
+		./src/utils.c 
+
 
 OBJ_DIR = obj
 
