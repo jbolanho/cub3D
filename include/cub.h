@@ -6,7 +6,7 @@
 /*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 10:10:14 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/04/13 15:52:12 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/04/13 19:12:13 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,8 +200,8 @@ void	after_path(char *temp, char *line_cpy, t_map *map);
 //check_colors
 void	check_colors(t_map *map, char *temp);
 void	copy_rgb(uint32_t *color, char *line_cpy, t_map *map);
-void	cut_rgb(uint32_t *surface, char *temp, t_map *map);
-void    make_rgb_array(char ***rgb, char *temp, t_map *map);
+void	cut_rgb(uint32_t *surface, char *temp, t_map *map, char *orig);
+void    make_rgb_array(char ***rgb, char *temp, t_map *map, char *orig);
 
 //validate_n_process
 void	process_argv1(char *argv, t_map *map);
@@ -264,8 +264,8 @@ void	check_empty_lines(char	**temp);
 void	handle_header(int fd, t_map *map);
 void	invalid_char(t_map *map, char *temp, int *start, int *map_state);
 void	check_extra_after_map(t_map *map, char *temp, char *orig, int map_state);
-char	**cut_rgb_tokens(char *temp, t_map *map);
-void	exit_rgb_error(t_map *map, char *temp, const char *msg);
+char	**cut_rgb_tokens(char *temp, t_map *map, char *orig);
+void	exit_rgb_error(t_map *map, char *temp, char *orig, const char *msg);
 
 void	missing_info(t_map *map);
 
