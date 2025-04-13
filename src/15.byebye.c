@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   15.byebye.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:50:55 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/04/12 18:33:39 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/04/13 18:19:19 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,8 @@ void	bye_game(t_map *map)
 
 void	exit_rgb_error(t_map *map, char *temp, const char *msg)
 {
-	ft_printf("%s\n", msg);
-	printf("Error: RGB format: %s\n", temp);
-	if (temp)
-		free(temp);
+	ft_printf("%s :%s\n", msg, temp);
+	free(temp);
 	bye_game(map);
 	exit(EXIT_FAILURE);
 }

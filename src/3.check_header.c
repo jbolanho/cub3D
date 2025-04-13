@@ -6,7 +6,7 @@
 /*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:09:51 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/04/13 16:03:32 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/04/13 18:47:12 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,13 @@ char	*check_header(t_map *map, char *temp, int *fd)
 			free(line_cpy);
 		}
 		check_colors(map, temp);
+		free(temp);
 		if (map->north_path && map->south_path && map->west_path
 			&& map->east_path && map->floor_color && map->ceiling_color)
 		{
-			free(temp);
 			handle_header(*fd, map);
 			return (NULL);
 		}
-		free(temp);
 		temp = get_next_line(*fd);
 	}
 	missing_info(map);

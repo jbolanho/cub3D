@@ -6,7 +6,7 @@
 /*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:14:52 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/04/13 15:20:11 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/04/13 18:47:28 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	check_colors(t_map *map, char *temp)
 {
 	if (ft_strncmp("F", temp, 1) == 0)
 		copy_rgb(&(map->floor_color), temp, map);
-	if (ft_strncmp("C", temp, 1) == 0)
+	else if (ft_strncmp("C", temp, 1) == 0)
 		copy_rgb(&(map->ceiling_color), temp, map);
 }
 
@@ -82,6 +82,8 @@ char	**cut_rgb_tokens(char *temp, t_map *map)
 			comma++;
 	if (comma != 2 && comma != 0)
 		exit_rgb_error(map, temp, "Error: wrong RGB format");
+	if (temp[end -1] == ',')
+		exit_rgb_error(map, temp, "Error: wrong RGB formats");
 	make_rgb_array(&rgb, temp, map);
 	if (!rgb)
 		exit_rgb_error(map, temp, "Error: memory allocation failed");
