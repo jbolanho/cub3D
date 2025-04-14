@@ -6,7 +6,7 @@
 /*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 10:10:14 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/04/13 19:12:13 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/04/14 16:16:46 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ typedef struct s_map
 	int			player_pov;
 	int			player_x;
 	int			player_y;
-	int			height;			
+	int			height;
+	int			width;	
 }		t_map;
 
 enum e_side

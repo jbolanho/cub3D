@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   7.m_check_walls.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 17:57:19 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/04/12 17:32:43 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/04/14 16:28:57 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	check_walls(t_map *map)
 		{
 			check_wall_surroundings(map, line, column);
 			column++;
+			if (column > map->width)
+				map->width = column;
 		}
 		line++;
 	}

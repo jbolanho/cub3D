@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   1.main.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 10:13:02 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/04/12 18:46:08 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/04/14 16:29:55 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	init_struct(t_game *cub)
 	cub->we = NULL;
 	cub->ea = NULL;
 	cub->so = NULL;
+	cub->map.height = 0;
+	cub->map.width = 0;
 }
 
 // void	fake_data(t_game *cub)
