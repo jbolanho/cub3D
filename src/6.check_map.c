@@ -6,7 +6,7 @@
 /*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 16:25:39 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/04/13 15:22:56 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/04/14 17:12:30 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	check_map(t_map *map, char *argv)
 	get_map(map, argv);
 	check_chr(map, "\t01NSEW ");
 	check_walls(map);
-	//check_space(map, "01NSEW ");
 	check_player(map);
 }
 
@@ -106,5 +105,4 @@ void	process_map_line(t_map *map, char *temp, int *start, int *map_state)
 	if (newline)
 		*newline = '\0';
 	map->cub_map[(*start)++] = ft_strdup(temp);
-	//invalid_char(map, temp, start, map_state);
 }

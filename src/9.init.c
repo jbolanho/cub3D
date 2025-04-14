@@ -6,7 +6,7 @@
 /*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 12:24:55 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/04/13 16:39:33 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/04/14 17:34:11 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	init_images(t_game *cub)
 void	initial_pov(t_game *cub)
 {
 	cub->position = vector(cub->map.player_x + 0.5, cub->map.player_y + 0.5);
-	// cub->position = vector(cub->map.player_x, cub->map.player_y);
 	if (cub->map.player_pov == N)
 	{
 		cub->direction = vector(0, -1);

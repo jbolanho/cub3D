@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:05:37 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/04/12 17:29:47 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/04/14 17:36:07 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,6 @@
 // 	first = ft_countncut(line, &rest[fd]);
 // 	return (first);
 // }
-
 
 char	*ft_read_file(int fd, char *buff, char *txt)
 {

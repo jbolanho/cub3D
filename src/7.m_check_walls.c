@@ -6,7 +6,7 @@
 /*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 17:57:19 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/04/14 16:28:57 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/04/14 17:24:33 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,4 @@ void	print_wall_error(int line, int column, t_map *map)
 {
 	ft_printf("Error: open wall on line: %d column: %d\n", line, column);
 	bye_game(map);
-	exit(EXIT_FAILURE);
 }

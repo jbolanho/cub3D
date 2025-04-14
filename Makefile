@@ -21,8 +21,7 @@ SRC =	./src/1.main.c   \
 		./src/13.algorithm.c  \
 		./src/14.algorithm_utils.c  \
 		./src/15.byebye.c  \
-		./src/AVALIAR.c   \
-		./src/utils.c 
+		./src/16.utils.c 
 
 
 OBJ_DIR = obj

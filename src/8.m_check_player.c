@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   8.m_check_player.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 15:01:46 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/04/12 17:32:46 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/04/14 18:20:36 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	check_player(t_map *map)
 	{
 		ft_printf("Error: there is no player\n");
 		bye_game(map);
-		exit(EXIT_FAILURE);
 	}
 }
 
@@ -62,7 +61,6 @@ void	count_player(t_map *map, int line, int col, int *count)
 	{
 		ft_printf("Error: too many players\n");
 		bye_game(map);
-		exit(EXIT_FAILURE);
 	}
 	map->player_x = col;
 	map->player_y = line;
@@ -72,9 +70,31 @@ void	check_extra_after_map(t_map *map, char *temp, char *orig, int map_state)
 {
 	if (map_state == 2)
 	{
-		ft_printf("Error: Extra content after map:%s\n", temp);
+		ft_printf("Error: extra content after map:%s", temp);
 		free(orig);
 		bye_game(map);
-		exit(EXIT_FAILURE);
+	}
+}
+
+void	check_chr(t_map *map, const char *str)
+{
+	int			line;
+	int			column;
+
+	line = 0;
+	while (map->cub_map[line] != NULL)
+	{
+		column = 0;
+		while ((map->cub_map[line])[column] != '\0')
+		{
+			if (ft_strchr(str, (map->cub_map[line])[column]) == NULL)
+			{
+				ft_printf("Error: wrong char [%c] on line: %d column: %d\n",
+					(map->cub_map[line])[column], line, column);
+				bye_game(map);
+			}
+			column++;
+		}
+		line++;
 	}
 }

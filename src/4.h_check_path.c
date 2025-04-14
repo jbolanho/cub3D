@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   4.h_check_path.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:12:51 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/04/12 17:32:31 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/04/14 17:24:19 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	check_path(t_map *map, char *temp, char *line_cpy)
 			free (line_cpy);
 			ft_printf("Error: invalid char on header\n");
 			bye_game(map);
-			exit (EXIT_FAILURE);
 		}
 	}
 }
@@ -42,7 +41,6 @@ void	copy_path(char **texture, char *temp, t_map *map, char *line_cpy)
 		free (line_cpy);
 		ft_printf("Error: invalid header - duplicated info\n");
 		bye_game(map);
-		exit(EXIT_FAILURE);
 	}
 	temp += 2;
 	if (is_space(*temp))
@@ -56,7 +54,6 @@ void	copy_path(char **texture, char *temp, t_map *map, char *line_cpy)
 		free(line_cpy);
 		ft_printf("Error: invalid texture path\n");
 		bye_game(map);
-		exit(EXIT_FAILURE);
 	}	
 }
 
@@ -98,7 +95,6 @@ void	after_path(char *temp, char *line_cpy, t_map *map)
 			free(line_cpy);
 			ft_printf("Error: invalid char after path\n");
 			bye_game(map);
-			exit(EXIT_FAILURE);
 		}
 		after += 1;
 	}

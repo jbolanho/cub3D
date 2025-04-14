@@ -6,7 +6,7 @@
 /*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 12:24:48 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/04/13 19:44:23 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/04/14 17:34:30 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,8 @@ void	step_and_side_distance(t_game *cub)
 
 void	perform_dda(t_game *cub)
 {
-	while (cub->ray.map.x >= 0 && cub->ray.map.y >= 0 && (int) cub->ray.map.x < WIDTH
+	while (cub->ray.map.x >= 0 && cub->ray.map.y >= 0
+		&& (int) cub->ray.map.x < WIDTH
 		&& (int) cub->ray.map.y < HEIGHT
 		&& cub->map.cub_map[(int)cub->ray.map.y][(int)cub->ray.map.x] != '1')
 	{

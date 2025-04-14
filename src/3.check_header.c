@@ -6,7 +6,7 @@
 /*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:09:51 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/04/13 18:47:12 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/04/14 17:33:32 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ char	*check_header(t_map *map, char *temp, int *fd)
 		}
 		temp = get_next_line(*fd);
 	}
-	missing_info(map);
 	return (temp);
 }
 
@@ -70,7 +69,6 @@ void	check_after_header(char *temp, t_map *map)
 			ft_printf("Error: BAD info after header\n", temp[i]);
 			free(temp);
 			bye_game(map);
-			exit(EXIT_FAILURE);
 		}
 		i++;
 	}
@@ -83,6 +81,5 @@ void	missing_info(t_map *map)
 	{
 		ft_printf("Error: invalid map: missing info\n");
 		bye_game(map);
-		exit(EXIT_FAILURE);
 	}
 }

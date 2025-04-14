@@ -6,7 +6,7 @@
 /*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:13:29 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/04/13 16:04:50 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/04/14 17:48:06 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,11 @@ void	check_argc(int argc, t_map *map)
 	{
 		printf("Error: missing map file\n");
 		bye_game(map);
-		exit(EXIT_FAILURE);
 	}
 	else if (argc > 2)
 	{
 		printf("Error: too many arguments\n");
 		bye_game(map);
-		exit(EXIT_FAILURE);
 	}
 }
 
@@ -44,14 +42,12 @@ void	check_dotcub(char *argv, t_map *map)
 	{
 		ft_printf("Error: invalid map format\n");
 		bye_game(map);
-		exit(EXIT_FAILURE);
 	}
 	if (strcmp(argv + ft_strlen(argv)
 			- ft_strlen(extension2), extension2) != 0)
 	{
 		ft_printf("Error: file does not end with '.cub'\n");
 		bye_game(map);
-		exit(EXIT_FAILURE);
 	}
 }
 
@@ -63,6 +59,7 @@ void	process_argv1(char *argv, t_map *map)
 	temp = NULL;
 	fd = open_file(argv, map);
 	temp = check_header(map, temp, &fd);
+	missing_info(map);
 	close(fd);
 	if (temp)
 		free(temp);
@@ -79,7 +76,6 @@ int	open_file(char *argv, t_map *map)
 	{
 		ft_printf("Error: can not open file\n");
 		bye_game(map);
-		exit (EXIT_FAILURE);
 	}
 	return (file_descriptor);
 }

@@ -6,7 +6,7 @@
 /*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:50:55 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/04/13 19:10:35 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/04/14 17:28:40 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,5 @@ void	bye_game(t_map *map)
 		free(map->west_path);
 	if (map && map->cub_map)
 		free_ptrptr(map->cub_map);
-}
-
-void	exit_rgb_error(t_map *map, char *temp, char *orig, const char *msg)
-{
-	ft_printf("%s :%s\n", msg, temp);
-	free(orig);
-	free(temp);
-	bye_game(map);
 	exit(EXIT_FAILURE);
 }

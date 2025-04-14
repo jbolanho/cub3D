@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anacaro5 <anacaro5@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 12:29:41 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/04/12 17:30:07 by anacaro5         ###   ########.fr       */
+/*   Updated: 2025/04/14 17:43:38 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,24 +59,23 @@
 // 	return (NULL);
 // }
 
+// char	*ft_strchr(const char *str, int chr)
+// {
+// 	size_t	i;
 
-char	*ft_strchr(const char *str, int chr)
-{
-	size_t	i;
-
-	i = 0;
-	if (str == NULL)
-		return (NULL);
-	while (str[i] != '\0')
-	{
-		if (str[i] == (unsigned char)chr)
-			return ((char *)&str[i]);
-		i++;
-	}
-	if (chr == '\0')
-		return ((char *)&str[i]);
-	return (NULL);
-}
+// 	i = 0;
+// 	if (str == NULL)
+// 		return (NULL);
+// 	while (str[i] != '\0')
+// 	{
+// 		if (str[i] == (unsigned char)chr)
+// 			return ((char *)&str[i]);
+// 		i++;
+// 	}
+// 	if (chr == '\0')
+// 		return ((char *)&str[i]);
+// 	return (NULL);
+// }
 
 // char	*ft_strjoin(char const *s1, char const *s2)
 // {
@@ -104,21 +103,21 @@ char	*ft_strchr(const char *str, int chr)
 // 	return (new);
 // }
 
-size_t	ft_strlcpy(char *dest, const char *src, size_t destsize)
-{
-	size_t	i;
+// size_t	ft_strlcpy(char *dest, const char *src, size_t destsize)
+// {
+// 	size_t	i;
 
-	if (destsize == 0)
-		return (ft_strlen(src));
-	i = 0;
-	while (i < destsize -1 && src[i] != '\0')
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (ft_strlen(src));
-}
+// 	if (destsize == 0)
+// 		return (ft_strlen(src));
+// 	i = 0;
+// 	while (i < destsize -1 && src[i] != '\0')
+// 	{
+// 		dest[i] = src[i];
+// 		i++;
+// 	}
+// 	dest[i] = '\0';
+// 	return (ft_strlen(src));
+// }
 
 // size_t	ft_strlen(const char *str)
 // {
@@ -131,7 +130,6 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t destsize)
 // 		i++;
 // 	return (i);
 // }
-
 
 int	ft_strlen_gnl(const char *str)
 {
@@ -245,4 +243,3 @@ char	*ft_substr_gnl(char const *s, unsigned int start, size_t len)
 	mem[i] = '\0';
 	return (mem);
 }
-

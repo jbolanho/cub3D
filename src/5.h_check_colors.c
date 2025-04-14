@@ -6,7 +6,7 @@
 /*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:14:52 by anacaro5          #+#    #+#             */
-/*   Updated: 2025/04/13 19:55:06 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/04/14 17:24:28 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	copy_rgb(uint32_t *color, char *line_cpy, t_map *map)
 		ft_printf("Error: invalid header - duplicated info\n");
 		free(line_cpy);
 		bye_game(map);
-		exit(EXIT_FAILURE);
 	}
 	line_cpy += 1;
 	if (is_space(*line_cpy))
@@ -46,7 +45,6 @@ void	copy_rgb(uint32_t *color, char *line_cpy, t_map *map)
 		ft_printf("Error: invalid color format\n");
 		free(orig);
 		bye_game(map);
-		exit(EXIT_FAILURE);
 	}	
 }
 

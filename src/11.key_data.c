@@ -6,7 +6,7 @@
 /*   By: jbolanho <jbolanho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 10:50:29 by jbolanho          #+#    #+#             */
-/*   Updated: 2025/04/14 16:43:35 by jbolanho         ###   ########.fr       */
+/*   Updated: 2025/04/14 17:13:17 by jbolanho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,11 @@ void	moon_walk(t_game *cub)
 	y1 = (int)cub->position.y;
 	x2 = (int)cub->position.x;
 	y2 = (int)(cub->position.y - cub->direction.y * cub->move_speed);
-	if (x1 < cub->map.width && cub->map.cub_map[y1][x1] && cub->map.cub_map[y1][x1] != '1')
+	if (x1 < cub->map.width && cub->map.cub_map[y1][x1]
+		&& cub->map.cub_map[y1][x1] != '1')
 		cub->position.x -= cub->direction.x * cub->move_speed;
-	if (y2 < cub->map.height && cub->map.cub_map[y2][x2] && cub->map.cub_map[y2][x2] != '1')
+	if (y2 < cub->map.height && cub->map.cub_map[y2][x2]
+		&& cub->map.cub_map[y2][x2] != '1')
 		cub->position.y -= cub->direction.y * cub->move_speed;
 }
 
@@ -79,14 +81,12 @@ void	go_ahead(t_game *cub)
 	y1 = (int)cub->position.y;
 	x2 = (int)cub->position.x;
 	y2 = (int)(cub->position.y + cub->direction.y * cub->move_speed);
-	if (x1 < cub->map.width && cub->map.cub_map[y1][x1] && cub->map.cub_map[y1][x1] != '1' )
-	// if (cub->map.cub_map[y1][x1] != '1' )
+	if (x1 < cub->map.width && cub->map.cub_map[y1][x1]
+		&& cub->map.cub_map[y1][x1] != '1' )
 		cub->position.x += cub->direction.x * cub->move_speed;
-		// cub->position.x = x1;
-	// if (cub->map.cub_map[y2][x2] && cub->map.cub_map[y2][x2] != '1')
-	if (y2 < cub->map.height && cub->map.cub_map[y2][x2] && cub->map.cub_map[y2][x2] != '1')
+	if (y2 < cub->map.height && cub->map.cub_map[y2][x2]
+		&& cub->map.cub_map[y2][x2] != '1')
 		cub->position.y += cub->direction.y * cub->move_speed;
-		// cub->position.y = y2;
 }
 
 void	key_release(t_game *cub, mlx_key_data_t pressed)
